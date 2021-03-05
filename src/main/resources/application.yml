@@ -1,0 +1,14 @@
+server:
+  port: 18080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.100.13.87:3306/pmcore?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: orangesoft
+    password: orangesoft
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
