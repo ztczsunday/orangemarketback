@@ -1,4 +1,4 @@
-package com.example.demo.pojo;
+package com.orangeSoft.market.pojo;
 
 import lombok.Data;
 import org.springframework.context.annotation.Scope;

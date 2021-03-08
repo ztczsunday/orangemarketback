@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.orangeSoft.market.service;
 
-import com.example.demo.pojo.LoginResult;
+import com.orangeSoft.market.pojo.LoginResult;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 //todo
 @Service
 public class LoginService {
-    public LoginResult login(String uTel,String uPassword){
+    public LoginResult login(String uTel, String uPassword){
         return null;
     }
 }

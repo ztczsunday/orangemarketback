@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.orangeSoft.market.controller;
 
-import com.example.demo.pojo.LoginResult;
-import com.example.demo.service.LoginService;
+import com.orangeSoft.market.pojo.LoginResult;
+import com.orangeSoft.market.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

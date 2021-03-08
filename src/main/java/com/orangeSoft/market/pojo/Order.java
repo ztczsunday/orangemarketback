@@ -1,4 +1,4 @@
-package com.example.demo.pojo;
+package com.orangeSoft.market.pojo;
 
 import lombok.Data;
 import org.springframework.context.annotation.Scope;
@@ -8,12 +8,10 @@ import org.springframework.stereotype.Component;
  * @author MakiYO
  * @create 2021/3/6
  */
-//TODO
+//todo
 @Component
 @Scope("prototype")
 @Data
-public class Commodity {
-    private int cId;
-    private String cName;
-    private String c;
+public class Order {
+    private int oid;
 }
