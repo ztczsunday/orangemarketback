@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, user_password, user_alipayAccount, uer_telephone, user_name, user_gender, user_selfie, 
+    uid, user_password, user_alipayAccount, uer_telephone, user_name, user_gender, user_selfie,
     user_signature, user_email, user_license
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.UserInfoExample" resultMap="BaseResultMap">
