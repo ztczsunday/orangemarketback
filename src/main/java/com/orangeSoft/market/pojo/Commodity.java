@@ -5,7 +5,7 @@ public class Commodity {
 
     private Integer sid;
 
-    private String commodityAme;
+    private String commodityName;
 
     private String commodityDescription;
 
@@ -27,12 +27,12 @@ public class Commodity {
         this.sid = sid;
     }
 
-    public String getCommodityAme() {
-        return commodityAme;
+    public String getCommodityName() {
+        return commodityName;
     }
 
-    public void setCommodityAme(String commodityAme) {
-        this.commodityAme = commodityAme == null ? null : commodityAme.trim();
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName == null ? null : commodityName.trim();
     }
 
     public String getCommodityDescription() {

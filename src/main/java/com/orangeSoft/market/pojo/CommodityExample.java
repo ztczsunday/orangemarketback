@@ -224,73 +224,73 @@ public class CommodityExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeIsNull() {
-            addCriterion("commodity_ame is null");
+        public Criteria andCommodityNameIsNull() {
+            addCriterion("commodity_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeIsNotNull() {
-            addCriterion("commodity_ame is not null");
+        public Criteria andCommodityNameIsNotNull() {
+            addCriterion("commodity_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeEqualTo(String value) {
-            addCriterion("commodity_ame =", value, "commodityAme");
+        public Criteria andCommodityNameEqualTo(String value) {
+            addCriterion("commodity_name =", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeNotEqualTo(String value) {
-            addCriterion("commodity_ame <>", value, "commodityAme");
+        public Criteria andCommodityNameNotEqualTo(String value) {
+            addCriterion("commodity_name <>", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeGreaterThan(String value) {
-            addCriterion("commodity_ame >", value, "commodityAme");
+        public Criteria andCommodityNameGreaterThan(String value) {
+            addCriterion("commodity_name >", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeGreaterThanOrEqualTo(String value) {
-            addCriterion("commodity_ame >=", value, "commodityAme");
+        public Criteria andCommodityNameGreaterThanOrEqualTo(String value) {
+            addCriterion("commodity_name >=", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeLessThan(String value) {
-            addCriterion("commodity_ame <", value, "commodityAme");
+        public Criteria andCommodityNameLessThan(String value) {
+            addCriterion("commodity_name <", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeLessThanOrEqualTo(String value) {
-            addCriterion("commodity_ame <=", value, "commodityAme");
+        public Criteria andCommodityNameLessThanOrEqualTo(String value) {
+            addCriterion("commodity_name <=", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeLike(String value) {
-            addCriterion("commodity_ame like", value, "commodityAme");
+        public Criteria andCommodityNameLike(String value) {
+            addCriterion("commodity_name like", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeNotLike(String value) {
-            addCriterion("commodity_ame not like", value, "commodityAme");
+        public Criteria andCommodityNameNotLike(String value) {
+            addCriterion("commodity_name not like", value, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeIn(List<String> values) {
-            addCriterion("commodity_ame in", values, "commodityAme");
+        public Criteria andCommodityNameIn(List<String> values) {
+            addCriterion("commodity_name in", values, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeNotIn(List<String> values) {
-            addCriterion("commodity_ame not in", values, "commodityAme");
+        public Criteria andCommodityNameNotIn(List<String> values) {
+            addCriterion("commodity_name not in", values, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeBetween(String value1, String value2) {
-            addCriterion("commodity_ame between", value1, value2, "commodityAme");
+        public Criteria andCommodityNameBetween(String value1, String value2) {
+            addCriterion("commodity_name between", value1, value2, "commodityName");
             return (Criteria) this;
         }
 
-        public Criteria andCommodityAmeNotBetween(String value1, String value2) {
-            addCriterion("commodity_ame not between", value1, value2, "commodityAme");
+        public Criteria andCommodityNameNotBetween(String value1, String value2) {
+            addCriterion("commodity_name not between", value1, value2, "commodityName");
             return (Criteria) this;
         }
 

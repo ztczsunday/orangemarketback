@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Commodity">
     <id column="cid" jdbcType="BIGINT" property="cid" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
-    <result column="commodity_ame" jdbcType="VARCHAR" property="commodityAme" />
+    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
     <result column="commodity_description" jdbcType="VARCHAR" property="commodityDescription" />
     <result column="commodity_status" jdbcType="BIT" property="commodityStatus" />
   </resultMap>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, sid, commodity_ame, commodity_description, commodity_status
+    cid, sid, commodity_name, commodity_description, commodity_status
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.CommodityExample" resultMap="BaseResultMap">
     select
@@ -100,9 +100,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.Commodity">
-    insert into commodity (cid, sid, commodity_ame, 
+    insert into commodity (cid, sid, commodity_name, 
       commodity_description, commodity_status)
-    values (#{cid,jdbcType=BIGINT}, #{sid,jdbcType=INTEGER}, #{commodityAme,jdbcType=VARCHAR}, 
+    values (#{cid,jdbcType=BIGINT}, #{sid,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, 
       #{commodityDescription,jdbcType=VARCHAR}, #{commodityStatus,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Commodity">
@@ -114,8 +114,8 @@
       <if test="sid != null">
         sid,
       </if>
-      <if test="commodityAme != null">
-        commodity_ame,
+      <if test="commodityName != null">
+        commodity_name,
       </if>
       <if test="commodityDescription != null">
         commodity_description,
@@ -131,8 +131,8 @@
       <if test="sid != null">
         #{sid,jdbcType=INTEGER},
       </if>
-      <if test="commodityAme != null">
-        #{commodityAme,jdbcType=VARCHAR},
+      <if test="commodityName != null">
+        #{commodityName,jdbcType=VARCHAR},
       </if>
       <if test="commodityDescription != null">
         #{commodityDescription,jdbcType=VARCHAR},
@@ -157,8 +157,8 @@
       <if test="record.sid != null">
         sid = #{record.sid,jdbcType=INTEGER},
       </if>
-      <if test="record.commodityAme != null">
-        commodity_ame = #{record.commodityAme,jdbcType=VARCHAR},
+      <if test="record.commodityName != null">
+        commodity_name = #{record.commodityName,jdbcType=VARCHAR},
       </if>
       <if test="record.commodityDescription != null">
         commodity_description = #{record.commodityDescription,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
     update commodity
     set cid = #{record.cid,jdbcType=BIGINT},
       sid = #{record.sid,jdbcType=INTEGER},
-      commodity_ame = #{record.commodityAme,jdbcType=VARCHAR},
+      commodity_name = #{record.commodityName,jdbcType=VARCHAR},
       commodity_description = #{record.commodityDescription,jdbcType=VARCHAR},
       commodity_status = #{record.commodityStatus,jdbcType=BIT}
     <if test="_parameter != null">
@@ -188,8 +188,8 @@
       <if test="sid != null">
         sid = #{sid,jdbcType=INTEGER},
       </if>
-      <if test="commodityAme != null">
-        commodity_ame = #{commodityAme,jdbcType=VARCHAR},
+      <if test="commodityName != null">
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
       </if>
       <if test="commodityDescription != null">
         commodity_description = #{commodityDescription,jdbcType=VARCHAR},
@@ -203,7 +203,7 @@
   <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.Commodity">
     update commodity
     set sid = #{sid,jdbcType=INTEGER},
-      commodity_ame = #{commodityAme,jdbcType=VARCHAR},
+      commodity_name = #{commodityName,jdbcType=VARCHAR},
       commodity_description = #{commodityDescription,jdbcType=VARCHAR},
       commodity_status = #{commodityStatus,jdbcType=BIT}
     where cid = #{cid,jdbcType=BIGINT}
