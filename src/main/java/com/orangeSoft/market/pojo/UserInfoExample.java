@@ -234,73 +234,73 @@ public class UserInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountIsNull() {
-            addCriterion("user_alipayAccount is null");
+        public Criteria andUserAlipayAccountIsNull() {
+            addCriterion("user_alipay_account is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountIsNotNull() {
-            addCriterion("user_alipayAccount is not null");
+        public Criteria andUserAlipayAccountIsNotNull() {
+            addCriterion("user_alipay_account is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountEqualTo(String value) {
-            addCriterion("user_alipayAccount =", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountEqualTo(String value) {
+            addCriterion("user_alipay_account =", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountNotEqualTo(String value) {
-            addCriterion("user_alipayAccount <>", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountNotEqualTo(String value) {
+            addCriterion("user_alipay_account <>", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountGreaterThan(String value) {
-            addCriterion("user_alipayAccount >", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountGreaterThan(String value) {
+            addCriterion("user_alipay_account >", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountGreaterThanOrEqualTo(String value) {
-            addCriterion("user_alipayAccount >=", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountGreaterThanOrEqualTo(String value) {
+            addCriterion("user_alipay_account >=", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountLessThan(String value) {
-            addCriterion("user_alipayAccount <", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountLessThan(String value) {
+            addCriterion("user_alipay_account <", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountLessThanOrEqualTo(String value) {
-            addCriterion("user_alipayAccount <=", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountLessThanOrEqualTo(String value) {
+            addCriterion("user_alipay_account <=", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountLike(String value) {
-            addCriterion("user_alipayAccount like", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountLike(String value) {
+            addCriterion("user_alipay_account like", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountNotLike(String value) {
-            addCriterion("user_alipayAccount not like", value, "userAlipayaccount");
+        public Criteria andUserAlipayAccountNotLike(String value) {
+            addCriterion("user_alipay_account not like", value, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountIn(List<String> values) {
-            addCriterion("user_alipayAccount in", values, "userAlipayaccount");
+        public Criteria andUserAlipayAccountIn(List<String> values) {
+            addCriterion("user_alipay_account in", values, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountNotIn(List<String> values) {
-            addCriterion("user_alipayAccount not in", values, "userAlipayaccount");
+        public Criteria andUserAlipayAccountNotIn(List<String> values) {
+            addCriterion("user_alipay_account not in", values, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountBetween(String value1, String value2) {
-            addCriterion("user_alipayAccount between", value1, value2, "userAlipayaccount");
+        public Criteria andUserAlipayAccountBetween(String value1, String value2) {
+            addCriterion("user_alipay_account between", value1, value2, "userAlipayAccount");
             return (Criteria) this;
         }
 
-        public Criteria andUserAlipayaccountNotBetween(String value1, String value2) {
-            addCriterion("user_alipayAccount not between", value1, value2, "userAlipayaccount");
+        public Criteria andUserAlipayAccountNotBetween(String value1, String value2) {
+            addCriterion("user_alipay_account not between", value1, value2, "userAlipayAccount");
             return (Criteria) this;
         }
 
