@@ -1,10 +1,13 @@
 package com.orangeSoft.market.pojo;
 
+
+import lombok.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
+@Data
 public class UserInfo {
     private Integer uid;
 
@@ -12,7 +15,7 @@ public class UserInfo {
 
     private String userAlipayAccount;
 
-    private String uerTelephone;
+    private String userTelephone;
 
     private String userName;
 
@@ -50,12 +53,12 @@ public class UserInfo {
         this.userAlipayAccount = userAlipayAccount == null ? null : userAlipayAccount.trim();
     }
 
-    public String getUerTelephone() {
-        return uerTelephone;
+    public String getUserTelephone() {
+        return userTelephone;
     }
 
-    public void setUerTelephone(String uerTelephone) {
-        this.uerTelephone = uerTelephone == null ? null : uerTelephone.trim();
+    public void setUserTelephone(String userTelephone) {
+        this.userTelephone = userTelephone == null ? null : userTelephone.trim();
     }
 
     public String getUserName() {

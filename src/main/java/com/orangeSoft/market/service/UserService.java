@@ -4,6 +4,7 @@ import com.orangeSoft.market.mapper.UserInfoMapper;
 import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.pojo.UserInfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,10 +14,12 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserInfoMapper userInfoMapper;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public UserInfo login(String account, String pwd){
         UserInfoExample userInfoExample = new UserInfoExample();
-        userInfoExample.createCriteria().andUerTelephoneEqualTo(account).andUserPasswordEqualTo(pwd);
+        userInfoExample.createCriteria().andUserTelephoneEqualTo(account).andUserPasswordEqualTo(pwd);
         List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoExample);
         if(userInfos.isEmpty()){
             return null;
@@ -24,7 +27,7 @@ public class UserService {
         return userInfos.get(0);
     }
 
-    public boolean register(String uerTelephone,
+    public boolean register(String userTelephone,
                             String userPassword,
                             String userAlipayAccount,
                             String userName,
@@ -33,8 +36,9 @@ public class UserService {
                             String userSignature,
                             String userEmail,
                             String userLicense) {
+        userPassword=passwordEncoder.encode(userPassword);
         UserInfo userInfo=new UserInfo();
-        userInfo.setUerTelephone(uerTelephone);
+        userInfo.setUserTelephone(userTelephone);
         userInfo.setUserPassword(userPassword);
         userInfo.setUserAlipayAccount(userAlipayAccount);
         userInfo.setUserName(userName);

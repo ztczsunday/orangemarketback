@@ -36,10 +36,11 @@
         </javaClientGenerator>
 
         <!--  对应的表生成对应的 实体类 -->
-        <table tableName="user_comment" domainObjectName="UserComment"/>
+
         <table tableName="user_info" domainObjectName="UserInfo"/>
 
       <!--  <table tableName="chat" domainObjectName="Chat"/>
+             <table tableName="user_comment" domainObjectName="UserComment"/>
         <table tableName="commodity" domainObjectName="Commodity"/>
         <table tableName="commodity_add_label" domainObjectName="CommodityAddLabel"/>
         <table tableName="commodity_label" domainObjectName="CommodityLabel"/>

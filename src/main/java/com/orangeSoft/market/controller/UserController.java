@@ -19,8 +19,8 @@ public class UserController {
                           @RequestParam("password") String password) {
         return userService.login(account,password);
     }
-    @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
-    public boolean register(@RequestParam("uerTelephone") String uerTelephone,
+    @GetMapping(value = "/register", produces = "application/json;charset=UTF-8")
+    public boolean register(@RequestParam("userTelephone") String userTelephone,
                             @RequestParam("userPassword") String userPassword,
                             @RequestParam("userAlipayAccount") String userAlipayAccount,
                             @RequestParam("userName") String userName,
@@ -29,7 +29,7 @@ public class UserController {
                             @RequestParam("userSignature") String userSignature,
                             @RequestParam("userEmail") String userEmail,
                             @RequestParam("userLicense") String userLicense){
-        return userService.register(uerTelephone,
+        return userService.register(userTelephone,
                 userPassword,
                 userAlipayAccount,
                 userName,
