@@ -7,7 +7,7 @@ public class UserComment {
 
     private Boolean praise;
 
-    private String conntent;
+    private String content;
 
     private Long subComment;
 
@@ -35,12 +35,12 @@ public class UserComment {
         this.praise = praise;
     }
 
-    public String getConntent() {
-        return conntent;
+    public String getContent() {
+        return content;
     }
 
-    public void setConntent(String conntent) {
-        this.conntent = conntent == null ? null : conntent.trim();
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Long getSubComment() {

@@ -284,73 +284,73 @@ public class UserCommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andConntentIsNull() {
-            addCriterion("conntent is null");
+        public Criteria andContentIsNull() {
+            addCriterion("content is null");
             return (Criteria) this;
         }
 
-        public Criteria andConntentIsNotNull() {
-            addCriterion("conntent is not null");
+        public Criteria andContentIsNotNull() {
+            addCriterion("content is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConntentEqualTo(String value) {
-            addCriterion("conntent =", value, "conntent");
+        public Criteria andContentEqualTo(String value) {
+            addCriterion("content =", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentNotEqualTo(String value) {
-            addCriterion("conntent <>", value, "conntent");
+        public Criteria andContentNotEqualTo(String value) {
+            addCriterion("content <>", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentGreaterThan(String value) {
-            addCriterion("conntent >", value, "conntent");
+        public Criteria andContentGreaterThan(String value) {
+            addCriterion("content >", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentGreaterThanOrEqualTo(String value) {
-            addCriterion("conntent >=", value, "conntent");
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
+            addCriterion("content >=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentLessThan(String value) {
-            addCriterion("conntent <", value, "conntent");
+        public Criteria andContentLessThan(String value) {
+            addCriterion("content <", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentLessThanOrEqualTo(String value) {
-            addCriterion("conntent <=", value, "conntent");
+        public Criteria andContentLessThanOrEqualTo(String value) {
+            addCriterion("content <=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentLike(String value) {
-            addCriterion("conntent like", value, "conntent");
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentNotLike(String value) {
-            addCriterion("conntent not like", value, "conntent");
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentIn(List<String> values) {
-            addCriterion("conntent in", values, "conntent");
+        public Criteria andContentIn(List<String> values) {
+            addCriterion("content in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentNotIn(List<String> values) {
-            addCriterion("conntent not in", values, "conntent");
+        public Criteria andContentNotIn(List<String> values) {
+            addCriterion("content not in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentBetween(String value1, String value2) {
-            addCriterion("conntent between", value1, value2, "conntent");
+        public Criteria andContentBetween(String value1, String value2) {
+            addCriterion("content between", value1, value2, "content");
             return (Criteria) this;
         }
 
-        public Criteria andConntentNotBetween(String value1, String value2) {
-            addCriterion("conntent not between", value1, value2, "conntent");
+        public Criteria andContentNotBetween(String value1, String value2) {
+            addCriterion("content not between", value1, value2, "content");
             return (Criteria) this;
         }
 

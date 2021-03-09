@@ -37,9 +37,11 @@
 
         <!--  对应的表生成对应的 实体类 -->
 
-        <table tableName="commodity" domainObjectName="Commodity"/>
-      <!--  <table tableName="chat" domainObjectName="Chat"/>
+        <table tableName="user_info" domainObjectName="UserInfo"/>
 
+      <!--  <table tableName="chat" domainObjectName="Chat"/>
+             <table tableName="user_comment" domainObjectName="UserComment"/>
+        <table tableName="commodity" domainObjectName="Commodity"/>
         <table tableName="commodity_add_label" domainObjectName="CommodityAddLabel"/>
         <table tableName="commodity_label" domainObjectName="CommodityLabel"/>
         <table tableName="commodity_order" domainObjectName="CommodityOrder"/>
@@ -54,9 +56,8 @@
         <table tableName="shop" domainObjectName="Shop"/>
         <table tableName="shop_chat" domainObjectName="ShopChat"/>
         <table tableName="sub_commodity" domainObjectName="SubCommodity"/>
-        <table tableName="user_chat" domainObjectName="UserChat"/>
-        <table tableName="user_comment" domainObjectName="UserComment"/>
-        <table tableName="user_info" domainObjectName="UserInfo"/>-->
+        <table tableName="user_chat" domainObjectName="UserChat"/>-->
+
         <!--  <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
               <property name="useActualColumnNames" value="true"/>
               <generatedKey column="ID" sqlStatement="DB2" identity="true" />
