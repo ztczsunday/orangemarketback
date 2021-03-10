@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.101.161:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.101.153:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: orangesoft
     password: orangesoft
   servlet:
@@ -12,7 +12,18 @@ spring:
       enabled: true
       max-file-size: 20MB
       max-request-size: 20MB
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
 
 mybatis:
   type-aliases-package: com.orangeSoft.market.pojo
   mapper-locations: classpath:mybatis/mapping/*Mapper.xml
+
+logging:
+  level:
+    com.orangeSoft.market.mapper: debug  # 打印sql语句

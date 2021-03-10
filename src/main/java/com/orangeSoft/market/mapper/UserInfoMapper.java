@@ -9,8 +9,6 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Mapper
-@Repository
 public interface UserInfoMapper {
     long countByExample(UserInfoExample example);
 

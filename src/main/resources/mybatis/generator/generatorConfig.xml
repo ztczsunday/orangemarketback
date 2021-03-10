@@ -13,7 +13,7 @@
         </commentGenerator>
         <!--覆盖生成XML文件-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.101.161:3306/orangesoft"
+                        connectionURL="jdbc:mysql://192.168.101.153:3306/orangesoft"
                         userId="orangesoft"
                         password="orangesoft">
         </jdbcConnection>
