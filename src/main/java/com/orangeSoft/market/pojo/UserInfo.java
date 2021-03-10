@@ -1,5 +1,9 @@
 package com.orangeSoft.market.pojo;
 
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 public class UserInfo {
     private Integer uid;
 
@@ -99,66 +103,5 @@ public class UserInfo {
 
     public void setUserLicense(String userLicense) {
         this.userLicense = userLicense == null ? null : userLicense.trim();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", uid=").append(uid);
-        sb.append(", userPassword=").append(userPassword);
-        sb.append(", userAlipayAccount=").append(userAlipayAccount);
-        sb.append(", userTelephone=").append(userTelephone);
-        sb.append(", userName=").append(userName);
-        sb.append(", userGender=").append(userGender);
-        sb.append(", userSelfie=").append(userSelfie);
-        sb.append(", userSignature=").append(userSignature);
-        sb.append(", userEmail=").append(userEmail);
-        sb.append(", userLicense=").append(userLicense);
-        sb.append("]");
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        UserInfo other = (UserInfo) that;
-        return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getUserPassword() == null ? other.getUserPassword() == null : this.getUserPassword().equals(other.getUserPassword()))
-            && (this.getUserAlipayAccount() == null ? other.getUserAlipayAccount() == null : this.getUserAlipayAccount().equals(other.getUserAlipayAccount()))
-            && (this.getUserTelephone() == null ? other.getUserTelephone() == null : this.getUserTelephone().equals(other.getUserTelephone()))
-            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
-            && (this.getUserGender() == null ? other.getUserGender() == null : this.getUserGender().equals(other.getUserGender()))
-            && (this.getUserSelfie() == null ? other.getUserSelfie() == null : this.getUserSelfie().equals(other.getUserSelfie()))
-            && (this.getUserSignature() == null ? other.getUserSignature() == null : this.getUserSignature().equals(other.getUserSignature()))
-            && (this.getUserEmail() == null ? other.getUserEmail() == null : this.getUserEmail().equals(other.getUserEmail()))
-            && (this.getUserLicense() == null ? other.getUserLicense() == null : this.getUserLicense().equals(other.getUserLicense()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
-        result = prime * result + ((getUserPassword() == null) ? 0 : getUserPassword().hashCode());
-        result = prime * result + ((getUserAlipayAccount() == null) ? 0 : getUserAlipayAccount().hashCode());
-        result = prime * result + ((getUserTelephone() == null) ? 0 : getUserTelephone().hashCode());
-        result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
-        result = prime * result + ((getUserGender() == null) ? 0 : getUserGender().hashCode());
-        result = prime * result + ((getUserSelfie() == null) ? 0 : getUserSelfie().hashCode());
-        result = prime * result + ((getUserSignature() == null) ? 0 : getUserSignature().hashCode());
-        result = prime * result + ((getUserEmail() == null) ? 0 : getUserEmail().hashCode());
-        result = prime * result + ((getUserLicense() == null) ? 0 : getUserLicense().hashCode());
-        return result;
     }
 }
