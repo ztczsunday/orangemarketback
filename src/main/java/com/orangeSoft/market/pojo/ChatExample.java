@@ -165,73 +165,63 @@ public class ChatExample {
             return (Criteria) this;
         }
 
-        public Criteria andChatContentIsNull() {
-            addCriterion("chat_content is null");
+        public Criteria andChatContentIdIsNull() {
+            addCriterion("chat_content_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentIsNotNull() {
-            addCriterion("chat_content is not null");
+        public Criteria andChatContentIdIsNotNull() {
+            addCriterion("chat_content_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentEqualTo(String value) {
-            addCriterion("chat_content =", value, "chatContent");
+        public Criteria andChatContentIdEqualTo(Long value) {
+            addCriterion("chat_content_id =", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentNotEqualTo(String value) {
-            addCriterion("chat_content <>", value, "chatContent");
+        public Criteria andChatContentIdNotEqualTo(Long value) {
+            addCriterion("chat_content_id <>", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentGreaterThan(String value) {
-            addCriterion("chat_content >", value, "chatContent");
+        public Criteria andChatContentIdGreaterThan(Long value) {
+            addCriterion("chat_content_id >", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentGreaterThanOrEqualTo(String value) {
-            addCriterion("chat_content >=", value, "chatContent");
+        public Criteria andChatContentIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("chat_content_id >=", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentLessThan(String value) {
-            addCriterion("chat_content <", value, "chatContent");
+        public Criteria andChatContentIdLessThan(Long value) {
+            addCriterion("chat_content_id <", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentLessThanOrEqualTo(String value) {
-            addCriterion("chat_content <=", value, "chatContent");
+        public Criteria andChatContentIdLessThanOrEqualTo(Long value) {
+            addCriterion("chat_content_id <=", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentLike(String value) {
-            addCriterion("chat_content like", value, "chatContent");
+        public Criteria andChatContentIdIn(List<Long> values) {
+            addCriterion("chat_content_id in", values, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentNotLike(String value) {
-            addCriterion("chat_content not like", value, "chatContent");
+        public Criteria andChatContentIdNotIn(List<Long> values) {
+            addCriterion("chat_content_id not in", values, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentIn(List<String> values) {
-            addCriterion("chat_content in", values, "chatContent");
+        public Criteria andChatContentIdBetween(Long value1, Long value2) {
+            addCriterion("chat_content_id between", value1, value2, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatContentNotIn(List<String> values) {
-            addCriterion("chat_content not in", values, "chatContent");
-            return (Criteria) this;
-        }
-
-        public Criteria andChatContentBetween(String value1, String value2) {
-            addCriterion("chat_content between", value1, value2, "chatContent");
-            return (Criteria) this;
-        }
-
-        public Criteria andChatContentNotBetween(String value1, String value2) {
-            addCriterion("chat_content not between", value1, value2, "chatContent");
+        public Criteria andChatContentIdNotBetween(Long value1, Long value2) {
+            addCriterion("chat_content_id not between", value1, value2, "chatContentId");
             return (Criteria) this;
         }
 
@@ -295,63 +285,263 @@ public class ChatExample {
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusIsNull() {
-            addCriterion("chat_status is null");
+        public Criteria andSenderIdIsNull() {
+            addCriterion("sender_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusIsNotNull() {
-            addCriterion("chat_status is not null");
+        public Criteria andSenderIdIsNotNull() {
+            addCriterion("sender_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusEqualTo(Boolean value) {
-            addCriterion("chat_status =", value, "chatStatus");
+        public Criteria andSenderIdEqualTo(Integer value) {
+            addCriterion("sender_id =", value, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusNotEqualTo(Boolean value) {
-            addCriterion("chat_status <>", value, "chatStatus");
+        public Criteria andSenderIdNotEqualTo(Integer value) {
+            addCriterion("sender_id <>", value, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusGreaterThan(Boolean value) {
-            addCriterion("chat_status >", value, "chatStatus");
+        public Criteria andSenderIdGreaterThan(Integer value) {
+            addCriterion("sender_id >", value, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("chat_status >=", value, "chatStatus");
+        public Criteria andSenderIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sender_id >=", value, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusLessThan(Boolean value) {
-            addCriterion("chat_status <", value, "chatStatus");
+        public Criteria andSenderIdLessThan(Integer value) {
+            addCriterion("sender_id <", value, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusLessThanOrEqualTo(Boolean value) {
-            addCriterion("chat_status <=", value, "chatStatus");
+        public Criteria andSenderIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sender_id <=", value, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusIn(List<Boolean> values) {
-            addCriterion("chat_status in", values, "chatStatus");
+        public Criteria andSenderIdIn(List<Integer> values) {
+            addCriterion("sender_id in", values, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusNotIn(List<Boolean> values) {
-            addCriterion("chat_status not in", values, "chatStatus");
+        public Criteria andSenderIdNotIn(List<Integer> values) {
+            addCriterion("sender_id not in", values, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusBetween(Boolean value1, Boolean value2) {
-            addCriterion("chat_status between", value1, value2, "chatStatus");
+        public Criteria andSenderIdBetween(Integer value1, Integer value2) {
+            addCriterion("sender_id between", value1, value2, "senderId");
             return (Criteria) this;
         }
 
-        public Criteria andChatStatusNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("chat_status not between", value1, value2, "chatStatus");
+        public Criteria andSenderIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sender_id not between", value1, value2, "senderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeIsNull() {
+            addCriterion("sender_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeIsNotNull() {
+            addCriterion("sender_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeEqualTo(String value) {
+            addCriterion("sender_type =", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeNotEqualTo(String value) {
+            addCriterion("sender_type <>", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeGreaterThan(String value) {
+            addCriterion("sender_type >", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("sender_type >=", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeLessThan(String value) {
+            addCriterion("sender_type <", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeLessThanOrEqualTo(String value) {
+            addCriterion("sender_type <=", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeLike(String value) {
+            addCriterion("sender_type like", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeNotLike(String value) {
+            addCriterion("sender_type not like", value, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeIn(List<String> values) {
+            addCriterion("sender_type in", values, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeNotIn(List<String> values) {
+            addCriterion("sender_type not in", values, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeBetween(String value1, String value2) {
+            addCriterion("sender_type between", value1, value2, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andSenderTypeNotBetween(String value1, String value2) {
+            addCriterion("sender_type not between", value1, value2, "senderType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdIsNull() {
+            addCriterion("receiver_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdIsNotNull() {
+            addCriterion("receiver_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdEqualTo(Integer value) {
+            addCriterion("receiver_id =", value, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdNotEqualTo(Integer value) {
+            addCriterion("receiver_id <>", value, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdGreaterThan(Integer value) {
+            addCriterion("receiver_id >", value, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("receiver_id >=", value, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdLessThan(Integer value) {
+            addCriterion("receiver_id <", value, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdLessThanOrEqualTo(Integer value) {
+            addCriterion("receiver_id <=", value, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdIn(List<Integer> values) {
+            addCriterion("receiver_id in", values, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdNotIn(List<Integer> values) {
+            addCriterion("receiver_id not in", values, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdBetween(Integer value1, Integer value2) {
+            addCriterion("receiver_id between", value1, value2, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("receiver_id not between", value1, value2, "receiverId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeIsNull() {
+            addCriterion("receiver_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeIsNotNull() {
+            addCriterion("receiver_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeEqualTo(String value) {
+            addCriterion("receiver_type =", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeNotEqualTo(String value) {
+            addCriterion("receiver_type <>", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeGreaterThan(String value) {
+            addCriterion("receiver_type >", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("receiver_type >=", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeLessThan(String value) {
+            addCriterion("receiver_type <", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeLessThanOrEqualTo(String value) {
+            addCriterion("receiver_type <=", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeLike(String value) {
+            addCriterion("receiver_type like", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeNotLike(String value) {
+            addCriterion("receiver_type not like", value, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeIn(List<String> values) {
+            addCriterion("receiver_type in", values, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeNotIn(List<String> values) {
+            addCriterion("receiver_type not in", values, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeBetween(String value1, String value2) {
+            addCriterion("receiver_type between", value1, value2, "receiverType");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiverTypeNotBetween(String value1, String value2) {
+            addCriterion("receiver_type not between", value1, value2, "receiverType");
             return (Criteria) this;
         }
     }

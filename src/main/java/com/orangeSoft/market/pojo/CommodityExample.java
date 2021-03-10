@@ -294,6 +294,76 @@ public class CommodityExample {
             return (Criteria) this;
         }
 
+        public Criteria andCommodityIconIsNull() {
+            addCriterion("commodity_icon is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconIsNotNull() {
+            addCriterion("commodity_icon is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconEqualTo(String value) {
+            addCriterion("commodity_icon =", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconNotEqualTo(String value) {
+            addCriterion("commodity_icon <>", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconGreaterThan(String value) {
+            addCriterion("commodity_icon >", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconGreaterThanOrEqualTo(String value) {
+            addCriterion("commodity_icon >=", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconLessThan(String value) {
+            addCriterion("commodity_icon <", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconLessThanOrEqualTo(String value) {
+            addCriterion("commodity_icon <=", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconLike(String value) {
+            addCriterion("commodity_icon like", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconNotLike(String value) {
+            addCriterion("commodity_icon not like", value, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconIn(List<String> values) {
+            addCriterion("commodity_icon in", values, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconNotIn(List<String> values) {
+            addCriterion("commodity_icon not in", values, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconBetween(String value1, String value2) {
+            addCriterion("commodity_icon between", value1, value2, "commodityIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommodityIconNotBetween(String value1, String value2) {
+            addCriterion("commodity_icon not between", value1, value2, "commodityIcon");
+            return (Criteria) this;
+        }
+
         public Criteria andCommodityDescriptionIsNull() {
             addCriterion("commodity_description is null");
             return (Criteria) this;

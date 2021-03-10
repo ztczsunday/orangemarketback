@@ -403,6 +403,66 @@ public class CommodityOrderExample {
             addCriterion("sub_id not between", value1, value2, "subId");
             return (Criteria) this;
         }
+
+        public Criteria andCountCommodityIsNull() {
+            addCriterion("count_commodity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityIsNotNull() {
+            addCriterion("count_commodity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityEqualTo(Integer value) {
+            addCriterion("count_commodity =", value, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityNotEqualTo(Integer value) {
+            addCriterion("count_commodity <>", value, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityGreaterThan(Integer value) {
+            addCriterion("count_commodity >", value, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("count_commodity >=", value, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityLessThan(Integer value) {
+            addCriterion("count_commodity <", value, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityLessThanOrEqualTo(Integer value) {
+            addCriterion("count_commodity <=", value, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityIn(List<Integer> values) {
+            addCriterion("count_commodity in", values, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityNotIn(List<Integer> values) {
+            addCriterion("count_commodity not in", values, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityBetween(Integer value1, Integer value2) {
+            addCriterion("count_commodity between", value1, value2, "countCommodity");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountCommodityNotBetween(Integer value1, Integer value2) {
+            addCriterion("count_commodity not between", value1, value2, "countCommodity");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

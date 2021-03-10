@@ -1,17 +1,9 @@
 package com.orangeSoft.market.pojo;
 
-public class FavoritesKey {
-    private Integer uid;
-
+public class CommodityLabelKey {
     private Long cid;
 
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+    private Long recordId;
 
     public Long getCid() {
         return cid;
@@ -21,14 +13,22 @@ public class FavoritesKey {
         this.cid = cid;
     }
 
+    public Long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", uid=").append(uid);
         sb.append(", cid=").append(cid);
+        sb.append(", recordId=").append(recordId);
         sb.append("]");
         return sb.toString();
     }
@@ -44,17 +44,17 @@ public class FavoritesKey {
         if (getClass() != that.getClass()) {
             return false;
         }
-        FavoritesKey other = (FavoritesKey) that;
-        return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
+        CommodityLabelKey other = (CommodityLabelKey) that;
+        return (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+            && (this.getRecordId() == null ? other.getRecordId() == null : this.getRecordId().equals(other.getRecordId()));
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
         result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
+        result = prime * result + ((getRecordId() == null) ? 0 : getRecordId().hashCode());
         return result;
     }
 }

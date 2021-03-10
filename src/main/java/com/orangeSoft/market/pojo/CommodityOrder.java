@@ -11,6 +11,8 @@ public class CommodityOrder {
 
     private Integer subId;
 
+    private Integer countCommodity;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -51,6 +53,14 @@ public class CommodityOrder {
         this.subId = subId;
     }
 
+    public Integer getCountCommodity() {
+        return countCommodity;
+    }
+
+    public void setCountCommodity(Integer countCommodity) {
+        this.countCommodity = countCommodity;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -62,6 +72,7 @@ public class CommodityOrder {
         sb.append(", sid=").append(sid);
         sb.append(", uid=").append(uid);
         sb.append(", subId=").append(subId);
+        sb.append(", countCommodity=").append(countCommodity);
         sb.append("]");
         return sb.toString();
     }
@@ -82,7 +93,8 @@ public class CommodityOrder {
             && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
             && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getSubId() == null ? other.getSubId() == null : this.getSubId().equals(other.getSubId()));
+            && (this.getSubId() == null ? other.getSubId() == null : this.getSubId().equals(other.getSubId()))
+            && (this.getCountCommodity() == null ? other.getCountCommodity() == null : this.getCountCommodity().equals(other.getCountCommodity()));
     }
 
     @Override
@@ -94,6 +106,7 @@ public class CommodityOrder {
         result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
         result = prime * result + ((getSubId() == null) ? 0 : getSubId().hashCode());
+        result = prime * result + ((getCountCommodity() == null) ? 0 : getCountCommodity().hashCode());
         return result;
     }
 }

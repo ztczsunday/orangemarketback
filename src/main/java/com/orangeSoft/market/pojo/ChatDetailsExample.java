@@ -3,14 +3,14 @@ package com.orangeSoft.market.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserChatExample {
+public class ChatDetailsExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserChatExample() {
+    public ChatDetailsExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -104,123 +104,133 @@ public class UserChatExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUidIsNull() {
-            addCriterion("uid is null");
+        public Criteria andChatContentIdIsNull() {
+            addCriterion("chat_content_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andUidIsNotNull() {
-            addCriterion("uid is not null");
+        public Criteria andChatContentIdIsNotNull() {
+            addCriterion("chat_content_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUidEqualTo(Integer value) {
-            addCriterion("uid =", value, "uid");
+        public Criteria andChatContentIdEqualTo(Long value) {
+            addCriterion("chat_content_id =", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotEqualTo(Integer value) {
-            addCriterion("uid <>", value, "uid");
+        public Criteria andChatContentIdNotEqualTo(Long value) {
+            addCriterion("chat_content_id <>", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidGreaterThan(Integer value) {
-            addCriterion("uid >", value, "uid");
+        public Criteria andChatContentIdGreaterThan(Long value) {
+            addCriterion("chat_content_id >", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("uid >=", value, "uid");
+        public Criteria andChatContentIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("chat_content_id >=", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidLessThan(Integer value) {
-            addCriterion("uid <", value, "uid");
+        public Criteria andChatContentIdLessThan(Long value) {
+            addCriterion("chat_content_id <", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidLessThanOrEqualTo(Integer value) {
-            addCriterion("uid <=", value, "uid");
+        public Criteria andChatContentIdLessThanOrEqualTo(Long value) {
+            addCriterion("chat_content_id <=", value, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidIn(List<Integer> values) {
-            addCriterion("uid in", values, "uid");
+        public Criteria andChatContentIdIn(List<Long> values) {
+            addCriterion("chat_content_id in", values, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotIn(List<Integer> values) {
-            addCriterion("uid not in", values, "uid");
+        public Criteria andChatContentIdNotIn(List<Long> values) {
+            addCriterion("chat_content_id not in", values, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidBetween(Integer value1, Integer value2) {
-            addCriterion("uid between", value1, value2, "uid");
+        public Criteria andChatContentIdBetween(Long value1, Long value2) {
+            addCriterion("chat_content_id between", value1, value2, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotBetween(Integer value1, Integer value2) {
-            addCriterion("uid not between", value1, value2, "uid");
+        public Criteria andChatContentIdNotBetween(Long value1, Long value2) {
+            addCriterion("chat_content_id not between", value1, value2, "chatContentId");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdIsNull() {
-            addCriterion("chat_id is null");
+        public Criteria andChatContentIsNull() {
+            addCriterion("chat_content is null");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdIsNotNull() {
-            addCriterion("chat_id is not null");
+        public Criteria andChatContentIsNotNull() {
+            addCriterion("chat_content is not null");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdEqualTo(Long value) {
-            addCriterion("chat_id =", value, "chatId");
+        public Criteria andChatContentEqualTo(String value) {
+            addCriterion("chat_content =", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdNotEqualTo(Long value) {
-            addCriterion("chat_id <>", value, "chatId");
+        public Criteria andChatContentNotEqualTo(String value) {
+            addCriterion("chat_content <>", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdGreaterThan(Long value) {
-            addCriterion("chat_id >", value, "chatId");
+        public Criteria andChatContentGreaterThan(String value) {
+            addCriterion("chat_content >", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("chat_id >=", value, "chatId");
+        public Criteria andChatContentGreaterThanOrEqualTo(String value) {
+            addCriterion("chat_content >=", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdLessThan(Long value) {
-            addCriterion("chat_id <", value, "chatId");
+        public Criteria andChatContentLessThan(String value) {
+            addCriterion("chat_content <", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdLessThanOrEqualTo(Long value) {
-            addCriterion("chat_id <=", value, "chatId");
+        public Criteria andChatContentLessThanOrEqualTo(String value) {
+            addCriterion("chat_content <=", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdIn(List<Long> values) {
-            addCriterion("chat_id in", values, "chatId");
+        public Criteria andChatContentLike(String value) {
+            addCriterion("chat_content like", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdNotIn(List<Long> values) {
-            addCriterion("chat_id not in", values, "chatId");
+        public Criteria andChatContentNotLike(String value) {
+            addCriterion("chat_content not like", value, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdBetween(Long value1, Long value2) {
-            addCriterion("chat_id between", value1, value2, "chatId");
+        public Criteria andChatContentIn(List<String> values) {
+            addCriterion("chat_content in", values, "chatContent");
             return (Criteria) this;
         }
 
-        public Criteria andChatIdNotBetween(Long value1, Long value2) {
-            addCriterion("chat_id not between", value1, value2, "chatId");
+        public Criteria andChatContentNotIn(List<String> values) {
+            addCriterion("chat_content not in", values, "chatContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatContentBetween(String value1, String value2) {
+            addCriterion("chat_content between", value1, value2, "chatContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatContentNotBetween(String value1, String value2) {
+            addCriterion("chat_content not between", value1, value2, "chatContent");
             return (Criteria) this;
         }
     }

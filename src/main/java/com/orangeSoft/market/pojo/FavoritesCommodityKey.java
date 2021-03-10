@@ -1,9 +1,9 @@
 package com.orangeSoft.market.pojo;
 
-public class UserChatKey {
+public class FavoritesCommodityKey {
     private Integer uid;
 
-    private Long chatId;
+    private Long cid;
 
     public Integer getUid() {
         return uid;
@@ -13,12 +13,12 @@ public class UserChatKey {
         this.uid = uid;
     }
 
-    public Long getChatId() {
-        return chatId;
+    public Long getCid() {
+        return cid;
     }
 
-    public void setChatId(Long chatId) {
-        this.chatId = chatId;
+    public void setCid(Long cid) {
+        this.cid = cid;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class UserChatKey {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", uid=").append(uid);
-        sb.append(", chatId=").append(chatId);
+        sb.append(", cid=").append(cid);
         sb.append("]");
         return sb.toString();
     }
@@ -44,9 +44,9 @@ public class UserChatKey {
         if (getClass() != that.getClass()) {
             return false;
         }
-        UserChatKey other = (UserChatKey) that;
+        FavoritesCommodityKey other = (FavoritesCommodityKey) that;
         return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getChatId() == null ? other.getChatId() == null : this.getChatId().equals(other.getChatId()));
+            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UserChatKey {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
-        result = prime * result + ((getChatId() == null) ? 0 : getChatId().hashCode());
+        result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
         return result;
     }
 }

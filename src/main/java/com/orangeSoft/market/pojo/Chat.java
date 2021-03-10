@@ -5,11 +5,17 @@ import java.util.Date;
 public class Chat {
     private Long chatId;
 
-    private String chatContent;
+    private Long chatContentId;
 
     private Date chatDate;
 
-    private Boolean chatStatus;
+    private Integer senderId;
+
+    private String senderType;
+
+    private Integer receiverId;
+
+    private String receiverType;
 
     public Long getChatId() {
         return chatId;
@@ -19,12 +25,12 @@ public class Chat {
         this.chatId = chatId;
     }
 
-    public String getChatContent() {
-        return chatContent;
+    public Long getChatContentId() {
+        return chatContentId;
     }
 
-    public void setChatContent(String chatContent) {
-        this.chatContent = chatContent == null ? null : chatContent.trim();
+    public void setChatContentId(Long chatContentId) {
+        this.chatContentId = chatContentId;
     }
 
     public Date getChatDate() {
@@ -35,12 +41,36 @@ public class Chat {
         this.chatDate = chatDate;
     }
 
-    public Boolean getChatStatus() {
-        return chatStatus;
+    public Integer getSenderId() {
+        return senderId;
     }
 
-    public void setChatStatus(Boolean chatStatus) {
-        this.chatStatus = chatStatus;
+    public void setSenderId(Integer senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getSenderType() {
+        return senderType;
+    }
+
+    public void setSenderType(String senderType) {
+        this.senderType = senderType == null ? null : senderType.trim();
+    }
+
+    public Integer getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(Integer receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public String getReceiverType() {
+        return receiverType;
+    }
+
+    public void setReceiverType(String receiverType) {
+        this.receiverType = receiverType == null ? null : receiverType.trim();
     }
 
     @Override
@@ -50,9 +80,12 @@ public class Chat {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", chatId=").append(chatId);
-        sb.append(", chatContent=").append(chatContent);
+        sb.append(", chatContentId=").append(chatContentId);
         sb.append(", chatDate=").append(chatDate);
-        sb.append(", chatStatus=").append(chatStatus);
+        sb.append(", senderId=").append(senderId);
+        sb.append(", senderType=").append(senderType);
+        sb.append(", receiverId=").append(receiverId);
+        sb.append(", receiverType=").append(receiverType);
         sb.append("]");
         return sb.toString();
     }
@@ -70,9 +103,12 @@ public class Chat {
         }
         Chat other = (Chat) that;
         return (this.getChatId() == null ? other.getChatId() == null : this.getChatId().equals(other.getChatId()))
-            && (this.getChatContent() == null ? other.getChatContent() == null : this.getChatContent().equals(other.getChatContent()))
+            && (this.getChatContentId() == null ? other.getChatContentId() == null : this.getChatContentId().equals(other.getChatContentId()))
             && (this.getChatDate() == null ? other.getChatDate() == null : this.getChatDate().equals(other.getChatDate()))
-            && (this.getChatStatus() == null ? other.getChatStatus() == null : this.getChatStatus().equals(other.getChatStatus()));
+            && (this.getSenderId() == null ? other.getSenderId() == null : this.getSenderId().equals(other.getSenderId()))
+            && (this.getSenderType() == null ? other.getSenderType() == null : this.getSenderType().equals(other.getSenderType()))
+            && (this.getReceiverId() == null ? other.getReceiverId() == null : this.getReceiverId().equals(other.getReceiverId()))
+            && (this.getReceiverType() == null ? other.getReceiverType() == null : this.getReceiverType().equals(other.getReceiverType()));
     }
 
     @Override
@@ -80,9 +116,12 @@ public class Chat {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getChatId() == null) ? 0 : getChatId().hashCode());
-        result = prime * result + ((getChatContent() == null) ? 0 : getChatContent().hashCode());
+        result = prime * result + ((getChatContentId() == null) ? 0 : getChatContentId().hashCode());
         result = prime * result + ((getChatDate() == null) ? 0 : getChatDate().hashCode());
-        result = prime * result + ((getChatStatus() == null) ? 0 : getChatStatus().hashCode());
+        result = prime * result + ((getSenderId() == null) ? 0 : getSenderId().hashCode());
+        result = prime * result + ((getSenderType() == null) ? 0 : getSenderType().hashCode());
+        result = prime * result + ((getReceiverId() == null) ? 0 : getReceiverId().hashCode());
+        result = prime * result + ((getReceiverType() == null) ? 0 : getReceiverType().hashCode());
         return result;
     }
 }

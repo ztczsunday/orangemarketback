@@ -1,7 +1,6 @@
 package com.orangeSoft.market.controller;
 
 import com.google.gson.Gson;
-import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

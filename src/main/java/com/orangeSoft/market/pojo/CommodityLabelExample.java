@@ -104,133 +104,123 @@ public class CommodityLabelExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andLabelIdIsNull() {
-            addCriterion("label_id is null");
+        public Criteria andCidIsNull() {
+            addCriterion("cid is null");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdIsNotNull() {
-            addCriterion("label_id is not null");
+        public Criteria andCidIsNotNull() {
+            addCriterion("cid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdEqualTo(Integer value) {
-            addCriterion("label_id =", value, "labelId");
+        public Criteria andCidEqualTo(Long value) {
+            addCriterion("cid =", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdNotEqualTo(Integer value) {
-            addCriterion("label_id <>", value, "labelId");
+        public Criteria andCidNotEqualTo(Long value) {
+            addCriterion("cid <>", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdGreaterThan(Integer value) {
-            addCriterion("label_id >", value, "labelId");
+        public Criteria andCidGreaterThan(Long value) {
+            addCriterion("cid >", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("label_id >=", value, "labelId");
+        public Criteria andCidGreaterThanOrEqualTo(Long value) {
+            addCriterion("cid >=", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdLessThan(Integer value) {
-            addCriterion("label_id <", value, "labelId");
+        public Criteria andCidLessThan(Long value) {
+            addCriterion("cid <", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdLessThanOrEqualTo(Integer value) {
-            addCriterion("label_id <=", value, "labelId");
+        public Criteria andCidLessThanOrEqualTo(Long value) {
+            addCriterion("cid <=", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdIn(List<Integer> values) {
-            addCriterion("label_id in", values, "labelId");
+        public Criteria andCidIn(List<Long> values) {
+            addCriterion("cid in", values, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdNotIn(List<Integer> values) {
-            addCriterion("label_id not in", values, "labelId");
+        public Criteria andCidNotIn(List<Long> values) {
+            addCriterion("cid not in", values, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdBetween(Integer value1, Integer value2) {
-            addCriterion("label_id between", value1, value2, "labelId");
+        public Criteria andCidBetween(Long value1, Long value2) {
+            addCriterion("cid between", value1, value2, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("label_id not between", value1, value2, "labelId");
+        public Criteria andCidNotBetween(Long value1, Long value2) {
+            addCriterion("cid not between", value1, value2, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameIsNull() {
-            addCriterion("label_name is null");
+        public Criteria andRecordIdIsNull() {
+            addCriterion("record_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameIsNotNull() {
-            addCriterion("label_name is not null");
+        public Criteria andRecordIdIsNotNull() {
+            addCriterion("record_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameEqualTo(String value) {
-            addCriterion("label_name =", value, "labelName");
+        public Criteria andRecordIdEqualTo(Long value) {
+            addCriterion("record_id =", value, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameNotEqualTo(String value) {
-            addCriterion("label_name <>", value, "labelName");
+        public Criteria andRecordIdNotEqualTo(Long value) {
+            addCriterion("record_id <>", value, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameGreaterThan(String value) {
-            addCriterion("label_name >", value, "labelName");
+        public Criteria andRecordIdGreaterThan(Long value) {
+            addCriterion("record_id >", value, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameGreaterThanOrEqualTo(String value) {
-            addCriterion("label_name >=", value, "labelName");
+        public Criteria andRecordIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("record_id >=", value, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameLessThan(String value) {
-            addCriterion("label_name <", value, "labelName");
+        public Criteria andRecordIdLessThan(Long value) {
+            addCriterion("record_id <", value, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameLessThanOrEqualTo(String value) {
-            addCriterion("label_name <=", value, "labelName");
+        public Criteria andRecordIdLessThanOrEqualTo(Long value) {
+            addCriterion("record_id <=", value, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameLike(String value) {
-            addCriterion("label_name like", value, "labelName");
+        public Criteria andRecordIdIn(List<Long> values) {
+            addCriterion("record_id in", values, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameNotLike(String value) {
-            addCriterion("label_name not like", value, "labelName");
+        public Criteria andRecordIdNotIn(List<Long> values) {
+            addCriterion("record_id not in", values, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameIn(List<String> values) {
-            addCriterion("label_name in", values, "labelName");
+        public Criteria andRecordIdBetween(Long value1, Long value2) {
+            addCriterion("record_id between", value1, value2, "recordId");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNameNotIn(List<String> values) {
-            addCriterion("label_name not in", values, "labelName");
-            return (Criteria) this;
-        }
-
-        public Criteria andLabelNameBetween(String value1, String value2) {
-            addCriterion("label_name between", value1, value2, "labelName");
-            return (Criteria) this;
-        }
-
-        public Criteria andLabelNameNotBetween(String value1, String value2) {
-            addCriterion("label_name not between", value1, value2, "labelName");
+        public Criteria andRecordIdNotBetween(Long value1, Long value2) {
+            addCriterion("record_id not between", value1, value2, "recordId");
             return (Criteria) this;
         }
     }

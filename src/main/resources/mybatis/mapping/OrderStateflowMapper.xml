@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.OrderStateflowMapper">
   <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.OrderStateflow">
-    <id column="status_id" jdbcType="SMALLINT" property="statusId" />
-    <id column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="record_id" jdbcType="BIGINT" property="recordId" />
     <result column="status_date" jdbcType="TIMESTAMP" property="statusDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    status_id, order_id, status_date
+    order_id, record_id, status_date
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample" resultMap="BaseResultMap">
     select
@@ -81,18 +81,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.orangeSoft.market.pojo.OrderStateflowKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from order_stateflow
-    where status_id = #{statusId,jdbcType=SMALLINT}
-      and order_id = #{orderId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.pojo.OrderStateflowKey">
-    delete from order_stateflow
-    where status_id = #{statusId,jdbcType=SMALLINT}
-      and order_id = #{orderId,jdbcType=BIGINT}
-  </delete>
   <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample">
     delete from order_stateflow
     <if test="_parameter != null">
@@ -100,30 +88,30 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
-    insert into order_stateflow (status_id, order_id, status_date
+    insert into order_stateflow (order_id, record_id, status_date
       )
-    values (#{statusId,jdbcType=SMALLINT}, #{orderId,jdbcType=BIGINT}, #{statusDate,jdbcType=TIMESTAMP}
+    values (#{orderId,jdbcType=BIGINT}, #{recordId,jdbcType=BIGINT}, #{statusDate,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
     insert into order_stateflow
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="statusId != null">
-        status_id,
-      </if>
       <if test="orderId != null">
         order_id,
+      </if>
+      <if test="recordId != null">
+        record_id,
       </if>
       <if test="statusDate != null">
         status_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="statusId != null">
-        #{statusId,jdbcType=SMALLINT},
-      </if>
       <if test="orderId != null">
         #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="recordId != null">
+        #{recordId,jdbcType=BIGINT},
       </if>
       <if test="statusDate != null">
         #{statusDate,jdbcType=TIMESTAMP},
@@ -139,11 +127,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update order_stateflow
     <set>
-      <if test="record.statusId != null">
-        status_id = #{record.statusId,jdbcType=SMALLINT},
-      </if>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.recordId != null">
+        record_id = #{record.recordId,jdbcType=BIGINT},
       </if>
       <if test="record.statusDate != null">
         status_date = #{record.statusDate,jdbcType=TIMESTAMP},
@@ -155,27 +143,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update order_stateflow
-    set status_id = #{record.statusId,jdbcType=SMALLINT},
-      order_id = #{record.orderId,jdbcType=BIGINT},
+    set order_id = #{record.orderId,jdbcType=BIGINT},
+      record_id = #{record.recordId,jdbcType=BIGINT},
       status_date = #{record.statusDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
-    update order_stateflow
-    <set>
-      <if test="statusDate != null">
-        status_date = #{statusDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where status_id = #{statusId,jdbcType=SMALLINT}
-      and order_id = #{orderId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
-    update order_stateflow
-    set status_date = #{statusDate,jdbcType=TIMESTAMP}
-    where status_id = #{statusId,jdbcType=SMALLINT}
-      and order_id = #{orderId,jdbcType=BIGINT}
   </update>
 </mapper>

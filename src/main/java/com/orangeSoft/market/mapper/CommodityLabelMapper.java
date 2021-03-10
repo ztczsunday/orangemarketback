@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.CommodityLabel;
 import com.orangeSoft.market.pojo.CommodityLabelExample;
+import com.orangeSoft.market.pojo.CommodityLabelKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,21 +10,15 @@ public interface CommodityLabelMapper {
 
     int deleteByExample(CommodityLabelExample example);
 
-    int deleteByPrimaryKey(Integer labelId);
+    int deleteByPrimaryKey(CommodityLabelKey key);
 
-    int insert(CommodityLabel record);
+    int insert(CommodityLabelKey record);
 
-    int insertSelective(CommodityLabel record);
+    int insertSelective(CommodityLabelKey record);
 
-    List<CommodityLabel> selectByExample(CommodityLabelExample example);
+    List<CommodityLabelKey> selectByExample(CommodityLabelExample example);
 
-    CommodityLabel selectByPrimaryKey(Integer labelId);
+    int updateByExampleSelective(@Param("record") CommodityLabelKey record, @Param("example") CommodityLabelExample example);
 
-    int updateByExampleSelective(@Param("record") CommodityLabel record, @Param("example") CommodityLabelExample example);
-
-    int updateByExample(@Param("record") CommodityLabel record, @Param("example") CommodityLabelExample example);
-
-    int updateByPrimaryKeySelective(CommodityLabel record);
-
-    int updateByPrimaryKey(CommodityLabel record);
+    int updateByExample(@Param("record") CommodityLabelKey record, @Param("example") CommodityLabelExample example);
 }

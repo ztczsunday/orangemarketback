@@ -2,8 +2,28 @@ package com.orangeSoft.market.pojo;
 
 import java.util.Date;
 
-public class OrderStateflow extends OrderStateflowKey {
+public class OrderStateflow {
+    private Long orderId;
+
+    private Long recordId;
+
     private Date statusDate;
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
 
     public Date getStatusDate() {
         return statusDate;
@@ -19,6 +39,8 @@ public class OrderStateflow extends OrderStateflowKey {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", orderId=").append(orderId);
+        sb.append(", recordId=").append(recordId);
         sb.append(", statusDate=").append(statusDate);
         sb.append("]");
         return sb.toString();
@@ -36,8 +58,8 @@ public class OrderStateflow extends OrderStateflowKey {
             return false;
         }
         OrderStateflow other = (OrderStateflow) that;
-        return (this.getStatusId() == null ? other.getStatusId() == null : this.getStatusId().equals(other.getStatusId()))
-            && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
+        return (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
+            && (this.getRecordId() == null ? other.getRecordId() == null : this.getRecordId().equals(other.getRecordId()))
             && (this.getStatusDate() == null ? other.getStatusDate() == null : this.getStatusDate().equals(other.getStatusDate()));
     }
 
@@ -45,8 +67,8 @@ public class OrderStateflow extends OrderStateflowKey {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getStatusId() == null) ? 0 : getStatusId().hashCode());
         result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
+        result = prime * result + ((getRecordId() == null) ? 0 : getRecordId().hashCode());
         result = prime * result + ((getStatusDate() == null) ? 0 : getStatusDate().hashCode());
         return result;
     }

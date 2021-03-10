@@ -3,14 +3,14 @@ package com.orangeSoft.market.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesExample {
+public class FavoritesShopExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public FavoritesExample() {
+    public FavoritesShopExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,63 +164,63 @@ public class FavoritesExample {
             return (Criteria) this;
         }
 
-        public Criteria andCidIsNull() {
-            addCriterion("cid is null");
+        public Criteria andSidIsNull() {
+            addCriterion("sid is null");
             return (Criteria) this;
         }
 
-        public Criteria andCidIsNotNull() {
-            addCriterion("cid is not null");
+        public Criteria andSidIsNotNull() {
+            addCriterion("sid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCidEqualTo(Long value) {
-            addCriterion("cid =", value, "cid");
+        public Criteria andSidEqualTo(Integer value) {
+            addCriterion("sid =", value, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidNotEqualTo(Long value) {
-            addCriterion("cid <>", value, "cid");
+        public Criteria andSidNotEqualTo(Integer value) {
+            addCriterion("sid <>", value, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidGreaterThan(Long value) {
-            addCriterion("cid >", value, "cid");
+        public Criteria andSidGreaterThan(Integer value) {
+            addCriterion("sid >", value, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidGreaterThanOrEqualTo(Long value) {
-            addCriterion("cid >=", value, "cid");
+        public Criteria andSidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sid >=", value, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidLessThan(Long value) {
-            addCriterion("cid <", value, "cid");
+        public Criteria andSidLessThan(Integer value) {
+            addCriterion("sid <", value, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidLessThanOrEqualTo(Long value) {
-            addCriterion("cid <=", value, "cid");
+        public Criteria andSidLessThanOrEqualTo(Integer value) {
+            addCriterion("sid <=", value, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidIn(List<Long> values) {
-            addCriterion("cid in", values, "cid");
+        public Criteria andSidIn(List<Integer> values) {
+            addCriterion("sid in", values, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidNotIn(List<Long> values) {
-            addCriterion("cid not in", values, "cid");
+        public Criteria andSidNotIn(List<Integer> values) {
+            addCriterion("sid not in", values, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidBetween(Long value1, Long value2) {
-            addCriterion("cid between", value1, value2, "cid");
+        public Criteria andSidBetween(Integer value1, Integer value2) {
+            addCriterion("sid between", value1, value2, "sid");
             return (Criteria) this;
         }
 
-        public Criteria andCidNotBetween(Long value1, Long value2) {
-            addCriterion("cid not between", value1, value2, "cid");
+        public Criteria andSidNotBetween(Integer value1, Integer value2) {
+            addCriterion("sid not between", value1, value2, "sid");
             return (Criteria) this;
         }
     }

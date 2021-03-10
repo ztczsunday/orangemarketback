@@ -5,6 +5,7 @@
     <id column="cid" jdbcType="BIGINT" property="cid" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
     <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+    <result column="commodity_icon" jdbcType="VARCHAR" property="commodityIcon" />
     <result column="commodity_description" jdbcType="VARCHAR" property="commodityDescription" />
     <result column="commodity_status" jdbcType="BIT" property="commodityStatus" />
   </resultMap>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, sid, commodity_name, commodity_description, commodity_status
+    cid, sid, commodity_name, commodity_icon, commodity_description, commodity_status
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.CommodityExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.Commodity">
     insert into commodity (cid, sid, commodity_name, 
-      commodity_description, commodity_status)
+      commodity_icon, commodity_description, commodity_status
+      )
     values (#{cid,jdbcType=BIGINT}, #{sid,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, 
-      #{commodityDescription,jdbcType=VARCHAR}, #{commodityStatus,jdbcType=BIT})
+      #{commodityIcon,jdbcType=VARCHAR}, #{commodityDescription,jdbcType=VARCHAR}, #{commodityStatus,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Commodity">
     insert into commodity
@@ -116,6 +119,9 @@
       </if>
       <if test="commodityName != null">
         commodity_name,
+      </if>
+      <if test="commodityIcon != null">
+        commodity_icon,
       </if>
       <if test="commodityDescription != null">
         commodity_description,
@@ -133,6 +139,9 @@
       </if>
       <if test="commodityName != null">
         #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityIcon != null">
+        #{commodityIcon,jdbcType=VARCHAR},
       </if>
       <if test="commodityDescription != null">
         #{commodityDescription,jdbcType=VARCHAR},
@@ -160,6 +169,9 @@
       <if test="record.commodityName != null">
         commodity_name = #{record.commodityName,jdbcType=VARCHAR},
       </if>
+      <if test="record.commodityIcon != null">
+        commodity_icon = #{record.commodityIcon,jdbcType=VARCHAR},
+      </if>
       <if test="record.commodityDescription != null">
         commodity_description = #{record.commodityDescription,jdbcType=VARCHAR},
       </if>
@@ -176,6 +188,7 @@
     set cid = #{record.cid,jdbcType=BIGINT},
       sid = #{record.sid,jdbcType=INTEGER},
       commodity_name = #{record.commodityName,jdbcType=VARCHAR},
+      commodity_icon = #{record.commodityIcon,jdbcType=VARCHAR},
       commodity_description = #{record.commodityDescription,jdbcType=VARCHAR},
       commodity_status = #{record.commodityStatus,jdbcType=BIT}
     <if test="_parameter != null">
@@ -191,6 +204,9 @@
       <if test="commodityName != null">
         commodity_name = #{commodityName,jdbcType=VARCHAR},
       </if>
+      <if test="commodityIcon != null">
+        commodity_icon = #{commodityIcon,jdbcType=VARCHAR},
+      </if>
       <if test="commodityDescription != null">
         commodity_description = #{commodityDescription,jdbcType=VARCHAR},
       </if>
@@ -204,6 +220,7 @@
     update commodity
     set sid = #{sid,jdbcType=INTEGER},
       commodity_name = #{commodityName,jdbcType=VARCHAR},
+      commodity_icon = #{commodityIcon,jdbcType=VARCHAR},
       commodity_description = #{commodityDescription,jdbcType=VARCHAR},
       commodity_status = #{commodityStatus,jdbcType=BIT}
     where cid = #{cid,jdbcType=BIGINT}

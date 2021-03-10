@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.FootprintMapper">
   <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Footprint">
-    <id column="cid" jdbcType="BIGINT" property="cid" />
-    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="cid" jdbcType="BIGINT" property="cid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="last_browser_date" jdbcType="DATE" property="lastBrowserDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -81,18 +81,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.orangeSoft.market.pojo.FootprintKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from footprint
-    where cid = #{cid,jdbcType=BIGINT}
-      and uid = #{uid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.pojo.FootprintKey">
-    delete from footprint
-    where cid = #{cid,jdbcType=BIGINT}
-      and uid = #{uid,jdbcType=INTEGER}
-  </delete>
   <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.FootprintExample">
     delete from footprint
     <if test="_parameter != null">
@@ -161,21 +149,5 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.Footprint">
-    update footprint
-    <set>
-      <if test="lastBrowserDate != null">
-        last_browser_date = #{lastBrowserDate,jdbcType=DATE},
-      </if>
-    </set>
-    where cid = #{cid,jdbcType=BIGINT}
-      and uid = #{uid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.Footprint">
-    update footprint
-    set last_browser_date = #{lastBrowserDate,jdbcType=DATE}
-    where cid = #{cid,jdbcType=BIGINT}
-      and uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

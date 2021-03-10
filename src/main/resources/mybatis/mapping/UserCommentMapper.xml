@@ -5,7 +5,6 @@
     <id column="comment_id" jdbcType="BIGINT" property="commentId" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="praise" jdbcType="BIT" property="praise" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="sub_comment" jdbcType="BIGINT" property="subComment" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    comment_id, uid, praise, content, sub_comment
+    comment_id, uid, praise, sub_comment
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.UserCommentExample" resultMap="BaseResultMap">
     select
@@ -101,9 +100,9 @@
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.UserComment">
     insert into user_comment (comment_id, uid, praise, 
-      content, sub_comment)
+      sub_comment)
     values (#{commentId,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, #{praise,jdbcType=BIT}, 
-      #{content,jdbcType=VARCHAR}, #{subComment,jdbcType=BIGINT})
+      #{subComment,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.UserComment">
     insert into user_comment
@@ -116,9 +115,6 @@
       </if>
       <if test="praise != null">
         praise,
-      </if>
-      <if test="content != null">
-        content,
       </if>
       <if test="subComment != null">
         sub_comment,
@@ -133,9 +129,6 @@
       </if>
       <if test="praise != null">
         #{praise,jdbcType=BIT},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
       </if>
       <if test="subComment != null">
         #{subComment,jdbcType=BIGINT},
@@ -160,9 +153,6 @@
       <if test="record.praise != null">
         praise = #{record.praise,jdbcType=BIT},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
-      </if>
       <if test="record.subComment != null">
         sub_comment = #{record.subComment,jdbcType=BIGINT},
       </if>
@@ -176,7 +166,6 @@
     set comment_id = #{record.commentId,jdbcType=BIGINT},
       uid = #{record.uid,jdbcType=INTEGER},
       praise = #{record.praise,jdbcType=BIT},
-      content = #{record.content,jdbcType=VARCHAR},
       sub_comment = #{record.subComment,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,9 +180,6 @@
       <if test="praise != null">
         praise = #{praise,jdbcType=BIT},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
       <if test="subComment != null">
         sub_comment = #{subComment,jdbcType=BIGINT},
       </if>
@@ -204,7 +190,6 @@
     update user_comment
     set uid = #{uid,jdbcType=INTEGER},
       praise = #{praise,jdbcType=BIT},
-      content = #{content,jdbcType=VARCHAR},
       sub_comment = #{subComment,jdbcType=BIGINT}
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>

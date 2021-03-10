@@ -42,23 +42,23 @@
         <table tableName="user_info" domainObjectName="UserInfo"/>
 
         <table tableName="chat" domainObjectName="Chat"/>
-             <table tableName="user_comment" domainObjectName="UserComment"/>
+        <table tableName="user_comment" domainObjectName="UserComment"/>
         <table tableName="commodity" domainObjectName="Commodity"/>
-        <table tableName="commodity_add_label" domainObjectName="CommodityAddLabel"/>
         <table tableName="commodity_label" domainObjectName="CommodityLabel"/>
         <table tableName="commodity_order" domainObjectName="CommodityOrder"/>
-        <table tableName="favorites" domainObjectName="Favorites"/>
+        <table tableName="favorites_commodity" domainObjectName="FavoritesCommodity"/>
         <table tableName="footprint" domainObjectName="Footprint"/>
         <table tableName="manager" domainObjectName="Manager"/>
         <table tableName="logistics" domainObjectName="Logistics"/>
         <table tableName="order_stateflow" domainObjectName="OrderStateflow"/>
         <table tableName="order_logistics" domainObjectName="OrderLogistics"/>
-        <table tableName="order_status" domainObjectName="OrderStatus"/>
         <table tableName="receive_address" domainObjectName="ReceiveAddress"/>
         <table tableName="shop" domainObjectName="Shop"/>
-        <table tableName="shop_chat" domainObjectName="ShopChat"/>
         <table tableName="sub_commodity" domainObjectName="SubCommodity"/>
         <table tableName="user_chat" domainObjectName="UserChat"/>
+        <table tableName="chat_details" domainObjectName="ChatDetails"/>
+        <table tableName="favorites_shop" domainObjectName="FavoritesShop"/>
+        <table tableName="data_dictionary" domainObjectName="DataDictionary"/>
 
         <!--  <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
               <property name="useActualColumnNames" value="true"/>

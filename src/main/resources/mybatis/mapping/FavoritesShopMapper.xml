@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.orangeSoft.market.mapper.UserChatMapper">
-  <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.UserChatKey">
+<mapper namespace="com.orangeSoft.market.mapper.FavoritesShopMapper">
+  <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.FavoritesShopKey">
     <id column="uid" jdbcType="INTEGER" property="uid" />
-    <id column="chat_id" jdbcType="BIGINT" property="chatId" />
+    <id column="sid" jdbcType="INTEGER" property="sid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, chat_id
+    uid, sid
   </sql>
-  <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.UserChatExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.FavoritesShopExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user_chat
+    from favorites_shop
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -80,54 +80,54 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.pojo.UserChatKey">
-    delete from user_chat
+  <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.pojo.FavoritesShopKey">
+    delete from favorites_shop
     where uid = #{uid,jdbcType=INTEGER}
-      and chat_id = #{chatId,jdbcType=BIGINT}
+      and sid = #{sid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.UserChatExample">
-    delete from user_chat
+  <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.FavoritesShopExample">
+    delete from favorites_shop
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.orangeSoft.market.pojo.UserChatKey">
-    insert into user_chat (uid, chat_id)
-    values (#{uid,jdbcType=INTEGER}, #{chatId,jdbcType=BIGINT})
+  <insert id="insert" parameterType="com.orangeSoft.market.pojo.FavoritesShopKey">
+    insert into favorites_shop (uid, sid)
+    values (#{uid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.UserChatKey">
-    insert into user_chat
+  <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.FavoritesShopKey">
+    insert into favorites_shop
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uid != null">
         uid,
       </if>
-      <if test="chatId != null">
-        chat_id,
+      <if test="sid != null">
+        sid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
-      <if test="chatId != null">
-        #{chatId,jdbcType=BIGINT},
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.orangeSoft.market.pojo.UserChatExample" resultType="java.lang.Long">
-    select count(*) from user_chat
+  <select id="countByExample" parameterType="com.orangeSoft.market.pojo.FavoritesShopExample" resultType="java.lang.Long">
+    select count(*) from favorites_shop
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user_chat
+    update favorites_shop
     <set>
       <if test="record.uid != null">
         uid = #{record.uid,jdbcType=INTEGER},
       </if>
-      <if test="record.chatId != null">
-        chat_id = #{record.chatId,jdbcType=BIGINT},
+      <if test="record.sid != null">
+        sid = #{record.sid,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -135,9 +135,9 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user_chat
+    update favorites_shop
     set uid = #{record.uid,jdbcType=INTEGER},
-      chat_id = #{record.chatId,jdbcType=BIGINT}
+      sid = #{record.sid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

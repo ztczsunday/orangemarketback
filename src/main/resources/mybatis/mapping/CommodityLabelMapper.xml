@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityLabelMapper">
-  <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.CommodityLabel">
-    <id column="label_id" jdbcType="INTEGER" property="labelId" />
-    <result column="label_name" jdbcType="VARCHAR" property="labelName" />
+  <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.CommodityLabelKey">
+    <id column="cid" jdbcType="BIGINT" property="cid" />
+    <id column="record_id" jdbcType="BIGINT" property="recordId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    label_id, label_name
+    cid, record_id
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.CommodityLabelExample" resultMap="BaseResultMap">
     select
@@ -80,15 +80,10 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from commodity_label
-    where label_id = #{labelId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.pojo.CommodityLabelKey">
     delete from commodity_label
-    where label_id = #{labelId,jdbcType=INTEGER}
+    where cid = #{cid,jdbcType=BIGINT}
+      and record_id = #{recordId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.CommodityLabelExample">
     delete from commodity_label
@@ -96,26 +91,26 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.orangeSoft.market.pojo.CommodityLabel">
-    insert into commodity_label (label_id, label_name)
-    values (#{labelId,jdbcType=INTEGER}, #{labelName,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.orangeSoft.market.pojo.CommodityLabelKey">
+    insert into commodity_label (cid, record_id)
+    values (#{cid,jdbcType=BIGINT}, #{recordId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.CommodityLabel">
+  <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.CommodityLabelKey">
     insert into commodity_label
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="labelId != null">
-        label_id,
+      <if test="cid != null">
+        cid,
       </if>
-      <if test="labelName != null">
-        label_name,
+      <if test="recordId != null">
+        record_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="labelId != null">
-        #{labelId,jdbcType=INTEGER},
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
       </if>
-      <if test="labelName != null">
-        #{labelName,jdbcType=VARCHAR},
+      <if test="recordId != null">
+        #{recordId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -128,11 +123,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update commodity_label
     <set>
-      <if test="record.labelId != null">
-        label_id = #{record.labelId,jdbcType=INTEGER},
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=BIGINT},
       </if>
-      <if test="record.labelName != null">
-        label_name = #{record.labelName,jdbcType=VARCHAR},
+      <if test="record.recordId != null">
+        record_id = #{record.recordId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -141,24 +136,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update commodity_label
-    set label_id = #{record.labelId,jdbcType=INTEGER},
-      label_name = #{record.labelName,jdbcType=VARCHAR}
+    set cid = #{record.cid,jdbcType=BIGINT},
+      record_id = #{record.recordId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.CommodityLabel">
-    update commodity_label
-    <set>
-      <if test="labelName != null">
-        label_name = #{labelName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where label_id = #{labelId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.CommodityLabel">
-    update commodity_label
-    set label_name = #{labelName,jdbcType=VARCHAR}
-    where label_id = #{labelId,jdbcType=INTEGER}
   </update>
 </mapper>

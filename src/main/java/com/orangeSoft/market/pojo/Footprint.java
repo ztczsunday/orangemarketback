@@ -2,8 +2,28 @@ package com.orangeSoft.market.pojo;
 
 import java.util.Date;
 
-public class Footprint extends FootprintKey {
+public class Footprint {
+    private Long cid;
+
+    private Integer uid;
+
     private Date lastBrowserDate;
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public Date getLastBrowserDate() {
         return lastBrowserDate;
@@ -19,6 +39,8 @@ public class Footprint extends FootprintKey {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", cid=").append(cid);
+        sb.append(", uid=").append(uid);
         sb.append(", lastBrowserDate=").append(lastBrowserDate);
         sb.append("]");
         return sb.toString();

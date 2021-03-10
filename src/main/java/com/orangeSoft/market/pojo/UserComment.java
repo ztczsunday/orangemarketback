@@ -7,8 +7,6 @@ public class UserComment {
 
     private Boolean praise;
 
-    private String content;
-
     private Long subComment;
 
     public Long getCommentId() {
@@ -35,14 +33,6 @@ public class UserComment {
         this.praise = praise;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
     public Long getSubComment() {
         return subComment;
     }
@@ -60,7 +50,6 @@ public class UserComment {
         sb.append(", commentId=").append(commentId);
         sb.append(", uid=").append(uid);
         sb.append(", praise=").append(praise);
-        sb.append(", content=").append(content);
         sb.append(", subComment=").append(subComment);
         sb.append("]");
         return sb.toString();
@@ -81,7 +70,6 @@ public class UserComment {
         return (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
             && (this.getPraise() == null ? other.getPraise() == null : this.getPraise().equals(other.getPraise()))
-            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getSubComment() == null ? other.getSubComment() == null : this.getSubComment().equals(other.getSubComment()));
     }
 
@@ -92,7 +80,6 @@ public class UserComment {
         result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
         result = prime * result + ((getPraise() == null) ? 0 : getPraise().hashCode());
-        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getSubComment() == null) ? 0 : getSubComment().hashCode());
         return result;
     }

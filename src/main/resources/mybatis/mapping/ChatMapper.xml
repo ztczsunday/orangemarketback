@@ -3,9 +3,12 @@
 <mapper namespace="com.orangeSoft.market.mapper.ChatMapper">
   <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Chat">
     <id column="chat_id" jdbcType="BIGINT" property="chatId" />
-    <result column="chat_content" jdbcType="VARCHAR" property="chatContent" />
+    <result column="chat_content_id" jdbcType="BIGINT" property="chatContentId" />
     <result column="chat_date" jdbcType="TIMESTAMP" property="chatDate" />
-    <result column="chat_status" jdbcType="BIT" property="chatStatus" />
+    <result column="sender_id" jdbcType="INTEGER" property="senderId" />
+    <result column="sender_type" jdbcType="VARCHAR" property="senderType" />
+    <result column="receiver_id" jdbcType="INTEGER" property="receiverId" />
+    <result column="receiver_type" jdbcType="VARCHAR" property="receiverType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    chat_id, chat_content, chat_date, chat_status
+    chat_id, chat_content_id, chat_date, sender_id, sender_type, receiver_id, receiver_type
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ChatExample" resultMap="BaseResultMap">
     select
@@ -99,10 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.Chat">
-    insert into chat (chat_id, chat_content, chat_date, 
-      chat_status)
-    values (#{chatId,jdbcType=BIGINT}, #{chatContent,jdbcType=VARCHAR}, #{chatDate,jdbcType=TIMESTAMP}, 
-      #{chatStatus,jdbcType=BIT})
+    insert into chat (chat_id, chat_content_id, chat_date, 
+      sender_id, sender_type, receiver_id, 
+      receiver_type)
+    values (#{chatId,jdbcType=BIGINT}, #{chatContentId,jdbcType=BIGINT}, #{chatDate,jdbcType=TIMESTAMP}, 
+      #{senderId,jdbcType=INTEGER}, #{senderType,jdbcType=VARCHAR}, #{receiverId,jdbcType=INTEGER}, 
+      #{receiverType,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Chat">
     insert into chat
@@ -110,28 +115,46 @@
       <if test="chatId != null">
         chat_id,
       </if>
-      <if test="chatContent != null">
-        chat_content,
+      <if test="chatContentId != null">
+        chat_content_id,
       </if>
       <if test="chatDate != null">
         chat_date,
       </if>
-      <if test="chatStatus != null">
-        chat_status,
+      <if test="senderId != null">
+        sender_id,
+      </if>
+      <if test="senderType != null">
+        sender_type,
+      </if>
+      <if test="receiverId != null">
+        receiver_id,
+      </if>
+      <if test="receiverType != null">
+        receiver_type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="chatId != null">
         #{chatId,jdbcType=BIGINT},
       </if>
-      <if test="chatContent != null">
-        #{chatContent,jdbcType=VARCHAR},
+      <if test="chatContentId != null">
+        #{chatContentId,jdbcType=BIGINT},
       </if>
       <if test="chatDate != null">
         #{chatDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="chatStatus != null">
-        #{chatStatus,jdbcType=BIT},
+      <if test="senderId != null">
+        #{senderId,jdbcType=INTEGER},
+      </if>
+      <if test="senderType != null">
+        #{senderType,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverId != null">
+        #{receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverType != null">
+        #{receiverType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -147,14 +170,23 @@
       <if test="record.chatId != null">
         chat_id = #{record.chatId,jdbcType=BIGINT},
       </if>
-      <if test="record.chatContent != null">
-        chat_content = #{record.chatContent,jdbcType=VARCHAR},
+      <if test="record.chatContentId != null">
+        chat_content_id = #{record.chatContentId,jdbcType=BIGINT},
       </if>
       <if test="record.chatDate != null">
         chat_date = #{record.chatDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.chatStatus != null">
-        chat_status = #{record.chatStatus,jdbcType=BIT},
+      <if test="record.senderId != null">
+        sender_id = #{record.senderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.senderType != null">
+        sender_type = #{record.senderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverId != null">
+        receiver_id = #{record.receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiverType != null">
+        receiver_type = #{record.receiverType,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,9 +196,12 @@
   <update id="updateByExample" parameterType="map">
     update chat
     set chat_id = #{record.chatId,jdbcType=BIGINT},
-      chat_content = #{record.chatContent,jdbcType=VARCHAR},
+      chat_content_id = #{record.chatContentId,jdbcType=BIGINT},
       chat_date = #{record.chatDate,jdbcType=TIMESTAMP},
-      chat_status = #{record.chatStatus,jdbcType=BIT}
+      sender_id = #{record.senderId,jdbcType=INTEGER},
+      sender_type = #{record.senderType,jdbcType=VARCHAR},
+      receiver_id = #{record.receiverId,jdbcType=INTEGER},
+      receiver_type = #{record.receiverType,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,23 +209,35 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.Chat">
     update chat
     <set>
-      <if test="chatContent != null">
-        chat_content = #{chatContent,jdbcType=VARCHAR},
+      <if test="chatContentId != null">
+        chat_content_id = #{chatContentId,jdbcType=BIGINT},
       </if>
       <if test="chatDate != null">
         chat_date = #{chatDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="chatStatus != null">
-        chat_status = #{chatStatus,jdbcType=BIT},
+      <if test="senderId != null">
+        sender_id = #{senderId,jdbcType=INTEGER},
+      </if>
+      <if test="senderType != null">
+        sender_type = #{senderType,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverId != null">
+        receiver_id = #{receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverType != null">
+        receiver_type = #{receiverType,jdbcType=VARCHAR},
       </if>
     </set>
     where chat_id = #{chatId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.Chat">
     update chat
-    set chat_content = #{chatContent,jdbcType=VARCHAR},
+    set chat_content_id = #{chatContentId,jdbcType=BIGINT},
       chat_date = #{chatDate,jdbcType=TIMESTAMP},
-      chat_status = #{chatStatus,jdbcType=BIT}
+      sender_id = #{senderId,jdbcType=INTEGER},
+      sender_type = #{senderType,jdbcType=VARCHAR},
+      receiver_id = #{receiverId,jdbcType=INTEGER},
+      receiver_type = #{receiverType,jdbcType=VARCHAR}
     where chat_id = #{chatId,jdbcType=BIGINT}
   </update>
 </mapper>
