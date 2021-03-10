@@ -1,23 +1,26 @@
 package com.orangeSoft.market.controller;
 
+import com.google.gson.Gson;
 import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private Gson gson;
+
     @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public UserInfo login(@RequestParam("account") String account,
+    public String login(@RequestParam("account") String account,
                           @RequestParam("password") String password) {
-        return userService.login(account,password);
+        return gson.toJson(userService.login(account, password));
     }
+
     @GetMapping(value = "/register", produces = "application/json;charset=UTF-8")
     public boolean register(@RequestParam("userTelephone") String userTelephone,
                             @RequestParam("userPassword") String userPassword,
@@ -27,7 +30,7 @@ public class LoginController {
                             @RequestParam("userSelfie") String userSelfie,
                             @RequestParam("userSignature") String userSignature,
                             @RequestParam("userEmail") String userEmail,
-                            @RequestParam("userLicense") String userLicense){
+                            @RequestParam("userLicense") String userLicense) {
         return userService.register(userTelephone,
                 userPassword,
                 userAlipayAccount,
