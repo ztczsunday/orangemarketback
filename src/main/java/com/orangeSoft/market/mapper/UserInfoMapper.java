@@ -3,11 +3,7 @@ package com.orangeSoft.market.mapper;
 import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.pojo.UserInfoExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 public interface UserInfoMapper {
     long countByExample(UserInfoExample example);
