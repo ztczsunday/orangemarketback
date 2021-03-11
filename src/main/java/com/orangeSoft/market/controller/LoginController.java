@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
     @Autowired
     private UserService userService;
-
     @Autowired
     private Gson gson;
 
