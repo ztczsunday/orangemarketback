@@ -15,7 +15,7 @@
         </commentGenerator>
         <!--覆盖生成XML文件-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.101.153:3306/orangesoft"
+                        connectionURL="jdbc:mysql://192.168.101.131:3306/orangesoft"
                         userId="orangesoft"
                         password="orangesoft">
         </jdbcConnection>
@@ -40,7 +40,6 @@
         <!--  对应的表生成对应的 实体类 -->
 
         <table tableName="user_info" domainObjectName="UserInfo"/>
-
         <table tableName="chat" domainObjectName="Chat"/>
         <table tableName="user_comment" domainObjectName="UserComment"/>
         <table tableName="commodity" domainObjectName="Commodity"/>
