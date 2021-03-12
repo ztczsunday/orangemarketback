@@ -1,6 +1,7 @@
 package com.orangeSoft.market.controller;
 
 import com.google.gson.Gson;
+import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,24 +30,11 @@ public class LoginController {
         return gson.toJson(userService.login(account, password));
     }
 
-    @GetMapping(value = "/register", produces = "application/json;charset=UTF-8")
-    public boolean register(@RequestParam("userTelephone") String userTelephone,
-                            @RequestParam("userPassword") String userPassword,
-                            @RequestParam("userAlipayAccount") String userAlipayAccount,
-                            @RequestParam("userName") String userName,
-                            @RequestParam("userGender") String userGender,
-                            @RequestParam("userSelfie") String userSelfie,
-                            @RequestParam("userSignature") String userSignature,
-                            @RequestParam("userEmail") String userEmail,
-                            @RequestParam("userLicense") String userLicense) {
-        return userService.register(userTelephone,
-                userPassword,
-                userAlipayAccount,
-                userName,
-                userGender,
-                userSelfie,
-                userSignature,
-                userEmail,
-                userLicense);
+    @ApiOperation(value = "注册方法",notes = "114514")
+    @ApiImplicitParam(name = "userInfo",dataType = "UserInfo",value = "用户信息")
+    @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public boolean register(@RequestBody UserInfo userInfo) {
+        return userService.register(userInfo);
     }
 }

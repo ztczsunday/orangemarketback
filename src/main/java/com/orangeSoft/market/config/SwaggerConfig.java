@@ -22,6 +22,7 @@ public class SwaggerConfig {
                 .select()
                 // 方法需要有ApiOperation注解才能生存接口文档
                 .apis(RequestHandlerSelectors.basePackage("com.orangeSoft.market.controller"))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 // 路径使用any风格
                 .paths(PathSelectors.any())
                 .build()
@@ -35,7 +36,7 @@ public class SwaggerConfig {
      * @return
      */
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Api").description("api文档").version("1.0.0").build();
+        return new ApiInfoBuilder().title("orangeSoftApi").description("OrangeSoft Market Api文档").version("1.0.0").build();
     }
 
 }

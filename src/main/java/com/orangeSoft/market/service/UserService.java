@@ -23,26 +23,8 @@ public class UserService {
         return userInfos.isEmpty() ? null : userInfos.get(0);
     }
 
-    public boolean register(String userTelephone,
-                            String userPassword,
-                            String userAlipayAccount,
-                            String userName,
-                            String userGender,
-                            String userSelfie,
-                            String userSignature,
-                            String userEmail,
-                            String userLicense) {
-//        userPassword=passwordEncoder.encode(userPassword);
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserTelephone(userTelephone);
-        userInfo.setUserPassword(userPassword);
-        userInfo.setUserAlipayAccount(userAlipayAccount);
-        userInfo.setUserName(userName);
-        userInfo.setUserGender(userGender);
-        userInfo.setUserSelfie(userSelfie);
-        userInfo.setUserSignature(userSignature);
-        userInfo.setUserEmail(userEmail);
-        userInfo.setUserLicense(userLicense);
+
+    public boolean register(UserInfo userInfo){
         userInfoMapperE.insertSelective(userInfo);
         return true;
     }
