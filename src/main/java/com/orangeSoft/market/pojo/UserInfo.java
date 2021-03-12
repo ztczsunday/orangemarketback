@@ -1,6 +1,11 @@
 package com.orangeSoft.market.pojo;
 
-public class UserInfo {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+
+public class UserInfo implements UserDetails {
     private Integer uid;
 
     private String userTelephone;
@@ -160,5 +165,55 @@ public class UserInfo {
         result = prime * result + ((getUserEmail() == null) ? 0 : getUserEmail().hashCode());
         result = prime * result + ((getUserLicense() == null) ? 0 : getUserLicense().hashCode());
         return result;
+    }
+
+    /**
+     * @return 当前用户角色信息(集合)，均为null
+     */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return userPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    /**
+     * @return 当前用户是否未过期, 默认为false,改为true
+     */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    /**
+     * @return 当前用户是否未锁定，默认返回false, 改为true
+     */
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    /**
+     * @return 当前用户密码是否未过期, 默认返回false, 改为true
+     */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /**
+     * @return 当前账户是否可用，改为true
+     */
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
