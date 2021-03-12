@@ -9,6 +9,8 @@ public class CommodityOrder {
 
     private Integer uid;
 
+    private Integer receiveAddressId;
+
     private Integer subId;
 
     private Integer countCommodity;
@@ -45,6 +47,14 @@ public class CommodityOrder {
         this.uid = uid;
     }
 
+    public Integer getReceiveAddressId() {
+        return receiveAddressId;
+    }
+
+    public void setReceiveAddressId(Integer receiveAddressId) {
+        this.receiveAddressId = receiveAddressId;
+    }
+
     public Integer getSubId() {
         return subId;
     }
@@ -71,6 +81,7 @@ public class CommodityOrder {
         sb.append(", commentId=").append(commentId);
         sb.append(", sid=").append(sid);
         sb.append(", uid=").append(uid);
+        sb.append(", receiveAddressId=").append(receiveAddressId);
         sb.append(", subId=").append(subId);
         sb.append(", countCommodity=").append(countCommodity);
         sb.append("]");
@@ -93,6 +104,7 @@ public class CommodityOrder {
             && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
             && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
             && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+            && (this.getReceiveAddressId() == null ? other.getReceiveAddressId() == null : this.getReceiveAddressId().equals(other.getReceiveAddressId()))
             && (this.getSubId() == null ? other.getSubId() == null : this.getSubId().equals(other.getSubId()))
             && (this.getCountCommodity() == null ? other.getCountCommodity() == null : this.getCountCommodity().equals(other.getCountCommodity()));
     }
@@ -105,6 +117,7 @@ public class CommodityOrder {
         result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
         result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
         result = prime * result + ((getUid() == null) ? 0 : getUid().hashCode());
+        result = prime * result + ((getReceiveAddressId() == null) ? 0 : getReceiveAddressId().hashCode());
         result = prime * result + ((getSubId() == null) ? 0 : getSubId().hashCode());
         result = prime * result + ((getCountCommodity() == null) ? 0 : getCountCommodity().hashCode());
         return result;

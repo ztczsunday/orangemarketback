@@ -344,6 +344,66 @@ public class CommodityOrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andReceiveAddressIdIsNull() {
+            addCriterion("receive_address_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdIsNotNull() {
+            addCriterion("receive_address_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdEqualTo(Integer value) {
+            addCriterion("receive_address_id =", value, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdNotEqualTo(Integer value) {
+            addCriterion("receive_address_id <>", value, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdGreaterThan(Integer value) {
+            addCriterion("receive_address_id >", value, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("receive_address_id >=", value, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdLessThan(Integer value) {
+            addCriterion("receive_address_id <", value, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdLessThanOrEqualTo(Integer value) {
+            addCriterion("receive_address_id <=", value, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdIn(List<Integer> values) {
+            addCriterion("receive_address_id in", values, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdNotIn(List<Integer> values) {
+            addCriterion("receive_address_id not in", values, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdBetween(Integer value1, Integer value2) {
+            addCriterion("receive_address_id between", value1, value2, "receiveAddressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveAddressIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("receive_address_id not between", value1, value2, "receiveAddressId");
+            return (Criteria) this;
+        }
+
         public Criteria andSubIdIsNull() {
             addCriterion("sub_id is null");
             return (Criteria) this;

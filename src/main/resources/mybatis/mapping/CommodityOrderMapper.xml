@@ -6,6 +6,7 @@
     <result column="comment_id" jdbcType="BIGINT" property="commentId" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="receive_address_id" jdbcType="INTEGER" property="receiveAddressId" />
     <result column="sub_id" jdbcType="INTEGER" property="subId" />
     <result column="count_commodity" jdbcType="INTEGER" property="countCommodity" />
   </resultMap>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, comment_id, sid, uid, sub_id, count_commodity
+    order_id, comment_id, sid, uid, receive_address_id, sub_id, count_commodity
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.CommodityOrderExample" resultMap="BaseResultMap">
     select
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.CommodityOrder">
     insert into commodity_order (order_id, comment_id, sid, 
-      uid, sub_id, count_commodity
-      )
+      uid, receive_address_id, sub_id, 
+      count_commodity)
     values (#{orderId,jdbcType=BIGINT}, #{commentId,jdbcType=BIGINT}, #{sid,jdbcType=INTEGER}, 
-      #{uid,jdbcType=INTEGER}, #{subId,jdbcType=INTEGER}, #{countCommodity,jdbcType=INTEGER}
-      )
+      #{uid,jdbcType=INTEGER}, #{receiveAddressId,jdbcType=INTEGER}, #{subId,jdbcType=INTEGER}, 
+      #{countCommodity,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.CommodityOrder">
     insert into commodity_order
@@ -122,6 +123,9 @@
       </if>
       <if test="uid != null">
         uid,
+      </if>
+      <if test="receiveAddressId != null">
+        receive_address_id,
       </if>
       <if test="subId != null">
         sub_id,
@@ -142,6 +146,9 @@
       </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="receiveAddressId != null">
+        #{receiveAddressId,jdbcType=INTEGER},
       </if>
       <if test="subId != null">
         #{subId,jdbcType=INTEGER},
@@ -172,6 +179,9 @@
       <if test="record.uid != null">
         uid = #{record.uid,jdbcType=INTEGER},
       </if>
+      <if test="record.receiveAddressId != null">
+        receive_address_id = #{record.receiveAddressId,jdbcType=INTEGER},
+      </if>
       <if test="record.subId != null">
         sub_id = #{record.subId,jdbcType=INTEGER},
       </if>
@@ -189,6 +199,7 @@
       comment_id = #{record.commentId,jdbcType=BIGINT},
       sid = #{record.sid,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
+      receive_address_id = #{record.receiveAddressId,jdbcType=INTEGER},
       sub_id = #{record.subId,jdbcType=INTEGER},
       count_commodity = #{record.countCommodity,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -207,6 +218,9 @@
       <if test="uid != null">
         uid = #{uid,jdbcType=INTEGER},
       </if>
+      <if test="receiveAddressId != null">
+        receive_address_id = #{receiveAddressId,jdbcType=INTEGER},
+      </if>
       <if test="subId != null">
         sub_id = #{subId,jdbcType=INTEGER},
       </if>
@@ -221,6 +235,7 @@
     set comment_id = #{commentId,jdbcType=BIGINT},
       sid = #{sid,jdbcType=INTEGER},
       uid = #{uid,jdbcType=INTEGER},
+      receive_address_id = #{receiveAddressId,jdbcType=INTEGER},
       sub_id = #{subId,jdbcType=INTEGER},
       count_commodity = #{countCommodity,jdbcType=INTEGER}
     where order_id = #{orderId,jdbcType=BIGINT}

@@ -3,13 +3,13 @@
 <mapper namespace="com.orangeSoft.market.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.UserInfo">
     <id column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="user_alipay_account" jdbcType="VARCHAR" property="userAlipayAccount" />
     <result column="user_telephone" jdbcType="VARCHAR" property="userTelephone" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_gender" jdbcType="VARCHAR" property="userGender" />
     <result column="user_selfie" jdbcType="VARCHAR" property="userSelfie" />
     <result column="user_signature" jdbcType="VARCHAR" property="userSignature" />
+    <result column="user_alipay_account" jdbcType="VARCHAR" property="userAlipayAccount" />
     <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
     <result column="user_license" jdbcType="VARCHAR" property="userLicense" />
   </resultMap>
@@ -72,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, user_password, user_alipay_account, user_telephone, user_name, user_gender, 
-    user_selfie, user_signature, user_email, user_license
+    uid, user_telephone, user_password, user_name, user_gender, user_selfie, user_signature, 
+    user_alipay_account, user_email, user_license
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.UserInfoExample" resultMap="BaseResultMap">
     select
@@ -106,13 +106,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.UserInfo">
-    insert into user_info (uid, user_password, user_alipay_account, 
-      user_telephone, user_name, user_gender, 
-      user_selfie, user_signature, user_email, 
+    insert into user_info (uid, user_telephone, user_password, 
+      user_name, user_gender, user_selfie, 
+      user_signature, user_alipay_account, user_email, 
       user_license)
-    values (#{uid,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, #{userAlipayAccount,jdbcType=VARCHAR}, 
-      #{userTelephone,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, 
-      #{userSelfie,jdbcType=VARCHAR}, #{userSignature,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
+    values (#{uid,jdbcType=INTEGER}, #{userTelephone,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, #{userSelfie,jdbcType=VARCHAR}, 
+      #{userSignature,jdbcType=VARCHAR}, #{userAlipayAccount,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
       #{userLicense,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.UserInfo">
@@ -121,14 +121,11 @@
       <if test="uid != null">
         uid,
       </if>
-      <if test="userPassword != null">
-        user_password,
-      </if>
-      <if test="userAlipayAccount != null">
-        user_alipay_account,
-      </if>
       <if test="userTelephone != null">
         user_telephone,
+      </if>
+      <if test="userPassword != null">
+        user_password,
       </if>
       <if test="userName != null">
         user_name,
@@ -142,6 +139,9 @@
       <if test="userSignature != null">
         user_signature,
       </if>
+      <if test="userAlipayAccount != null">
+        user_alipay_account,
+      </if>
       <if test="userEmail != null">
         user_email,
       </if>
@@ -153,14 +153,11 @@
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userAlipayAccount != null">
-        #{userAlipayAccount,jdbcType=VARCHAR},
-      </if>
       <if test="userTelephone != null">
         #{userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
@@ -173,6 +170,9 @@
       </if>
       <if test="userSignature != null">
         #{userSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="userAlipayAccount != null">
+        #{userAlipayAccount,jdbcType=VARCHAR},
       </if>
       <if test="userEmail != null">
         #{userEmail,jdbcType=VARCHAR},
@@ -194,14 +194,11 @@
       <if test="record.uid != null">
         uid = #{record.uid,jdbcType=INTEGER},
       </if>
-      <if test="record.userPassword != null">
-        user_password = #{record.userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userAlipayAccount != null">
-        user_alipay_account = #{record.userAlipayAccount,jdbcType=VARCHAR},
-      </if>
       <if test="record.userTelephone != null">
         user_telephone = #{record.userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPassword != null">
+        user_password = #{record.userPassword,jdbcType=VARCHAR},
       </if>
       <if test="record.userName != null">
         user_name = #{record.userName,jdbcType=VARCHAR},
@@ -214,6 +211,9 @@
       </if>
       <if test="record.userSignature != null">
         user_signature = #{record.userSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAlipayAccount != null">
+        user_alipay_account = #{record.userAlipayAccount,jdbcType=VARCHAR},
       </if>
       <if test="record.userEmail != null">
         user_email = #{record.userEmail,jdbcType=VARCHAR},
@@ -229,13 +229,13 @@
   <update id="updateByExample" parameterType="map">
     update user_info
     set uid = #{record.uid,jdbcType=INTEGER},
-      user_password = #{record.userPassword,jdbcType=VARCHAR},
-      user_alipay_account = #{record.userAlipayAccount,jdbcType=VARCHAR},
       user_telephone = #{record.userTelephone,jdbcType=VARCHAR},
+      user_password = #{record.userPassword,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_gender = #{record.userGender,jdbcType=VARCHAR},
       user_selfie = #{record.userSelfie,jdbcType=VARCHAR},
       user_signature = #{record.userSignature,jdbcType=VARCHAR},
+      user_alipay_account = #{record.userAlipayAccount,jdbcType=VARCHAR},
       user_email = #{record.userEmail,jdbcType=VARCHAR},
       user_license = #{record.userLicense,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -245,14 +245,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.UserInfo">
     update user_info
     <set>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userAlipayAccount != null">
-        user_alipay_account = #{userAlipayAccount,jdbcType=VARCHAR},
-      </if>
       <if test="userTelephone != null">
         user_telephone = #{userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
@@ -266,6 +263,9 @@
       <if test="userSignature != null">
         user_signature = #{userSignature,jdbcType=VARCHAR},
       </if>
+      <if test="userAlipayAccount != null">
+        user_alipay_account = #{userAlipayAccount,jdbcType=VARCHAR},
+      </if>
       <if test="userEmail != null">
         user_email = #{userEmail,jdbcType=VARCHAR},
       </if>
@@ -277,13 +277,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.UserInfo">
     update user_info
-    set user_password = #{userPassword,jdbcType=VARCHAR},
-      user_alipay_account = #{userAlipayAccount,jdbcType=VARCHAR},
-      user_telephone = #{userTelephone,jdbcType=VARCHAR},
+    set user_telephone = #{userTelephone,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       user_gender = #{userGender,jdbcType=VARCHAR},
       user_selfie = #{userSelfie,jdbcType=VARCHAR},
       user_signature = #{userSignature,jdbcType=VARCHAR},
+      user_alipay_account = #{userAlipayAccount,jdbcType=VARCHAR},
       user_email = #{userEmail,jdbcType=VARCHAR},
       user_license = #{userLicense,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}

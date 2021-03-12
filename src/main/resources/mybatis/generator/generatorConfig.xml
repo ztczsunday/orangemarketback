@@ -58,7 +58,7 @@
         <table tableName="chat_details" domainObjectName="ChatDetails"/>
         <table tableName="favorites_shop" domainObjectName="FavoritesShop"/>
         <table tableName="data_dictionary" domainObjectName="DataDictionary"/>
-
+        <table tableName="commodity_details" domainObjectName="CommodityDetails"/>
         <!--  <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
               <property name="useActualColumnNames" value="true"/>
               <generatedKey column="ID" sqlStatement="DB2" identity="true" />

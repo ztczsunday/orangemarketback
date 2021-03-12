@@ -9,8 +9,6 @@ public class Commodity {
 
     private String commodityIcon;
 
-    private String commodityDescription;
-
     private Boolean commodityStatus;
 
     public Long getCid() {
@@ -45,14 +43,6 @@ public class Commodity {
         this.commodityIcon = commodityIcon == null ? null : commodityIcon.trim();
     }
 
-    public String getCommodityDescription() {
-        return commodityDescription;
-    }
-
-    public void setCommodityDescription(String commodityDescription) {
-        this.commodityDescription = commodityDescription == null ? null : commodityDescription.trim();
-    }
-
     public Boolean getCommodityStatus() {
         return commodityStatus;
     }
@@ -71,7 +61,6 @@ public class Commodity {
         sb.append(", sid=").append(sid);
         sb.append(", commodityName=").append(commodityName);
         sb.append(", commodityIcon=").append(commodityIcon);
-        sb.append(", commodityDescription=").append(commodityDescription);
         sb.append(", commodityStatus=").append(commodityStatus);
         sb.append("]");
         return sb.toString();
@@ -93,7 +82,6 @@ public class Commodity {
             && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
             && (this.getCommodityName() == null ? other.getCommodityName() == null : this.getCommodityName().equals(other.getCommodityName()))
             && (this.getCommodityIcon() == null ? other.getCommodityIcon() == null : this.getCommodityIcon().equals(other.getCommodityIcon()))
-            && (this.getCommodityDescription() == null ? other.getCommodityDescription() == null : this.getCommodityDescription().equals(other.getCommodityDescription()))
             && (this.getCommodityStatus() == null ? other.getCommodityStatus() == null : this.getCommodityStatus().equals(other.getCommodityStatus()));
     }
 
@@ -105,7 +93,6 @@ public class Commodity {
         result = prime * result + ((getSid() == null) ? 0 : getSid().hashCode());
         result = prime * result + ((getCommodityName() == null) ? 0 : getCommodityName().hashCode());
         result = prime * result + ((getCommodityIcon() == null) ? 0 : getCommodityIcon().hashCode());
-        result = prime * result + ((getCommodityDescription() == null) ? 0 : getCommodityDescription().hashCode());
         result = prime * result + ((getCommodityStatus() == null) ? 0 : getCommodityStatus().hashCode());
         return result;
     }
