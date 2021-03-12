@@ -6,6 +6,7 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="praise" jdbcType="BIT" property="praise" />
     <result column="sub_comment" jdbcType="BIGINT" property="subComment" />
+    <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    comment_id, uid, praise, sub_comment
+    comment_id, uid, praise, sub_comment, comment_time
   </sql>
   <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.UserCommentExample" resultMap="BaseResultMap">
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.orangeSoft.market.pojo.UserComment">
     insert into user_comment (comment_id, uid, praise, 
-      sub_comment)
+      sub_comment, comment_time)
     values (#{commentId,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, #{praise,jdbcType=BIT}, 
-      #{subComment,jdbcType=BIGINT})
+      #{subComment,jdbcType=BIGINT}, #{commentTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.UserComment">
     insert into user_comment
@@ -119,6 +120,9 @@
       <if test="subComment != null">
         sub_comment,
       </if>
+      <if test="commentTime != null">
+        comment_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="commentId != null">
@@ -132,6 +136,9 @@
       </if>
       <if test="subComment != null">
         #{subComment,jdbcType=BIGINT},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.subComment != null">
         sub_comment = #{record.subComment,jdbcType=BIGINT},
       </if>
+      <if test="record.commentTime != null">
+        comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set comment_id = #{record.commentId,jdbcType=BIGINT},
       uid = #{record.uid,jdbcType=INTEGER},
       praise = #{record.praise,jdbcType=BIT},
-      sub_comment = #{record.subComment,jdbcType=BIGINT}
+      sub_comment = #{record.subComment,jdbcType=BIGINT},
+      comment_time = #{record.commentTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="subComment != null">
         sub_comment = #{subComment,jdbcType=BIGINT},
       </if>
+      <if test="commentTime != null">
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
@@ -190,7 +204,8 @@
     update user_comment
     set uid = #{uid,jdbcType=INTEGER},
       praise = #{praise,jdbcType=BIT},
-      sub_comment = #{subComment,jdbcType=BIGINT}
+      sub_comment = #{subComment,jdbcType=BIGINT},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP}
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
 </mapper>

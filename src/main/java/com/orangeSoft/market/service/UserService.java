@@ -4,6 +4,7 @@ import com.orangeSoft.market.mapper.extend.UserInfoMapperE;
 import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.pojo.UserInfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +14,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserInfoMapperE userInfoMapperE;
-//    @Autowired
-//    PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public UserInfo login(String account, String pwd) {
         UserInfoExample userInfoExample = new UserInfoExample();
@@ -24,9 +25,14 @@ public class UserService {
     }
 
 
-    public boolean register(UserInfo userInfo){
-        userInfoMapperE.insertSelective(userInfo);
-        return true;
+    public boolean register(UserInfo userInfo) {
+//        passwordEncoder.encode(userInfo.getUserPassword());
+        UserInfoExample userInfoExample = new UserInfoExample();
+        userInfoExample.createCriteria().andUserTelephoneEqualTo(userInfo.getUserTelephone());
+        if (userInfoMapperE.countByExample(userInfoExample) != 0) {
+            return false;
+        }
+        return userInfoMapperE.insertSelective(userInfo) == 1;
     }
 
 }

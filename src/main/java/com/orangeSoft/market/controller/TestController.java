@@ -18,10 +18,10 @@ public class TestController {
 //    public String loginlogin() {
 //        return "/success";
 //    }
-//    @RequestMapping("/login")
-//    public String logia(){
-//        return "/login";
-//    }
+    @RequestMapping("/login")
+    public String logia(){
+        return "/login";
+    }
 
     @RequestMapping(value = "/loginSuccess")
     public String toLogin() {

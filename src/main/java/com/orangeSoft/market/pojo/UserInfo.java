@@ -1,9 +1,12 @@
 package com.orangeSoft.market.pojo;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 public class UserInfo implements UserDetails {
     private Integer uid;
@@ -170,8 +173,13 @@ public class UserInfo implements UserDetails {
     /**
      * @return 当前用户角色信息(集合)，均为null
      */
+
+    private final Set<GrantedAuthority> authorities=null;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+//        Collection<GrantedAuthority> e = new ArrayList<GrantedAuthority>();
+//        e.add(new SimpleGrantedAuthority("ROLE_USER"));
+//        return e;
         return null;
     }
 
@@ -182,7 +190,7 @@ public class UserInfo implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return userTelephone;
     }
 
     /**
