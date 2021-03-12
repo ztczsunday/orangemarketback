@@ -1,6 +1,11 @@
 package com.orangeSoft.market.pojo;
 
-public class UserInfo {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+
+public class UserInfo implements UserDetails {
     private Integer uid;
 
     private String userPassword;
@@ -134,15 +139,15 @@ public class UserInfo {
         }
         UserInfo other = (UserInfo) that;
         return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getUserPassword() == null ? other.getUserPassword() == null : this.getUserPassword().equals(other.getUserPassword()))
-            && (this.getUserAlipayAccount() == null ? other.getUserAlipayAccount() == null : this.getUserAlipayAccount().equals(other.getUserAlipayAccount()))
-            && (this.getUserTelephone() == null ? other.getUserTelephone() == null : this.getUserTelephone().equals(other.getUserTelephone()))
-            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
-            && (this.getUserGender() == null ? other.getUserGender() == null : this.getUserGender().equals(other.getUserGender()))
-            && (this.getUserSelfie() == null ? other.getUserSelfie() == null : this.getUserSelfie().equals(other.getUserSelfie()))
-            && (this.getUserSignature() == null ? other.getUserSignature() == null : this.getUserSignature().equals(other.getUserSignature()))
-            && (this.getUserEmail() == null ? other.getUserEmail() == null : this.getUserEmail().equals(other.getUserEmail()))
-            && (this.getUserLicense() == null ? other.getUserLicense() == null : this.getUserLicense().equals(other.getUserLicense()));
+                && (this.getUserPassword() == null ? other.getUserPassword() == null : this.getUserPassword().equals(other.getUserPassword()))
+                && (this.getUserAlipayAccount() == null ? other.getUserAlipayAccount() == null : this.getUserAlipayAccount().equals(other.getUserAlipayAccount()))
+                && (this.getUserTelephone() == null ? other.getUserTelephone() == null : this.getUserTelephone().equals(other.getUserTelephone()))
+                && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
+                && (this.getUserGender() == null ? other.getUserGender() == null : this.getUserGender().equals(other.getUserGender()))
+                && (this.getUserSelfie() == null ? other.getUserSelfie() == null : this.getUserSelfie().equals(other.getUserSelfie()))
+                && (this.getUserSignature() == null ? other.getUserSignature() == null : this.getUserSignature().equals(other.getUserSignature()))
+                && (this.getUserEmail() == null ? other.getUserEmail() == null : this.getUserEmail().equals(other.getUserEmail()))
+                && (this.getUserLicense() == null ? other.getUserLicense() == null : this.getUserLicense().equals(other.getUserLicense()));
     }
 
     @Override
@@ -160,5 +165,55 @@ public class UserInfo {
         result = prime * result + ((getUserEmail() == null) ? 0 : getUserEmail().hashCode());
         result = prime * result + ((getUserLicense() == null) ? 0 : getUserLicense().hashCode());
         return result;
+    }
+
+    /**
+     * @return 当前用户角色信息(集合)，均为null
+     */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return userPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    /**
+     * @return 当前用户是否未过期, 默认为false,改为true
+     */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    /**
+     * @return 当前用户是否未锁定，默认返回false, 改为true
+     */
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    /**
+     * @return 当前用户密码是否未过期, 默认返回false, 改为true
+     */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /**
+     * @return 当前账户是否可用，改为true
+     */
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

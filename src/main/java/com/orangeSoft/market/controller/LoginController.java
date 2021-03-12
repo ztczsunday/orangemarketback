@@ -24,11 +24,11 @@ public class LoginController {
             @ApiImplicitParam(name = "account",value = "手机号",required = true,paramType = "form"),
             @ApiImplicitParam(name = "password",value = "密码",required = true,paramType = "form")
     })
-    @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public String login(@RequestParam("account") String account,
-                          @RequestParam("password") String password) {
-        return gson.toJson(userService.login(account, password));
-    }
+//    @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
+//    public String login(@RequestParam("account") String account,
+//                          @RequestParam("password") String password) {
+//        return gson.toJson(userService.login(account, password));
+//    }
 
     @ApiOperation(value = "注册方法",notes = "114514")
     @ApiImplicitParam(name = "userInfo",dataType = "UserInfo",value = "用户信息")
