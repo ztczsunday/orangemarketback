@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.orangeSoft.market.entity.CommodityOrder;
-import com.orangeSoft.market.pojo.OrderDetailResult;
-import com.orangeSoft.market.pojo.UserOrderResult;
+import com.orangeSoft.market.entity.OrderDetailResult;
+import com.orangeSoft.market.entity.UserOrderResult;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 @Repository
 public interface CommodityOrderMapper extends BaseMapper<CommodityOrder> {
 
-    OrderDetailResult findOrderDetailByOrderId(long orderId);
+    OrderDetailResult findOrderDetailByOrderId(@Param("orderId") long orderId);
 
-    List<UserOrderResult> findUserOrderByUserId(Integer uid);
+    List<UserOrderResult> findUserOrderByUserId(@Param("uid") Integer uid);
 }

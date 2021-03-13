@@ -19,8 +19,7 @@ public class OrderController {
     @ApiOperation(value = "查找用户订单")
     @PostMapping(value = "/order", produces = "application/json;charset=UTF-8")
     public String findUserOrderByUid() {
-        return new Gson().toJson(orderService.getById(
-                MySessionUtil.getCurrUser().getUid()));
+        return new Gson().toJson(orderService.findUserOrderByUid());
     }
 
     @ApiOperation(value = "查找订单详情")

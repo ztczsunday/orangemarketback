@@ -1,21 +1,17 @@
-package com.orangeSoft.market.pojo;
+package com.orangeSoft.market.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Data
 @Component
 @EqualsAndHashCode
-public class OrderDetailResult {
+public class UserOrderResult {
     private int orderId;
-    private String shopName;
     private String commodityName;
     private String subName;
-    private double price;
+    private String shopName;
     private int countCommodity;
-    private String addressDetails;
-    private Date statusDate;
+    private double price;
 }
