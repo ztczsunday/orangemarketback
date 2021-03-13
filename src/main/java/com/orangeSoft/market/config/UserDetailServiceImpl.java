@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+/**
+ * 自定义spring security用户实体，从数据库中获取用户信息
+ */
 @Component
 public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
