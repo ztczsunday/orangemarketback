@@ -1,10 +1,9 @@
 package com.orangeSoft.market.common.security;
 
-import com.orangeSoft.market.mapper.extend.UserInfoMapperE;
-import com.orangeSoft.market.common.pojo.UserInfo;
-import com.orangeSoft.market.common.pojo.UserInfoExample;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.orangeSoft.market.entity.UserInfo;
+import com.orangeSoft.market.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,23 +15,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
-    private UserInfoMapperE userInfoMapperE;
+    private UserInfoMapper userInfoMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String userAccount) throws UsernameNotFoundException {
-        UserInfoExample userInfoExample = new UserInfoExample();
-        userInfoExample.createCriteria().andUserTelephoneEqualTo(userAccount);
-        if (userInfoMapperE.selectByExample(userInfoExample).isEmpty()) {
+    public UserInfo loadUserByUsername(String userAccount) throws UsernameNotFoundException {
+        QueryWrapper<UserInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_telephone", userAccount);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
             System.out.println("用户不存在");
             throw new UsernameNotFoundException("账户不存在!");
         }
         System.out.println("用户存在");
-        UserInfo user = userInfoMapperE.selectByExample(userInfoExample).get(0);
         String encodePwd = passwordEncoder.encode(user.getPassword());
         user.setUserPassword(encodePwd);
-        System.out.println(user.toString());
         return user;
     }
 

@@ -1,249 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityOrderMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.CommodityOrder">
-        <id column="order_id" jdbcType="BIGINT" property="orderId"/>
-        <result column="comment_id" jdbcType="BIGINT" property="commentId"/>
-        <result column="sid" jdbcType="INTEGER" property="sid"/>
-        <result column="uid" jdbcType="INTEGER" property="uid"/>
-        <result column="receive_address_id" jdbcType="INTEGER" property="receiveAddressId"/>
-        <result column="sub_id" jdbcType="INTEGER" property="subId"/>
-        <result column="count_commodity" jdbcType="INTEGER" property="countCommodity"/>
+    <resultMap id="userOrderResultMap" type="com.orangeSoft.market.pojo.UserOrderResult">
+        <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
+        <!-- property：主键在pojo中的属性名 -->
+        <!-- column：主键在数据库中的列名 -->
+        <id property="orderId" column="order_id" />
+        <!-- 定义普通属性 -->
+        <result property="shopName" column="shop_name" />
+        <result property="commodityName" column="commodity_name" />
+        <result property="subName" column="sub_name" />
+        <result property="price" column="price" />
+        <result property="countCommodity" column="count_commodity"/>
+
     </resultMap>
-    <sql id="Example_Where_Clause">
-        <where>
-            <foreach collection="oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" prefixOverrides="and" suffix=")">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
-                                             separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
-            </foreach>
-        </where>
-    </sql>
-    <sql id="Update_By_Example_Where_Clause">
-        <where>
-            <foreach collection="example.oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" prefixOverrides="and" suffix=")">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
-                                             separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
-            </foreach>
-        </where>
-    </sql>
-    <sql id="Base_Column_List">
-        order_id
-        , comment_id, sid, uid, receive_address_id, sub_id, count_commodity
-    </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.CommodityOrderExample"
-            resultMap="BaseResultMap">
-        select
-        <if test="distinct">
-            distinct
-        </if>
-        <include refid="Base_Column_List"/>
+    <select id="findOrderDetailByOrderId" resultType="com.orangeSoft.market.pojo.OrderDetailResult">
+        select commodity_order.order_id,
+               shop_name,
+               commodity_name,
+               sub_name,
+               price,
+               count_commodity,
+               address_details,
+               status_date
         from commodity_order
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
+                 left join order_logistics ol on commodity_order.order_id = ol.order_id
+                 left join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
+                 left join order_stateflow os on commodity_order.order_id = os.order_id
+                 left join data_dictionary dd on os.record_id = dd.record_id
+                 left join shop s on commodity_order.sid = s.sid
+                 left join sub_commodity sc on commodity_order.sub_id = sc.sub_id
+                 left join commodity c on s.sid = c.sid
+        where commodity_order.order_id = #{orderId}
     </select>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
+    <select id="findUserOrderByUserId" resultMap="userOrderResultMap">
+        select commodity_order.order_id, shop_name, commodity_name, sub_name, price, count_commodity
         from commodity_order
-        where order_id = #{orderId,jdbcType=BIGINT}
+                 left join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
+                 left join shop s on commodity_order.sid = s.sid
+                 left join sub_commodity sc on commodity_order.sub_id = sc.sub_id
+                 left join commodity c on s.sid = c.sid
+        where commodity_order.uid = #{uid}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete
-        from commodity_order
-        where order_id = #{orderId,jdbcType=BIGINT}
-    </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.CommodityOrderExample">
-        delete from commodity_order
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.CommodityOrder">
-        insert into commodity_order (order_id, comment_id, sid,
-                                     uid, receive_address_id, sub_id,
-                                     count_commodity)
-        values (#{orderId,jdbcType=BIGINT}, #{commentId,jdbcType=BIGINT}, #{sid,jdbcType=INTEGER},
-                #{uid,jdbcType=INTEGER}, #{receiveAddressId,jdbcType=INTEGER}, #{subId,jdbcType=INTEGER},
-                #{countCommodity,jdbcType=INTEGER})
-    </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.CommodityOrder">
-        insert into commodity_order
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="orderId != null">
-                order_id,
-            </if>
-            <if test="commentId != null">
-                comment_id,
-            </if>
-            <if test="sid != null">
-                sid,
-            </if>
-            <if test="uid != null">
-                uid,
-            </if>
-            <if test="receiveAddressId != null">
-                receive_address_id,
-            </if>
-            <if test="subId != null">
-                sub_id,
-            </if>
-            <if test="countCommodity != null">
-                count_commodity,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="orderId != null">
-                #{orderId,jdbcType=BIGINT},
-            </if>
-            <if test="commentId != null">
-                #{commentId,jdbcType=BIGINT},
-            </if>
-            <if test="sid != null">
-                #{sid,jdbcType=INTEGER},
-            </if>
-            <if test="uid != null">
-                #{uid,jdbcType=INTEGER},
-            </if>
-            <if test="receiveAddressId != null">
-                #{receiveAddressId,jdbcType=INTEGER},
-            </if>
-            <if test="subId != null">
-                #{subId,jdbcType=INTEGER},
-            </if>
-            <if test="countCommodity != null">
-                #{countCommodity,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.CommodityOrderExample"
-            resultType="java.lang.Long">
-        select count(*) from commodity_order
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </select>
-    <update id="updateByExampleSelective" parameterType="map">
-        update commodity_order
-        <set>
-            <if test="record.orderId != null">
-                order_id = #{record.orderId,jdbcType=BIGINT},
-            </if>
-            <if test="record.commentId != null">
-                comment_id = #{record.commentId,jdbcType=BIGINT},
-            </if>
-            <if test="record.sid != null">
-                sid = #{record.sid,jdbcType=INTEGER},
-            </if>
-            <if test="record.uid != null">
-                uid = #{record.uid,jdbcType=INTEGER},
-            </if>
-            <if test="record.receiveAddressId != null">
-                receive_address_id = #{record.receiveAddressId,jdbcType=INTEGER},
-            </if>
-            <if test="record.subId != null">
-                sub_id = #{record.subId,jdbcType=INTEGER},
-            </if>
-            <if test="record.countCommodity != null">
-                count_commodity = #{record.countCommodity,jdbcType=INTEGER},
-            </if>
-        </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExample" parameterType="map">
-        update commodity_order
-        set order_id = #{record.orderId,jdbcType=BIGINT},
-        comment_id = #{record.commentId,jdbcType=BIGINT},
-        sid = #{record.sid,jdbcType=INTEGER},
-        uid = #{record.uid,jdbcType=INTEGER},
-        receive_address_id = #{record.receiveAddressId,jdbcType=INTEGER},
-        sub_id = #{record.subId,jdbcType=INTEGER},
-        count_commodity = #{record.countCommodity,jdbcType=INTEGER}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.CommodityOrder">
-        update commodity_order
-        <set>
-            <if test="commentId != null">
-                comment_id = #{commentId,jdbcType=BIGINT},
-            </if>
-            <if test="sid != null">
-                sid = #{sid,jdbcType=INTEGER},
-            </if>
-            <if test="uid != null">
-                uid = #{uid,jdbcType=INTEGER},
-            </if>
-            <if test="receiveAddressId != null">
-                receive_address_id = #{receiveAddressId,jdbcType=INTEGER},
-            </if>
-            <if test="subId != null">
-                sub_id = #{subId,jdbcType=INTEGER},
-            </if>
-            <if test="countCommodity != null">
-                count_commodity = #{countCommodity,jdbcType=INTEGER},
-            </if>
-        </set>
-        where order_id = #{orderId,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.CommodityOrder">
-        update commodity_order
-        set comment_id         = #{commentId,jdbcType=BIGINT},
-            sid                = #{sid,jdbcType=INTEGER},
-            uid                = #{uid,jdbcType=INTEGER},
-            receive_address_id = #{receiveAddressId,jdbcType=INTEGER},
-            sub_id             = #{subId,jdbcType=INTEGER},
-            count_commodity    = #{countCommodity,jdbcType=INTEGER}
-        where order_id = #{orderId,jdbcType=BIGINT}
-    </update>
 </mapper>

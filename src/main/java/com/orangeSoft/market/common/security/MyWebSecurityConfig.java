@@ -1,9 +1,9 @@
 package com.orangeSoft.market.common.security;
 
 import com.google.gson.Gson;
-import com.orangeSoft.market.common.pojo.UserInfo;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
+import com.orangeSoft.market.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,7 +51,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         //登录成功，返回信息
                         response.setContentType("application/json;charset=utf-8");
                         PrintWriter out = response.getWriter();
-                        out.print(gson.toJson(Result.success(MySessionUtil.getCurrUser(),"登录成功")));
+                        out.print(gson.toJson(Result.success(MySessionUtil.getCurrUser(), "登录成功")));
                         out.flush();
                         out.close();
                     }
@@ -60,7 +60,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                     //登录失败，返回信息
                     response.setContentType("application/json;charset=utf-8");
                     PrintWriter out = response.getWriter();
-                    out.print(gson.toJson(Result.fail(null,"登录失败")));
+                    out.print(gson.toJson(Result.fail(null, "登录失败")));
                     out.flush();
                     out.close();
                 })
