@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * spring security自定义配置
+ */
 @Configuration
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -32,7 +35,8 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService);
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+        auth.eraseCredentials(false);
     }
 
     protected void configure(HttpSecurity http) throws Exception {
@@ -43,11 +47,11 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
                 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-                if (principal != null && principal instanceof UserInfo) {
+                if (principal instanceof UserInfo) {
                     UserInfo user = (UserInfo) principal;
-                    System.out.println("currUser:"+user.getUsername());
-                    System.out.println("userPWD:"+user.getPassword());
-                    System.out.println();
+                    System.out.println("currUser:" + user.getUsername());
+                    System.out.println("userPWD:" + user.getPassword());
+                    System.out.println(user.toString());
                     //维护在session中
                     request.getSession().setAttribute("userDetail", user);
                     response.sendRedirect("/loginSuccess");

@@ -14,15 +14,6 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserInfoMapperE userInfoMapperE;
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-    public UserInfo login(String account, String pwd) {
-        UserInfoExample userInfoExample = new UserInfoExample();
-        userInfoExample.createCriteria().andUserTelephoneEqualTo(account).andUserPasswordEqualTo(pwd);
-        List<UserInfo> userInfos = userInfoMapperE.selectByExample(userInfoExample);
-        return userInfos.isEmpty() ? null : userInfos.get(0);
-    }
 
 
     public boolean register(UserInfo userInfo) {
