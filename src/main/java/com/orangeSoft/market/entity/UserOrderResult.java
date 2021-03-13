@@ -2,10 +2,8 @@ package com.orangeSoft.market.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.stereotype.Component;
 
 @Data
-@Component
 @EqualsAndHashCode
 public class UserOrderResult {
     private int orderId;
