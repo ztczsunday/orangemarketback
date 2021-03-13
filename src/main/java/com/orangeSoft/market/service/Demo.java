@@ -1,8 +1,8 @@
 package com.orangeSoft.market.service;
 
 import com.google.gson.Gson;
-import com.orangeSoft.market.pojo.UserInfo;
-import com.orangeSoft.market.utils.Result;
+import com.orangeSoft.market.common.pojo.UserInfo;
+import com.orangeSoft.market.common.utils.Result;
 
 /**
  * @author MakiYO

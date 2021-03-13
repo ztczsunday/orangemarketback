@@ -1,11 +1,8 @@
 package com.orangeSoft.market.controller;
 
-import com.google.gson.Gson;
-import com.orangeSoft.market.pojo.UserInfo;
+import com.orangeSoft.market.common.pojo.UserInfo;
 import com.orangeSoft.market.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

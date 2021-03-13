@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.DataDictionary;
-import com.orangeSoft.market.pojo.DataDictionaryExample;
+import com.orangeSoft.market.common.pojo.DataDictionary;
+import com.orangeSoft.market.common.pojo.DataDictionaryExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

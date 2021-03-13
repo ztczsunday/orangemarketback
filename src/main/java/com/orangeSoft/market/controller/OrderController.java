@@ -1,7 +1,10 @@
 package com.orangeSoft.market.controller;
 
 import com.google.gson.Gson;
+import com.orangeSoft.market.common.pojo.UserInfo;
+import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.service.OrderService;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,9 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     @Autowired
     OrderService orderService;
+
+
+
     @ApiOperation(value = "查找订单")
     @PostMapping(value = "/order", produces = "application/json;charset=UTF-8")
-    public String findOrderByUid(@RequestParam("uid") Integer uid){
-        return new Gson().toJson(orderService.findOrderByUid(uid));
+    public String findOrderByUid() {
+        UserInfo userInfo = MySessionUtil.getCurrUser();
+        System.out.println(userInfo.toString());
+        return new Gson().toJson(orderService.findOrderByUid(userInfo.getUid()));
     }
 }

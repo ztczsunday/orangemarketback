@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.ChatDetailsMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.ChatDetails">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.ChatDetails">
         <id column="chat_content_id" jdbcType="BIGINT" property="chatContentId"/>
         <result column="chat_content" jdbcType="VARCHAR" property="chatContent"/>
     </resultMap>
@@ -69,7 +69,7 @@
         chat_content_id
         , chat_content
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.ChatDetailsExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -95,17 +95,17 @@
         from chat_details
         where chat_content_id = #{chatContentId,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.ChatDetailsExample">
         delete from chat_details
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.ChatDetails">
         insert into chat_details (chat_content_id, chat_content)
         values (#{chatContentId,jdbcType=BIGINT}, #{chatContent,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.ChatDetails">
         insert into chat_details
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="chatContentId != null">
@@ -124,7 +124,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.ChatDetailsExample"
             resultType="java.lang.Long">
         select count(*) from chat_details
         <if test="_parameter != null">
@@ -153,7 +153,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.ChatDetails">
         update chat_details
         <set>
             <if test="chatContent != null">
@@ -162,7 +162,7 @@
         </set>
         where chat_content_id = #{chatContentId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.ChatDetails">
         update chat_details
         set chat_content = #{chatContent,jdbcType=VARCHAR}
         where chat_content_id = #{chatContentId,jdbcType=BIGINT}

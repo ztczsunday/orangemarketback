@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.DataDictionaryMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.DataDictionary">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.DataDictionary">
         <id column="record_id" jdbcType="BIGINT" property="recordId"/>
         <result column="t_index" jdbcType="VARCHAR" property="tIndex"/>
         <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
@@ -72,7 +72,7 @@
         record_id
         , t_index, item_name, record_create, record_description
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.DataDictionaryExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.DataDictionaryExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -98,19 +98,19 @@
         from data_dictionary
         where record_id = #{recordId,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.DataDictionaryExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.DataDictionaryExample">
         delete from data_dictionary
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.DataDictionary">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.DataDictionary">
         insert into data_dictionary (record_id, t_index, item_name,
                                      record_create, record_description)
         values (#{recordId,jdbcType=BIGINT}, #{tIndex,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR},
                 #{recordCreate,jdbcType=TIMESTAMP}, #{recordDescription,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.DataDictionary">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.DataDictionary">
         insert into data_dictionary
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="recordId != null">
@@ -147,7 +147,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.DataDictionaryExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.DataDictionaryExample"
             resultType="java.lang.Long">
         select count(*) from data_dictionary
         <if test="_parameter != null">
@@ -188,7 +188,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.DataDictionary">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.DataDictionary">
         update data_dictionary
         <set>
             <if test="tIndex != null">
@@ -206,7 +206,7 @@
         </set>
         where record_id = #{recordId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.DataDictionary">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.DataDictionary">
         update data_dictionary
         set t_index            = #{tIndex,jdbcType=VARCHAR},
             item_name          = #{itemName,jdbcType=VARCHAR},

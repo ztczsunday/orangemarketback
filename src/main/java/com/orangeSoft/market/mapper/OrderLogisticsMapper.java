@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.OrderLogisticsExample;
-import com.orangeSoft.market.pojo.OrderLogisticsKey;
+import com.orangeSoft.market.common.pojo.OrderLogisticsExample;
+import com.orangeSoft.market.common.pojo.OrderLogisticsKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

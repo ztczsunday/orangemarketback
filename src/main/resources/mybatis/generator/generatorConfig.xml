@@ -24,7 +24,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 实体类-->
-        <javaModelGenerator targetPackage="com.orangeSoft.market.pojo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.orangeSoft.market.common.pojo" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

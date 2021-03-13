@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.OrderStateflow;
-import com.orangeSoft.market.pojo.OrderStateflowExample;
+import com.orangeSoft.market.common.pojo.OrderStateflow;
+import com.orangeSoft.market.common.pojo.OrderStateflowExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

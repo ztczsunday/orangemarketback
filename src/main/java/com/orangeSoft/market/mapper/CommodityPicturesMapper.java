@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.CommodityPictures;
-import com.orangeSoft.market.pojo.CommodityPicturesExample;
+import com.orangeSoft.market.common.pojo.CommodityPictures;
+import com.orangeSoft.market.common.pojo.CommodityPicturesExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

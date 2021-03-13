@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.OrderStateflowMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.OrderStateflow">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.OrderStateflow">
         <result column="order_id" jdbcType="BIGINT" property="orderId"/>
         <result column="record_id" jdbcType="BIGINT" property="recordId"/>
         <result column="status_date" jdbcType="TIMESTAMP" property="statusDate"/>
@@ -70,7 +70,7 @@
         order_id
         , record_id, status_date
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.OrderStateflowExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -85,17 +85,17 @@
             order by ${orderByClause}
         </if>
     </select>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.OrderStateflowExample">
         delete from order_stateflow
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.OrderStateflow">
         insert into order_stateflow (order_id, record_id, status_date)
         values (#{orderId,jdbcType=BIGINT}, #{recordId,jdbcType=BIGINT}, #{statusDate,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.OrderStateflow">
         insert into order_stateflow
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="orderId != null">
@@ -120,7 +120,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.OrderStateflowExample"
             resultType="java.lang.Long">
         select count(*) from order_stateflow
         <if test="_parameter != null">

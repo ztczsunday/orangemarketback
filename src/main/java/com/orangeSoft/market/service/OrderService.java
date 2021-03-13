@@ -3,8 +3,8 @@ package com.orangeSoft.market.service;
 import com.orangeSoft.market.mapper.extend.CommodityOrderMapperE;
 import com.orangeSoft.market.mapper.extend.OrderLogisticsMapperE;
 import com.orangeSoft.market.mapper.extend.OrderStateflowMapperE;
-import com.orangeSoft.market.pojo.*;
-import com.orangeSoft.market.utils.Result;
+import com.orangeSoft.market.common.pojo.*;
+import com.orangeSoft.market.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

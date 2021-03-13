@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.SubCommodityMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.SubCommodity">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.SubCommodity">
         <id column="sub_id" jdbcType="INTEGER" property="subId"/>
         <result column="cid" jdbcType="BIGINT" property="cid"/>
         <result column="sub_name" jdbcType="VARCHAR" property="subName"/>
@@ -73,7 +73,7 @@
         sub_id
         , cid, sub_name, sub_icon, stock, price
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.SubCommodityExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.SubCommodityExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -99,19 +99,19 @@
         from sub_commodity
         where sub_id = #{subId,jdbcType=INTEGER}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.SubCommodityExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.SubCommodityExample">
         delete from sub_commodity
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.SubCommodity">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.SubCommodity">
         insert into sub_commodity (sub_id, cid, sub_name,
                                    sub_icon, stock, price)
         values (#{subId,jdbcType=INTEGER}, #{cid,jdbcType=BIGINT}, #{subName,jdbcType=VARCHAR},
                 #{subIcon,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.SubCommodity">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.SubCommodity">
         insert into sub_commodity
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="subId != null">
@@ -154,7 +154,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.SubCommodityExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.SubCommodityExample"
             resultType="java.lang.Long">
         select count(*) from sub_commodity
         <if test="_parameter != null">
@@ -199,7 +199,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.SubCommodity">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.SubCommodity">
         update sub_commodity
         <set>
             <if test="cid != null">
@@ -220,7 +220,7 @@
         </set>
         where sub_id = #{subId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.SubCommodity">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.SubCommodity">
         update sub_commodity
         set cid      = #{cid,jdbcType=BIGINT},
             sub_name = #{subName,jdbcType=VARCHAR},

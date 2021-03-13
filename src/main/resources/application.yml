@@ -9,7 +9,7 @@ spring:
     password: orangesoft
 
 mybatis:
-  type-aliases-package: com.orangeSoft.market.pojo
+  type-aliases-package: com.orangeSoft.market.common.pojo
   mapper-locations: classpath:mybatis/mapping/*Mapper.xml
 
 logging:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.UserCommentMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.UserComment">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.UserComment">
         <id column="comment_id" jdbcType="BIGINT" property="commentId"/>
         <result column="uid" jdbcType="INTEGER" property="uid"/>
         <result column="praise" jdbcType="BIT" property="praise"/>
@@ -72,7 +72,7 @@
         comment_id
         , uid, praise, sub_comment, comment_time
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.UserCommentExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.UserCommentExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -98,19 +98,19 @@
         from user_comment
         where comment_id = #{commentId,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.UserCommentExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.UserCommentExample">
         delete from user_comment
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.UserComment">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.UserComment">
         insert into user_comment (comment_id, uid, praise,
                                   sub_comment, comment_time)
         values (#{commentId,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, #{praise,jdbcType=BIT},
                 #{subComment,jdbcType=BIGINT}, #{commentTime,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.UserComment">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.UserComment">
         insert into user_comment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="commentId != null">
@@ -147,7 +147,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.UserCommentExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.UserCommentExample"
             resultType="java.lang.Long">
         select count(*) from user_comment
         <if test="_parameter != null">
@@ -188,7 +188,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.UserComment">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.UserComment">
         update user_comment
         <set>
             <if test="uid != null">
@@ -206,7 +206,7 @@
         </set>
         where comment_id = #{commentId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.UserComment">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.UserComment">
         update user_comment
         set uid          = #{uid,jdbcType=INTEGER},
             praise       = #{praise,jdbcType=BIT},
