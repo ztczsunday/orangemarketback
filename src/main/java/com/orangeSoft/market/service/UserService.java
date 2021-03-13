@@ -14,8 +14,6 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserInfoMapperE userInfoMapperE;
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     public UserInfo login(String account, String pwd) {
         UserInfoExample userInfoExample = new UserInfoExample();
@@ -35,4 +33,10 @@ public class UserService {
         return userInfoMapperE.insertSelective(userInfo) == 1;
     }
 
+    public boolean update(UserInfo userInfo){
+        if (userInfoMapperE.updateByPrimaryKeySelective(userInfo)!=1){
+            return false;
+        }
+        return true;
+    }
 }

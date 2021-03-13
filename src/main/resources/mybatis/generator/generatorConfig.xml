@@ -15,7 +15,7 @@
         </commentGenerator>
         <!--覆盖生成XML文件-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.101.133:3306/orangesoft"
+                        connectionURL="jdbc:mysql://192.168.101.113:3306/orangesoft"
                         userId="orangesoft"
                         password="orangesoft">
         </jdbcConnection>
@@ -38,11 +38,12 @@
         </javaClientGenerator>
 
         <!--  对应的表生成对应的 实体类 -->
-        <table tableName="user_comment" domainObjectName="UserComment"/>
+        <table tableName="order_logistics" domainObjectName="OrderLogistics"/>
+        <table tableName="commodity_pictures" domainObjectName="CommodityPictures"/>
+        <table tableName="commodity" domainObjectName="Commodity"/>
         <!--<table tableName="user_info" domainObjectName="UserInfo"/>
         <table tableName="chat" domainObjectName="Chat"/>
         <table tableName="user_comment" domainObjectName="UserComment"/>
-        <table tableName="commodity" domainObjectName="Commodity"/>
         <table tableName="commodity_label" domainObjectName="CommodityLabel"/>
         <table tableName="commodity_order" domainObjectName="CommodityOrder"/>
         <table tableName="favorites_commodity" domainObjectName="FavoritesCommodity"/>
@@ -50,7 +51,7 @@
         <table tableName="manager" domainObjectName="Manager"/>
         <table tableName="logistics" domainObjectName="Logistics"/>
         <table tableName="order_stateflow" domainObjectName="OrderStateflow"/>
-        <table tableName="order_logistics" domainObjectName="OrderLogistics"/>
+        <table tableName="user_comment" domainObjectName="UserComment"/>
         <table tableName="receive_address" domainObjectName="ReceiveAddress"/>
         <table tableName="shop" domainObjectName="Shop"/>
         <table tableName="sub_commodity" domainObjectName="SubCommodity"/>
