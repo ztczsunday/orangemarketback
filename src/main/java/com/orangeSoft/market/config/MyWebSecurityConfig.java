@@ -2,6 +2,7 @@ package com.orangeSoft.market.config;
 
 import com.google.gson.Gson;
 import com.orangeSoft.market.pojo.UserInfo;
+import com.orangeSoft.market.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,8 @@ import java.io.PrintWriter;
 
 @Configuration
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private Gson gson;
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
@@ -37,21 +40,26 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and().formLogin().loginPage("/login")
                 .successHandler((request, response, authentication) -> {
+                    //获取Principal，以用于维护session
                     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                     if (principal instanceof UserInfo) {
                         UserInfo user = (UserInfo) principal;
-                        System.out.println("currUser:" + user.getUsername());
-                        System.out.println("userPWD:" + user.getPassword());
-                        System.out.println();
                         //维护在session中
                         request.getSession().setAttribute("userDetail", user);
-                        response.sendRedirect(request.getRequestURI());
+
+                        //登录成功，返回信息
+                        response.setContentType("application/json;charset=utf-8");
+                        PrintWriter out = response.getWriter();
+                        out.print(gson.toJson(Result.success(null,"登录成功")));
+                        out.flush();
+                        out.close();
                     }
                 })
                 .failureHandler((request, response, authentication) -> {
+                    //登录失败，返回信息
                     response.setContentType("application/json;charset=utf-8");
                     PrintWriter out = response.getWriter();
-                    out.write("{\"status\":\"error\",\"msg\":\"登录失败\"}");
+                    out.print(gson.toJson(Result.fail(null,"登录失败")));
                     out.flush();
                     out.close();
                 })

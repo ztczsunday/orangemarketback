@@ -8,7 +8,9 @@ import com.orangeSoft.market.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -18,18 +20,19 @@ public class OrderService {
     OrderStateflowMapperE orderStateflowMapperE;
     @Autowired
     OrderLogisticsMapperE orderLogisticsMapperE;
-    public Result.JSONResultMap findOrderByUid(int uid){
-        List<Map<String,Object>> resultList=new ArrayList<>();
-        CommodityOrderExample commodityOrderExample=new CommodityOrderExample();
-        OrderStateflowExample orderStateflowExample=new OrderStateflowExample();
-        OrderLogisticsExample orderLogisticsExample=new OrderLogisticsExample();
+
+    public Result.JSONResultMap findOrderByUid(int uid) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        CommodityOrderExample commodityOrderExample = new CommodityOrderExample();
+        OrderStateflowExample orderStateflowExample = new OrderStateflowExample();
+        OrderLogisticsExample orderLogisticsExample = new OrderLogisticsExample();
         commodityOrderExample.createCriteria().andUidEqualTo(uid);
         commodityOrderExample.setOrderByClause("order_id");
-        List<CommodityOrder> commodityOrders=commodityOrderMapperE.selectByExample(commodityOrderExample);
-        for (CommodityOrder c:commodityOrders) {
+        List<CommodityOrder> commodityOrders = commodityOrderMapperE.selectByExample(commodityOrderExample);
+        for (CommodityOrder c : commodityOrders) {
             orderLogisticsExample.createCriteria().andOrderIdEqualTo(c.getOrderId());
             orderStateflowExample.createCriteria().andOrderIdEqualTo(c.getOrderId());
-            List<OrderStateflow> orderStateflows=orderStateflowMapperE.selectByExample(orderStateflowExample);
+            List<OrderStateflow> orderStateflows = orderStateflowMapperE.selectByExample(orderStateflowExample);
         }
         return Result.success(commodityOrders);
     }
