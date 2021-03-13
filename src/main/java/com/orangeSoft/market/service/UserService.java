@@ -15,13 +15,6 @@ public class UserService {
     @Autowired
     private UserInfoMapperE userInfoMapperE;
 
-    public UserInfo login(String account, String pwd) {
-        UserInfoExample userInfoExample = new UserInfoExample();
-        userInfoExample.createCriteria().andUserTelephoneEqualTo(account).andUserPasswordEqualTo(pwd);
-        List<UserInfo> userInfos = userInfoMapperE.selectByExample(userInfoExample);
-        return userInfos.isEmpty() ? null : userInfos.get(0);
-    }
-
 
     public boolean register(UserInfo userInfo) {
 //        passwordEncoder.encode(userInfo.getUserPassword());
@@ -33,10 +26,4 @@ public class UserService {
         return userInfoMapperE.insertSelective(userInfo) == 1;
     }
 
-    public boolean update(UserInfo userInfo){
-        if (userInfoMapperE.updateByPrimaryKeySelective(userInfo)!=1){
-            return false;
-        }
-        return true;
-    }
 }

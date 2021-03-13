@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 结果类，用于返回给前端(Json格式)
+ */
 public class Result {
     private static final String SUCCESS = "success";
     private static final String INFORMATION = "information";
