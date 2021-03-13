@@ -1,164 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.ChatDetailsMapper">
-  <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.ChatDetails">
-    <id column="chat_content_id" jdbcType="BIGINT" property="chatContentId" />
-    <result column="chat_content" jdbcType="VARCHAR" property="chatContent" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.ChatDetails">
+        <id column="chat_content_id" jdbcType="BIGINT" property="chatContentId"/>
+        <result column="chat_content" jdbcType="VARCHAR" property="chatContent"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        chat_content_id
+        , chat_content
+    </sql>
+    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    chat_content_id, chat_content
-  </sql>
-  <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from chat_details
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from chat_details
-    where chat_content_id = #{chatContentId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from chat_details
-    where chat_content_id = #{chatContentId,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample">
-    delete from chat_details
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.orangeSoft.market.pojo.ChatDetails">
-    insert into chat_details (chat_content_id, chat_content)
-    values (#{chatContentId,jdbcType=BIGINT}, #{chatContent,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.ChatDetails">
-    insert into chat_details
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="chatContentId != null">
-        chat_content_id,
-      </if>
-      <if test="chatContent != null">
-        chat_content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="chatContentId != null">
-        #{chatContentId,jdbcType=BIGINT},
-      </if>
-      <if test="chatContent != null">
-        #{chatContent,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample" resultType="java.lang.Long">
-    select count(*) from chat_details
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update chat_details
-    <set>
-      <if test="record.chatContentId != null">
-        chat_content_id = #{record.chatContentId,jdbcType=BIGINT},
-      </if>
-      <if test="record.chatContent != null">
-        chat_content = #{record.chatContent,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update chat_details
-    set chat_content_id = #{record.chatContentId,jdbcType=BIGINT},
-      chat_content = #{record.chatContent,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.ChatDetails">
-    update chat_details
-    <set>
-      <if test="chatContent != null">
-        chat_content = #{chatContent,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where chat_content_id = #{chatContentId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.ChatDetails">
-    update chat_details
-    set chat_content = #{chatContent,jdbcType=VARCHAR}
-    where chat_content_id = #{chatContentId,jdbcType=BIGINT}
-  </update>
+        <include refid="Base_Column_List"/>
+        from chat_details
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from chat_details
+        where chat_content_id = #{chatContentId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from chat_details
+        where chat_content_id = #{chatContentId,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample">
+        delete from chat_details
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+        insert into chat_details (chat_content_id, chat_content)
+        values (#{chatContentId,jdbcType=BIGINT}, #{chatContent,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+        insert into chat_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chatContentId != null">
+                chat_content_id,
+            </if>
+            <if test="chatContent != null">
+                chat_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chatContentId != null">
+                #{chatContentId,jdbcType=BIGINT},
+            </if>
+            <if test="chatContent != null">
+                #{chatContent,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.ChatDetailsExample"
+            resultType="java.lang.Long">
+        select count(*) from chat_details
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update chat_details
+        <set>
+            <if test="record.chatContentId != null">
+                chat_content_id = #{record.chatContentId,jdbcType=BIGINT},
+            </if>
+            <if test="record.chatContent != null">
+                chat_content = #{record.chatContent,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update chat_details
+        set chat_content_id = #{record.chatContentId,jdbcType=BIGINT},
+        chat_content = #{record.chatContent,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+        update chat_details
+        <set>
+            <if test="chatContent != null">
+                chat_content = #{chatContent,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where chat_content_id = #{chatContentId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.ChatDetails">
+        update chat_details
+        set chat_content = #{chatContent,jdbcType=VARCHAR}
+        where chat_content_id = #{chatContentId,jdbcType=BIGINT}
+    </update>
 </mapper>

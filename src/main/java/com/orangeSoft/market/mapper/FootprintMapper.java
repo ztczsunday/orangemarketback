@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.Footprint;
 import com.orangeSoft.market.pojo.FootprintExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FootprintMapper {
     long countByExample(FootprintExample example);

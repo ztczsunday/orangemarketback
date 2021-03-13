@@ -81,10 +81,10 @@ public class UserComment {
         }
         UserComment other = (UserComment) that;
         return (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getPraise() == null ? other.getPraise() == null : this.getPraise().equals(other.getPraise()))
-            && (this.getSubComment() == null ? other.getSubComment() == null : this.getSubComment().equals(other.getSubComment()))
-            && (this.getCommentTime() == null ? other.getCommentTime() == null : this.getCommentTime().equals(other.getCommentTime()));
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getPraise() == null ? other.getPraise() == null : this.getPraise().equals(other.getPraise()))
+                && (this.getSubComment() == null ? other.getSubComment() == null : this.getSubComment().equals(other.getSubComment()))
+                && (this.getCommentTime() == null ? other.getCommentTime() == null : this.getCommentTime().equals(other.getCommentTime()));
     }
 
     @Override

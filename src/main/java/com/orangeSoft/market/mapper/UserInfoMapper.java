@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.UserInfo;
 import com.orangeSoft.market.pojo.UserInfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserInfoMapper {
     long countByExample(UserInfoExample example);

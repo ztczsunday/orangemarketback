@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.OrderStateflow;
 import com.orangeSoft.market.pojo.OrderStateflowExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OrderStateflowMapper {
     long countByExample(OrderStateflowExample example);

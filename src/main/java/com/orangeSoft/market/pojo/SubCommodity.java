@@ -90,11 +90,11 @@ public class SubCommodity {
         }
         SubCommodity other = (SubCommodity) that;
         return (this.getSubId() == null ? other.getSubId() == null : this.getSubId().equals(other.getSubId()))
-            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-            && (this.getSubName() == null ? other.getSubName() == null : this.getSubName().equals(other.getSubName()))
-            && (this.getSubIcon() == null ? other.getSubIcon() == null : this.getSubIcon().equals(other.getSubIcon()))
-            && (this.getStock() == null ? other.getStock() == null : this.getStock().equals(other.getStock()))
-            && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()));
+                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+                && (this.getSubName() == null ? other.getSubName() == null : this.getSubName().equals(other.getSubName()))
+                && (this.getSubIcon() == null ? other.getSubIcon() == null : this.getSubIcon().equals(other.getSubIcon()))
+                && (this.getStock() == null ? other.getStock() == null : this.getStock().equals(other.getStock()))
+                && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()));
     }
 
     @Override

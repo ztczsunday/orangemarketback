@@ -10,7 +10,7 @@ import com.orangeSoft.market.utils.Result;
  */
 public class Demo {
     public static void main(String[] args) {
-        UserInfo userInfo=new UserInfo();
+        UserInfo userInfo = new UserInfo();
         userInfo.setUserSignature("hjggj");
         userInfo.setUserName("hggkj");
         System.out.println(Result.success(userInfo));

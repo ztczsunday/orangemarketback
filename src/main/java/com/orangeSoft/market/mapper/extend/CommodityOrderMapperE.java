@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface CommodityOrderMapperE extends com.orangeSoft.market.mapper.CommodityOrderMapper{
+public interface CommodityOrderMapperE extends com.orangeSoft.market.mapper.CommodityOrderMapper {
 }

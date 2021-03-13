@@ -79,10 +79,10 @@ public class Commodity {
         }
         Commodity other = (Commodity) that;
         return (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-            && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
-            && (this.getCommodityName() == null ? other.getCommodityName() == null : this.getCommodityName().equals(other.getCommodityName()))
-            && (this.getCommodityIcon() == null ? other.getCommodityIcon() == null : this.getCommodityIcon().equals(other.getCommodityIcon()))
-            && (this.getCommodityStatus() == null ? other.getCommodityStatus() == null : this.getCommodityStatus().equals(other.getCommodityStatus()));
+                && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
+                && (this.getCommodityName() == null ? other.getCommodityName() == null : this.getCommodityName().equals(other.getCommodityName()))
+                && (this.getCommodityIcon() == null ? other.getCommodityIcon() == null : this.getCommodityIcon().equals(other.getCommodityIcon()))
+                && (this.getCommodityStatus() == null ? other.getCommodityStatus() == null : this.getCommodityStatus().equals(other.getCommodityStatus()));
     }
 
     @Override

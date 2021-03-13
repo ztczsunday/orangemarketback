@@ -46,7 +46,7 @@ public class Manager {
         }
         Manager other = (Manager) that;
         return (this.getManagerAccount() == null ? other.getManagerAccount() == null : this.getManagerAccount().equals(other.getManagerAccount()))
-            && (this.getManagerPassword() == null ? other.getManagerPassword() == null : this.getManagerPassword().equals(other.getManagerPassword()));
+                && (this.getManagerPassword() == null ? other.getManagerPassword() == null : this.getManagerPassword().equals(other.getManagerPassword()));
     }
 
     @Override

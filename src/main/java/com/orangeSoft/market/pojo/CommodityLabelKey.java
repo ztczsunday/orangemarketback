@@ -46,7 +46,7 @@ public class CommodityLabelKey {
         }
         CommodityLabelKey other = (CommodityLabelKey) that;
         return (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-            && (this.getRecordId() == null ? other.getRecordId() == null : this.getRecordId().equals(other.getRecordId()));
+                && (this.getRecordId() == null ? other.getRecordId() == null : this.getRecordId().equals(other.getRecordId()));
     }
 
     @Override

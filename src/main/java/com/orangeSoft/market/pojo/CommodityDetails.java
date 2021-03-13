@@ -57,8 +57,8 @@ public class CommodityDetails {
         }
         CommodityDetails other = (CommodityDetails) that;
         return (this.getDetailsId() == null ? other.getDetailsId() == null : this.getDetailsId().equals(other.getDetailsId()))
-            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-            && (this.getDetailsUrl() == null ? other.getDetailsUrl() == null : this.getDetailsUrl().equals(other.getDetailsUrl()));
+                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+                && (this.getDetailsUrl() == null ? other.getDetailsUrl() == null : this.getDetailsUrl().equals(other.getDetailsUrl()));
     }
 
     @Override

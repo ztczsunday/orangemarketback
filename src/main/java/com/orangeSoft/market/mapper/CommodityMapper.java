@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.Commodity;
 import com.orangeSoft.market.pojo.CommodityExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommodityMapper {
     long countByExample(CommodityExample example);

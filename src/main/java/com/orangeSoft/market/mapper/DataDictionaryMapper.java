@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.DataDictionary;
 import com.orangeSoft.market.pojo.DataDictionaryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataDictionaryMapper {
     long countByExample(DataDictionaryExample example);

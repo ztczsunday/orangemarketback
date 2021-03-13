@@ -103,12 +103,12 @@ public class Chat {
         }
         Chat other = (Chat) that;
         return (this.getChatId() == null ? other.getChatId() == null : this.getChatId().equals(other.getChatId()))
-            && (this.getChatContentId() == null ? other.getChatContentId() == null : this.getChatContentId().equals(other.getChatContentId()))
-            && (this.getChatDate() == null ? other.getChatDate() == null : this.getChatDate().equals(other.getChatDate()))
-            && (this.getSenderId() == null ? other.getSenderId() == null : this.getSenderId().equals(other.getSenderId()))
-            && (this.getSenderType() == null ? other.getSenderType() == null : this.getSenderType().equals(other.getSenderType()))
-            && (this.getReceiverId() == null ? other.getReceiverId() == null : this.getReceiverId().equals(other.getReceiverId()))
-            && (this.getReceiverType() == null ? other.getReceiverType() == null : this.getReceiverType().equals(other.getReceiverType()));
+                && (this.getChatContentId() == null ? other.getChatContentId() == null : this.getChatContentId().equals(other.getChatContentId()))
+                && (this.getChatDate() == null ? other.getChatDate() == null : this.getChatDate().equals(other.getChatDate()))
+                && (this.getSenderId() == null ? other.getSenderId() == null : this.getSenderId().equals(other.getSenderId()))
+                && (this.getSenderType() == null ? other.getSenderType() == null : this.getSenderType().equals(other.getSenderType()))
+                && (this.getReceiverId() == null ? other.getReceiverId() == null : this.getReceiverId().equals(other.getReceiverId()))
+                && (this.getReceiverType() == null ? other.getReceiverType() == null : this.getReceiverType().equals(other.getReceiverType()));
     }
 
     @Override

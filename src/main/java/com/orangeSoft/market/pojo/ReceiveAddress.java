@@ -68,9 +68,9 @@ public class ReceiveAddress {
         }
         ReceiveAddress other = (ReceiveAddress) that;
         return (this.getReceiveAddressId() == null ? other.getReceiveAddressId() == null : this.getReceiveAddressId().equals(other.getReceiveAddressId()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getAddressDetails() == null ? other.getAddressDetails() == null : this.getAddressDetails().equals(other.getAddressDetails()))
-            && (this.getIsDefault() == null ? other.getIsDefault() == null : this.getIsDefault().equals(other.getIsDefault()));
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getAddressDetails() == null ? other.getAddressDetails() == null : this.getAddressDetails().equals(other.getAddressDetails()))
+                && (this.getIsDefault() == null ? other.getIsDefault() == null : this.getIsDefault().equals(other.getIsDefault()));
     }
 
     @Override

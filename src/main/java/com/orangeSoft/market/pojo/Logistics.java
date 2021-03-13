@@ -46,7 +46,7 @@ public class Logistics {
         }
         Logistics other = (Logistics) that;
         return (this.getLogisticsId() == null ? other.getLogisticsId() == null : this.getLogisticsId().equals(other.getLogisticsId()))
-            && (this.getLogisticsName() == null ? other.getLogisticsName() == null : this.getLogisticsName().equals(other.getLogisticsName()));
+                && (this.getLogisticsName() == null ? other.getLogisticsName() == null : this.getLogisticsName().equals(other.getLogisticsName()));
     }
 
     @Override

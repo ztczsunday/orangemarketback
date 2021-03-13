@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.OrderLogisticsExample;
 import com.orangeSoft.market.pojo.OrderLogisticsKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OrderLogisticsMapper {
     long countByExample(OrderLogisticsExample example);

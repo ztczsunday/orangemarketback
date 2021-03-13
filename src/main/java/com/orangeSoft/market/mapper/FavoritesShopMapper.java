@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.FavoritesShopExample;
 import com.orangeSoft.market.pojo.FavoritesShopKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FavoritesShopMapper {
     long countByExample(FavoritesShopExample example);

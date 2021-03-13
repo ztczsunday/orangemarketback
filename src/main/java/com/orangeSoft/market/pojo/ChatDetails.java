@@ -46,7 +46,7 @@ public class ChatDetails {
         }
         ChatDetails other = (ChatDetails) that;
         return (this.getChatContentId() == null ? other.getChatContentId() == null : this.getChatContentId().equals(other.getChatContentId()))
-            && (this.getChatContent() == null ? other.getChatContent() == null : this.getChatContent().equals(other.getChatContent()));
+                && (this.getChatContent() == null ? other.getChatContent() == null : this.getChatContent().equals(other.getChatContent()));
     }
 
     @Override

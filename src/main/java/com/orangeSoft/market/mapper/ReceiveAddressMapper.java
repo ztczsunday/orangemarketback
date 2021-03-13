@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.ReceiveAddress;
 import com.orangeSoft.market.pojo.ReceiveAddressExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ReceiveAddressMapper {
     long countByExample(ReceiveAddressExample example);

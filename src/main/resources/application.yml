@@ -1,10 +1,10 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.101.133:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.101.113:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: orangesoft
     password: orangesoft
 

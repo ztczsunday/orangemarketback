@@ -79,10 +79,10 @@ public class Shop {
         }
         Shop other = (Shop) that;
         return (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getShopName() == null ? other.getShopName() == null : this.getShopName().equals(other.getShopName()))
-            && (this.getShopDescription() == null ? other.getShopDescription() == null : this.getShopDescription().equals(other.getShopDescription()))
-            && (this.getShopAddress() == null ? other.getShopAddress() == null : this.getShopAddress().equals(other.getShopAddress()));
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getShopName() == null ? other.getShopName() == null : this.getShopName().equals(other.getShopName()))
+                && (this.getShopDescription() == null ? other.getShopDescription() == null : this.getShopDescription().equals(other.getShopDescription()))
+                && (this.getShopAddress() == null ? other.getShopAddress() == null : this.getShopAddress().equals(other.getShopAddress()));
     }
 
     @Override

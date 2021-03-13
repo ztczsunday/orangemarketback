@@ -46,7 +46,7 @@ public class OrderLogisticsKey {
         }
         OrderLogisticsKey other = (OrderLogisticsKey) that;
         return (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
-            && (this.getLogisticsId() == null ? other.getLogisticsId() == null : this.getLogisticsId().equals(other.getLogisticsId()));
+                && (this.getLogisticsId() == null ? other.getLogisticsId() == null : this.getLogisticsId().equals(other.getLogisticsId()));
     }
 
     @Override

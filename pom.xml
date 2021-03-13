@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -110,7 +110,8 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <configurationFile>${basedir}/src/main/resources/mybatis/generator/generatorConfig.xml</configurationFile>
+                    <configurationFile>${basedir}/src/main/resources/mybatis/generator/generatorConfig.xml
+                    </configurationFile>
                     <!-- 设置覆盖原有的文件:第二次执行的时候 -->
                     <overwrite>true</overwrite>
                     <!-- 输出一些日志信息-->

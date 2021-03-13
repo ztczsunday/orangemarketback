@@ -101,12 +101,12 @@ public class CommodityOrder {
         }
         CommodityOrder other = (CommodityOrder) that;
         return (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
-            && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
-            && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getReceiveAddressId() == null ? other.getReceiveAddressId() == null : this.getReceiveAddressId().equals(other.getReceiveAddressId()))
-            && (this.getSubId() == null ? other.getSubId() == null : this.getSubId().equals(other.getSubId()))
-            && (this.getCountCommodity() == null ? other.getCountCommodity() == null : this.getCountCommodity().equals(other.getCountCommodity()));
+                && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
+                && (this.getSid() == null ? other.getSid() == null : this.getSid().equals(other.getSid()))
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getReceiveAddressId() == null ? other.getReceiveAddressId() == null : this.getReceiveAddressId().equals(other.getReceiveAddressId()))
+                && (this.getSubId() == null ? other.getSubId() == null : this.getSubId().equals(other.getSubId()))
+                && (this.getCountCommodity() == null ? other.getCountCommodity() == null : this.getCountCommodity().equals(other.getCountCommodity()));
     }
 
     @Override

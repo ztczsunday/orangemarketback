@@ -46,7 +46,7 @@ public class FavoritesCommodityKey {
         }
         FavoritesCommodityKey other = (FavoritesCommodityKey) that;
         return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
+                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
     }
 
     @Override

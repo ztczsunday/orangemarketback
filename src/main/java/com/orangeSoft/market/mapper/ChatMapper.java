@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.Chat;
 import com.orangeSoft.market.pojo.ChatExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ChatMapper {
     long countByExample(ChatExample example);

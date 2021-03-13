@@ -81,10 +81,10 @@ public class DataDictionary {
         }
         DataDictionary other = (DataDictionary) that;
         return (this.getRecordId() == null ? other.getRecordId() == null : this.getRecordId().equals(other.getRecordId()))
-            && (this.gettIndex() == null ? other.gettIndex() == null : this.gettIndex().equals(other.gettIndex()))
-            && (this.getItemName() == null ? other.getItemName() == null : this.getItemName().equals(other.getItemName()))
-            && (this.getRecordCreate() == null ? other.getRecordCreate() == null : this.getRecordCreate().equals(other.getRecordCreate()))
-            && (this.getRecordDescription() == null ? other.getRecordDescription() == null : this.getRecordDescription().equals(other.getRecordDescription()));
+                && (this.gettIndex() == null ? other.gettIndex() == null : this.gettIndex().equals(other.gettIndex()))
+                && (this.getItemName() == null ? other.getItemName() == null : this.getItemName().equals(other.getItemName()))
+                && (this.getRecordCreate() == null ? other.getRecordCreate() == null : this.getRecordCreate().equals(other.getRecordCreate()))
+                && (this.getRecordDescription() == null ? other.getRecordDescription() == null : this.getRecordDescription().equals(other.getRecordDescription()));
     }
 
     @Override

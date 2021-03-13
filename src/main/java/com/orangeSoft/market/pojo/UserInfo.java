@@ -1,32 +1,26 @@
 package com.orangeSoft.market.pojo;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
 public class UserInfo implements UserDetails {
+    /**
+     * @return 当前用户角色信息(集合)，均为null
+     */
+
+    private final Set<GrantedAuthority> authorities = null;
     private Integer uid;
-
     private String userTelephone;
-
     private String userPassword;
-
     private String userName;
-
     private String userGender;
-
     private String userSelfie;
-
     private String userSignature;
-
     private String userAlipayAccount;
-
     private String userEmail;
-
     private String userLicense;
 
     public Integer getUid() {
@@ -142,15 +136,15 @@ public class UserInfo implements UserDetails {
         }
         UserInfo other = (UserInfo) that;
         return (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getUserTelephone() == null ? other.getUserTelephone() == null : this.getUserTelephone().equals(other.getUserTelephone()))
-            && (this.getUserPassword() == null ? other.getUserPassword() == null : this.getUserPassword().equals(other.getUserPassword()))
-            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
-            && (this.getUserGender() == null ? other.getUserGender() == null : this.getUserGender().equals(other.getUserGender()))
-            && (this.getUserSelfie() == null ? other.getUserSelfie() == null : this.getUserSelfie().equals(other.getUserSelfie()))
-            && (this.getUserSignature() == null ? other.getUserSignature() == null : this.getUserSignature().equals(other.getUserSignature()))
-            && (this.getUserAlipayAccount() == null ? other.getUserAlipayAccount() == null : this.getUserAlipayAccount().equals(other.getUserAlipayAccount()))
-            && (this.getUserEmail() == null ? other.getUserEmail() == null : this.getUserEmail().equals(other.getUserEmail()))
-            && (this.getUserLicense() == null ? other.getUserLicense() == null : this.getUserLicense().equals(other.getUserLicense()));
+                && (this.getUserTelephone() == null ? other.getUserTelephone() == null : this.getUserTelephone().equals(other.getUserTelephone()))
+                && (this.getUserPassword() == null ? other.getUserPassword() == null : this.getUserPassword().equals(other.getUserPassword()))
+                && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
+                && (this.getUserGender() == null ? other.getUserGender() == null : this.getUserGender().equals(other.getUserGender()))
+                && (this.getUserSelfie() == null ? other.getUserSelfie() == null : this.getUserSelfie().equals(other.getUserSelfie()))
+                && (this.getUserSignature() == null ? other.getUserSignature() == null : this.getUserSignature().equals(other.getUserSignature()))
+                && (this.getUserAlipayAccount() == null ? other.getUserAlipayAccount() == null : this.getUserAlipayAccount().equals(other.getUserAlipayAccount()))
+                && (this.getUserEmail() == null ? other.getUserEmail() == null : this.getUserEmail().equals(other.getUserEmail()))
+                && (this.getUserLicense() == null ? other.getUserLicense() == null : this.getUserLicense().equals(other.getUserLicense()));
     }
 
     @Override
@@ -170,11 +164,6 @@ public class UserInfo implements UserDetails {
         return result;
     }
 
-    /**
-     * @return 当前用户角色信息(集合)，均为null
-     */
-
-    private final Set<GrantedAuthority> authorities=null;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 //        Collection<GrantedAuthority> e = new ArrayList<GrantedAuthority>();

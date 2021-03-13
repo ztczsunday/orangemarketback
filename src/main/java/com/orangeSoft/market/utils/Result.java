@@ -9,12 +9,10 @@ public class Result {
     private static final String SUCCESS = "success";
     private static final String INFORMATION = "information";
     private static final String MESSAGE = "message";
+    private static ThreadLocal<JSONResultMap> threadLocal = new ThreadLocal<>();
 
     private Result() {
     }
-
-    private static ThreadLocal<JSONResultMap> threadLocal = new ThreadLocal<>();
-
 
     private static JSONResultMap getJSONResultMap() {
         JSONResultMap jsonResultMap = threadLocal.get();
@@ -46,11 +44,11 @@ public class Result {
     public static class JSONResultMap implements Map<String, Object> {
         private Map<String, Object> localMap = new HashMap<>();
 
-        private Map<String, Object> getLocalMap() {
-            return localMap;
+        private JSONResultMap() {
         }
 
-        private JSONResultMap() {
+        private Map<String, Object> getLocalMap() {
+            return localMap;
         }
 
         @Override

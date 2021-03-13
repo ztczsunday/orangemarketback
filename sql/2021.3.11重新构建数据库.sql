@@ -45,27 +45,27 @@ drop table if exists user_info;
 /*==============================================================*/
 create table chat
 (
-   chat_id              bigint not null auto_increment,
-   chat_content_id      bigint,
-   chat_date            datetime,
-   sender_id            int,
-   sender_type          varchar(10),
-   receiver_id          int,
-   receiver_type        varchar(10),
-   primary key (chat_id)
+    chat_id         bigint not null auto_increment,
+    chat_content_id bigint,
+    chat_date       datetime,
+    sender_id       int,
+    sender_type     varchar(10),
+    receiver_id     int,
+    receiver_type   varchar(10),
+    primary key (chat_id)
 );
 
-alter table chat comment 'ÈÎÒâÓÃ»§Ö®¼ä£¬»òÕßµêÆÌÖ®¼ä¶¼ÄÜ×ÔÓÉË½ÐÅ.
-Éí·ÝÖ»ÓÐ¡°ÓÃ»§¡±ºÍ¡°µêÆÌ¡±';
+alter table chat comment 'ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ö®ï¿½ä£¬ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½Ö®ï¿½ä¶¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½ï¿½.
+ï¿½ï¿½ï¿½Ö»ï¿½Ð¡ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Í¡ï¿½ï¿½ï¿½ï¿½Ì¡ï¿½';
 
 /*==============================================================*/
 /* Table: chat_details                                          */
 /*==============================================================*/
 create table chat_details
 (
-   chat_content_id      bigint not null auto_increment,
-   chat_content         varchar(200),
-   primary key (chat_content_id)
+    chat_content_id bigint not null auto_increment,
+    chat_content    varchar(200),
+    primary key (chat_content_id)
 );
 
 /*==============================================================*/
@@ -73,13 +73,13 @@ create table chat_details
 /*==============================================================*/
 create table commodity
 (
-   cid                  bigint not null auto_increment,
-   sid                  int,
-   commodity_name       varchar(40),
-   commodity_icon       varchar(200),
-   commodity_description varchar(200),
-   commodity_status     bool,
-   primary key (cid)
+    cid                   bigint not null auto_increment,
+    sid                   int,
+    commodity_name        varchar(40),
+    commodity_icon        varchar(200),
+    commodity_description varchar(200),
+    commodity_status      bool,
+    primary key (cid)
 );
 
 /*==============================================================*/
@@ -87,9 +87,9 @@ create table commodity
 /*==============================================================*/
 create table commodity_label
 (
-   cid                  bigint not null,
-   record_id            bigint not null,
-   primary key (cid, record_id)
+    cid       bigint not null,
+    record_id bigint not null,
+    primary key (cid, record_id)
 );
 
 /*==============================================================*/
@@ -97,13 +97,13 @@ create table commodity_label
 /*==============================================================*/
 create table commodity_order
 (
-   order_id             bigint not null auto_increment,
-   comment_id           bigint,
-   sid                  int,
-   uid                  int,
-   sub_id               int,
-   count_commodity      int,
-   primary key (order_id)
+    order_id        bigint not null auto_increment,
+    comment_id      bigint,
+    sid             int,
+    uid             int,
+    sub_id          int,
+    count_commodity int,
+    primary key (order_id)
 );
 
 /*==============================================================*/
@@ -111,12 +111,12 @@ create table commodity_order
 /*==============================================================*/
 create table data_dictionary
 (
-   record_id            bigint not null auto_increment,
-   t_index              varchar(30),
-   item_name            varchar(50),
-   record_create        datetime,
-   record_description   varchar(50),
-   primary key (record_id)
+    record_id          bigint not null auto_increment,
+    t_index            varchar(30),
+    item_name          varchar(50),
+    record_create      datetime,
+    record_description varchar(50),
+    primary key (record_id)
 );
 
 /*==============================================================*/
@@ -124,9 +124,9 @@ create table data_dictionary
 /*==============================================================*/
 create table favorites_commodity
 (
-   uid                  int not null,
-   cid                  bigint not null,
-   primary key (uid, cid)
+    uid int    not null,
+    cid bigint not null,
+    primary key (uid, cid)
 );
 
 /*==============================================================*/
@@ -134,9 +134,9 @@ create table favorites_commodity
 /*==============================================================*/
 create table favorites_shop
 (
-   uid                  int not null,
-   sid                  int not null,
-   primary key (uid, sid)
+    uid int not null,
+    sid int not null,
+    primary key (uid, sid)
 );
 
 /*==============================================================*/
@@ -144,9 +144,9 @@ create table favorites_shop
 /*==============================================================*/
 create table footprint
 (
-   cid                  bigint,
-   uid                  int,
-   last_browser_date    date
+    cid               bigint,
+    uid               int,
+    last_browser_date date
 );
 
 /*==============================================================*/
@@ -154,9 +154,9 @@ create table footprint
 /*==============================================================*/
 create table logistics
 (
-   logistics_id         int not null auto_increment,
-   logistics_name       varchar(20),
-   primary key (logistics_id)
+    logistics_id   int not null auto_increment,
+    logistics_name varchar(20),
+    primary key (logistics_id)
 );
 
 /*==============================================================*/
@@ -164,21 +164,21 @@ create table logistics
 /*==============================================================*/
 create table manager
 (
-   manager_account      varchar(20) not null,
-   manager_password     varchar(40),
-   primary key (manager_account)
+    manager_account  varchar(20) not null,
+    manager_password varchar(40),
+    primary key (manager_account)
 );
 
-alter table manager comment '¹ÜÀíÔ±×¨ÓÃÕË»§';
+alter table manager comment 'ï¿½ï¿½ï¿½ï¿½Ô±×¨ï¿½ï¿½ï¿½Ë»ï¿½';
 
 /*==============================================================*/
 /* Table: order_logistics                                       */
 /*==============================================================*/
 create table order_logistics
 (
-   order_id             bigint not null,
-   logistics_id         int not null,
-   primary key (order_id, logistics_id)
+    order_id     bigint not null,
+    logistics_id int    not null,
+    primary key (order_id, logistics_id)
 );
 
 /*==============================================================*/
@@ -186,9 +186,9 @@ create table order_logistics
 /*==============================================================*/
 create table order_stateflow
 (
-   order_id             bigint,
-   record_id            bigint,
-   status_date          datetime
+    order_id    bigint,
+    record_id   bigint,
+    status_date datetime
 );
 
 /*==============================================================*/
@@ -196,11 +196,11 @@ create table order_stateflow
 /*==============================================================*/
 create table receive_address
 (
-   receive_address_id   int not null auto_increment,
-   uid                  int,
-   address_details      varchar(100),
-   is_default           bool,
-   primary key (receive_address_id)
+    receive_address_id int not null auto_increment,
+    uid                int,
+    address_details    varchar(100),
+    is_default         bool,
+    primary key (receive_address_id)
 );
 
 /*==============================================================*/
@@ -208,12 +208,12 @@ create table receive_address
 /*==============================================================*/
 create table shop
 (
-   sid                  int not null auto_increment,
-   uid                  int,
-   shop_name            varchar(20),
-   shop_description     varchar(100),
-   shop_address         varchar(100),
-   primary key (sid)
+    sid              int not null auto_increment,
+    uid              int,
+    shop_name        varchar(20),
+    shop_description varchar(100),
+    shop_address     varchar(100),
+    primary key (sid)
 );
 
 /*==============================================================*/
@@ -221,13 +221,13 @@ create table shop
 /*==============================================================*/
 create table sub_commodity
 (
-   sub_id               int not null auto_increment,
-   cid                  bigint,
-   sub_name             varchar(20),
-   sub_icon             varchar(200),
-   stock                int,
-   price                real,
-   primary key (sub_id)
+    sub_id   int not null auto_increment,
+    cid      bigint,
+    sub_name varchar(20),
+    sub_icon varchar(200),
+    stock    int,
+    price    real,
+    primary key (sub_id)
 );
 
 /*==============================================================*/
@@ -235,11 +235,11 @@ create table sub_commodity
 /*==============================================================*/
 create table user_comment
 (
-   comment_id           bigint not null auto_increment,
-   uid                  int,
-   praise               bool,
-   sub_comment          bigint,
-   primary key (comment_id)
+    comment_id  bigint not null auto_increment,
+    uid         int,
+    praise      bool,
+    sub_comment bigint,
+    primary key (comment_id)
 );
 
 /*==============================================================*/
@@ -247,90 +247,132 @@ create table user_comment
 /*==============================================================*/
 create table user_info
 (
-   uid                  int not null auto_increment,
-   user_password        varchar(20),
-   user_alipay_account  varchar(40),
-   user_telephone       varchar(20),
-   user_name            varchar(20),
-   user_gender          varchar(20),
-   user_selfie          varchar(200),
-   user_signature       varchar(40),
-   user_email           varchar(40),
-   user_license         varchar(30),
-   primary key (uid)
+    uid                 int not null auto_increment,
+    user_password       varchar(20),
+    user_alipay_account varchar(40),
+    user_telephone      varchar(20),
+    user_name           varchar(20),
+    user_gender         varchar(20),
+    user_selfie         varchar(200),
+    user_signature      varchar(40),
+    user_email          varchar(40),
+    user_license        varchar(30),
+    primary key (uid)
 );
 
-alter table user_info comment 'ËùÓÐÓÃ»§';
+alter table user_info comment 'ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½';
 
-alter table chat add constraint FK_chat_receiver foreign key (sender_id)
-      references user_info (uid) on delete restrict on update restrict;
+alter table chat
+    add constraint FK_chat_receiver foreign key (sender_id)
+        references user_info (uid) on delete restrict on update restrict;
 
-alter table chat add constraint FK_chat_sender foreign key (receiver_id)
-      references user_info (uid) on delete restrict on update restrict;
+alter table chat
+    add constraint FK_chat_sender foreign key (receiver_id)
+        references user_info (uid) on delete restrict on update restrict;
 
-alter table chat add constraint FK_get_chat_content foreign key (chat_content_id)
-      references chat_details (chat_content_id) on delete restrict on update restrict;
+alter table chat
+    add constraint FK_get_chat_content foreign key (chat_content_id)
+        references chat_details (chat_content_id) on delete restrict on update restrict;
 
-alter table commodity add constraint FK_shop_commodity foreign key (sid)
-      references shop (sid) on delete restrict on update restrict;
+alter table commodity
+    add constraint FK_shop_commodity foreign key (sid)
+        references shop (sid) on delete restrict on update restrict;
 
-alter table commodity_label add constraint FK_commodity_label foreign key (cid)
-      references commodity (cid) on delete restrict on update restrict;
+alter table commodity_label
+    add constraint FK_commodity_label foreign key (cid)
+        references commodity (cid) on delete restrict on update restrict;
 
-alter table commodity_label add constraint FK_commodity_label2 foreign key (record_id)
-      references data_dictionary (record_id) on delete restrict on update restrict;
+alter table commodity_label
+    add constraint FK_commodity_label2 foreign key (record_id)
+        references data_dictionary (record_id) on delete restrict on update restrict;
 
-alter table commodity_order add constraint FK_shop_order foreign key (sid)
-      references shop (sid) on delete restrict on update restrict;
+alter table commodity_order
+    add constraint FK_shop_order foreign key (sid)
+        references shop (sid) on delete restrict on update restrict;
 
-alter table commodity_order add constraint FK_±¾´Î¶©µ¥ÆÀ¼Û foreign key (comment_id)
-      references user_comment (comment_id) on delete restrict on update restrict;
+alter table commodity_order
+    add constraint FK_ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ foreign key (comment_id)
+      references user_comment (comment_id) on
+delete
+restrict on update restrict;
 
-alter table commodity_order add constraint FK_ÓÃ»§ÏÂ¶©µ¥ foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table commodity_order
+    add constraint FK_ï¿½Ã»ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ foreign key (uid)
+      references user_info (uid) on
+delete
+restrict on update restrict;
 
-alter table commodity_order add constraint FK_¶©µ¥Ö¸¶¨ÉÌÆ· foreign key (sub_id)
-      references sub_commodity (sub_id) on delete restrict on update restrict;
+alter table commodity_order
+    add constraint FK_ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Æ· foreign key (sub_id)
+      references sub_commodity (sub_id) on
+delete
+restrict on update restrict;
 
-alter table favorites_commodity add constraint FK_favorites_commodity foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table favorites_commodity
+    add constraint FK_favorites_commodity foreign key (uid)
+        references user_info (uid) on delete restrict on update restrict;
 
-alter table favorites_commodity add constraint FK_favorites_commodity2 foreign key (cid)
-      references commodity (cid) on delete restrict on update restrict;
+alter table favorites_commodity
+    add constraint FK_favorites_commodity2 foreign key (cid)
+        references commodity (cid) on delete restrict on update restrict;
 
-alter table favorites_shop add constraint FK_favorites_shop foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table favorites_shop
+    add constraint FK_favorites_shop foreign key (uid)
+        references user_info (uid) on delete restrict on update restrict;
 
-alter table favorites_shop add constraint FK_favorites_shop2 foreign key (sid)
-      references shop (sid) on delete restrict on update restrict;
+alter table favorites_shop
+    add constraint FK_favorites_shop2 foreign key (sid)
+        references shop (sid) on delete restrict on update restrict;
 
-alter table footprint add constraint FK_ÀúÊ·ä¯ÀÀ foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table footprint
+    add constraint FK_ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ foreign key (uid)
+      references user_info (uid) on
+delete
+restrict on update restrict;
 
-alter table footprint add constraint FK_ÀúÊ·ä¯ÀÀÉÌÆ· foreign key (cid)
-      references commodity (cid) on delete restrict on update restrict;
+alter table footprint
+    add constraint FK_ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½Æ· foreign key (cid)
+      references commodity (cid) on
+delete
+restrict on update restrict;
 
-alter table order_logistics add constraint FK_order_logistics foreign key (order_id)
-      references commodity_order (order_id) on delete restrict on update restrict;
+alter table order_logistics
+    add constraint FK_order_logistics foreign key (order_id)
+        references commodity_order (order_id) on delete restrict on update restrict;
 
-alter table order_logistics add constraint FK_order_logistics2 foreign key (logistics_id)
-      references logistics (logistics_id) on delete restrict on update restrict;
+alter table order_logistics
+    add constraint FK_order_logistics2 foreign key (logistics_id)
+        references logistics (logistics_id) on delete restrict on update restrict;
 
-alter table order_stateflow add constraint FK_order_order_status foreign key (record_id)
-      references data_dictionary (record_id) on delete restrict on update restrict;
+alter table order_stateflow
+    add constraint FK_order_order_status foreign key (record_id)
+        references data_dictionary (record_id) on delete restrict on update restrict;
 
-alter table order_stateflow add constraint FK_¶©µ¥×´Ì¬±ä¸ü foreign key (order_id)
-      references commodity_order (order_id) on delete restrict on update restrict;
+alter table order_stateflow
+    add constraint FK_ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ foreign key (order_id)
+      references commodity_order (order_id) on
+delete
+restrict on update restrict;
 
-alter table receive_address add constraint FK_ÓÃ»§µÄÊÕ»õµØÖ· foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table receive_address
+    add constraint FK_ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½Ö· foreign key (uid)
+      references user_info (uid) on
+delete
+restrict on update restrict;
 
-alter table shop add constraint FK_Âô¼Ò¿ªµêÆÌ foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table shop
+    add constraint FK_ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½ï¿½ foreign key (uid)
+      references user_info (uid) on
+delete
+restrict on update restrict;
 
-alter table sub_commodity add constraint FK_commodity_sub foreign key (cid)
-      references commodity (cid) on delete restrict on update restrict;
+alter table sub_commodity
+    add constraint FK_commodity_sub foreign key (cid)
+        references commodity (cid) on delete restrict on update restrict;
 
-alter table user_comment add constraint FK_ÓÃ»§ÆÀ¼Û¹ºÎïÌåÑé foreign key (uid)
-      references user_info (uid) on delete restrict on update restrict;
+alter table user_comment
+    add constraint FK_ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ foreign key (uid)
+      references user_info (uid) on
+delete
+restrict on update restrict;
 

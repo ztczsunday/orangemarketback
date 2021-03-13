@@ -1,153 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.OrderStateflowMapper">
-  <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.OrderStateflow">
-    <result column="order_id" jdbcType="BIGINT" property="orderId" />
-    <result column="record_id" jdbcType="BIGINT" property="recordId" />
-    <result column="status_date" jdbcType="TIMESTAMP" property="statusDate" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.OrderStateflow">
+        <result column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="record_id" jdbcType="BIGINT" property="recordId"/>
+        <result column="status_date" jdbcType="TIMESTAMP" property="statusDate"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        order_id
+        , record_id, status_date
+    </sql>
+    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    order_id, record_id, status_date
-  </sql>
-  <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from order_stateflow
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample">
-    delete from order_stateflow
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
-    insert into order_stateflow (order_id, record_id, status_date
-      )
-    values (#{orderId,jdbcType=BIGINT}, #{recordId,jdbcType=BIGINT}, #{statusDate,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
-    insert into order_stateflow
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="orderId != null">
-        order_id,
-      </if>
-      <if test="recordId != null">
-        record_id,
-      </if>
-      <if test="statusDate != null">
-        status_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="orderId != null">
-        #{orderId,jdbcType=BIGINT},
-      </if>
-      <if test="recordId != null">
-        #{recordId,jdbcType=BIGINT},
-      </if>
-      <if test="statusDate != null">
-        #{statusDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample" resultType="java.lang.Long">
-    select count(*) from order_stateflow
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update order_stateflow
-    <set>
-      <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=BIGINT},
-      </if>
-      <if test="record.recordId != null">
+        <include refid="Base_Column_List"/>
+        from order_stateflow
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample">
+        delete from order_stateflow
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
+        insert into order_stateflow (order_id, record_id, status_date)
+        values (#{orderId,jdbcType=BIGINT}, #{recordId,jdbcType=BIGINT}, #{statusDate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.OrderStateflow">
+        insert into order_stateflow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="recordId != null">
+                record_id,
+            </if>
+            <if test="statusDate != null">
+                status_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId,jdbcType=BIGINT},
+            </if>
+            <if test="recordId != null">
+                #{recordId,jdbcType=BIGINT},
+            </if>
+            <if test="statusDate != null">
+                #{statusDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.OrderStateflowExample"
+            resultType="java.lang.Long">
+        select count(*) from order_stateflow
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update order_stateflow
+        <set>
+            <if test="record.orderId != null">
+                order_id = #{record.orderId,jdbcType=BIGINT},
+            </if>
+            <if test="record.recordId != null">
+                record_id = #{record.recordId,jdbcType=BIGINT},
+            </if>
+            <if test="record.statusDate != null">
+                status_date = #{record.statusDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update order_stateflow
+        set order_id = #{record.orderId,jdbcType=BIGINT},
         record_id = #{record.recordId,jdbcType=BIGINT},
-      </if>
-      <if test="record.statusDate != null">
-        status_date = #{record.statusDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update order_stateflow
-    set order_id = #{record.orderId,jdbcType=BIGINT},
-      record_id = #{record.recordId,jdbcType=BIGINT},
-      status_date = #{record.statusDate,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+        status_date = #{record.statusDate,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
 </mapper>

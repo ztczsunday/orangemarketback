@@ -59,8 +59,8 @@ public class Footprint {
         }
         Footprint other = (Footprint) that;
         return (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getLastBrowserDate() == null ? other.getLastBrowserDate() == null : this.getLastBrowserDate().equals(other.getLastBrowserDate()));
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getLastBrowserDate() == null ? other.getLastBrowserDate() == null : this.getLastBrowserDate().equals(other.getLastBrowserDate()));
     }
 
     @Override

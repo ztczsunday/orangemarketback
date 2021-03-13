@@ -2,8 +2,9 @@ package com.orangeSoft.market.mapper;
 
 import com.orangeSoft.market.pojo.UserComment;
 import com.orangeSoft.market.pojo.UserCommentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserCommentMapper {
     long countByExample(UserCommentExample example);

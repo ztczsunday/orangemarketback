@@ -13,9 +13,9 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserInfoMapperE userInfoMapperE;
-    @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserInfoMapperE userInfoMapperE;
 
     public UserInfo login(String account, String pwd) {
         UserInfoExample userInfoExample = new UserInfoExample();
