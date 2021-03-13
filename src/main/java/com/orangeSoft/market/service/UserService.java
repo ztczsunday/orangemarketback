@@ -1,8 +1,8 @@
 package com.orangeSoft.market.service;
 
+import com.orangeSoft.market.common.pojo.UserInfo;
+import com.orangeSoft.market.common.pojo.UserInfoExample;
 import com.orangeSoft.market.mapper.extend.UserInfoMapperE;
-import com.orangeSoft.market.pojo.UserInfo;
-import com.orangeSoft.market.pojo.UserInfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

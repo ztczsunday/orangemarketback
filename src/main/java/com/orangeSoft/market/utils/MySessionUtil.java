@@ -1,6 +1,6 @@
 package com.orangeSoft.market.utils;
 
-import com.orangeSoft.market.pojo.UserInfo;
+import com.orangeSoft.market.common.pojo.UserInfo;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class MySessionUtil {

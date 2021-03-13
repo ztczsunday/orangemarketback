@@ -10,7 +10,7 @@ spring:
 
 mybatis:
   type-aliases-package: com.orangeSoft.market.common.pojo
-  mapper-locations: classpath:mybatis/mapping/*Mapper.xml
+  mapper-locations: classpath:mybatis/mapping/*Mapper.xml,classpath:mybatis/mapping/*MapperE.xml
 
 logging:
   level:

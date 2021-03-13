@@ -1,11 +1,10 @@
 package com.orangeSoft.market.pojo;
 
-
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-@Component
 @Data
+@Component
 public class UserOrderResult {
     private long orderId;
     private String shopName;
@@ -13,4 +12,5 @@ public class UserOrderResult {
     private String subName;
     private double price;
     private int countCommodity;
+    private double price;
 }

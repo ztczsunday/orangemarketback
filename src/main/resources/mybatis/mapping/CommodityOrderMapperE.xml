@@ -31,7 +31,7 @@
                  left join shop s on commodity_order.sid = s.sid
                  left join sub_commodity sc on commodity_order.sub_id = sc.sub_id
                  left join commodity c on s.sid = c.sid
-        where commodity_order.order_id = #{OrderId}
+        where commodity_order.order_id = #{orderId}
     </select>
     <select id="findUserOrderByUserId" resultMap="userOrderResultMap">
         select commodity_order.order_id, shop_name, commodity_name, sub_name, price, count_commodity
