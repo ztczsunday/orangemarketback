@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.FavoritesCommodityMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.FavoritesCommodityKey">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.FavoritesCommodityKey">
         <id column="uid" jdbcType="INTEGER" property="uid"/>
         <id column="cid" jdbcType="BIGINT" property="cid"/>
     </resultMap>
@@ -69,7 +69,7 @@
         uid
         , cid
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.FavoritesCommodityExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.FavoritesCommodityExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -84,23 +84,23 @@
             order by ${orderByClause}
         </if>
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.pojo.FavoritesCommodityKey">
+    <delete id="deleteByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.FavoritesCommodityKey">
         delete
         from favorites_commodity
         where uid = #{uid,jdbcType=INTEGER}
           and cid = #{cid,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.FavoritesCommodityExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.FavoritesCommodityExample">
         delete from favorites_commodity
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.FavoritesCommodityKey">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.FavoritesCommodityKey">
         insert into favorites_commodity (uid, cid)
         values (#{uid,jdbcType=INTEGER}, #{cid,jdbcType=BIGINT})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.FavoritesCommodityKey">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.FavoritesCommodityKey">
         insert into favorites_commodity
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="uid != null">
@@ -119,7 +119,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.FavoritesCommodityExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.FavoritesCommodityExample"
             resultType="java.lang.Long">
         select count(*) from favorites_commodity
         <if test="_parameter != null">

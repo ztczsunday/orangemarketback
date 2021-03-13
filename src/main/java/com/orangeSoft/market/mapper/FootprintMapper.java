@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.Footprint;
-import com.orangeSoft.market.pojo.FootprintExample;
+import com.orangeSoft.market.common.pojo.Footprint;
+import com.orangeSoft.market.common.pojo.FootprintExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

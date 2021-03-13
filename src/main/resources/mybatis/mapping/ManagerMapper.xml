@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.ManagerMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Manager">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.Manager">
         <id column="manager_account" jdbcType="VARCHAR" property="managerAccount"/>
         <result column="manager_password" jdbcType="VARCHAR" property="managerPassword"/>
     </resultMap>
@@ -69,7 +69,7 @@
         manager_account
         , manager_password
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ManagerExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.ManagerExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -94,17 +94,17 @@
         from manager
         where manager_account = #{managerAccount,jdbcType=VARCHAR}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.ManagerExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.ManagerExample">
         delete from manager
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.Manager">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.Manager">
         insert into manager (manager_account, manager_password)
         values (#{managerAccount,jdbcType=VARCHAR}, #{managerPassword,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Manager">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.Manager">
         insert into manager
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="managerAccount != null">
@@ -123,7 +123,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.ManagerExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.ManagerExample" resultType="java.lang.Long">
         select count(*) from manager
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -151,7 +151,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.Manager">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.Manager">
         update manager
         <set>
             <if test="managerPassword != null">
@@ -160,7 +160,7 @@
         </set>
         where manager_account = #{managerAccount,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.Manager">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.Manager">
         update manager
         set manager_password = #{managerPassword,jdbcType=VARCHAR}
         where manager_account = #{managerAccount,jdbcType=VARCHAR}

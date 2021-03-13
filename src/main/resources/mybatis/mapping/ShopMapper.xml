@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.ShopMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Shop">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.Shop">
         <id column="sid" jdbcType="INTEGER" property="sid"/>
         <result column="uid" jdbcType="INTEGER" property="uid"/>
         <result column="shop_name" jdbcType="VARCHAR" property="shopName"/>
@@ -72,7 +72,7 @@
         sid
         , uid, shop_name, shop_description, shop_address
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ShopExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.ShopExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -97,19 +97,19 @@
         from shop
         where sid = #{sid,jdbcType=INTEGER}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.ShopExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.ShopExample">
         delete from shop
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.Shop">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.Shop">
         insert into shop (sid, uid, shop_name,
                           shop_description, shop_address)
         values (#{sid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR},
                 #{shopDescription,jdbcType=VARCHAR}, #{shopAddress,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Shop">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.Shop">
         insert into shop
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sid != null">
@@ -146,7 +146,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.ShopExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.ShopExample" resultType="java.lang.Long">
         select count(*) from shop
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -186,7 +186,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.Shop">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.Shop">
         update shop
         <set>
             <if test="uid != null">
@@ -204,7 +204,7 @@
         </set>
         where sid = #{sid,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.Shop">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.Shop">
         update shop
         set uid              = #{uid,jdbcType=INTEGER},
             shop_name        = #{shopName,jdbcType=VARCHAR},

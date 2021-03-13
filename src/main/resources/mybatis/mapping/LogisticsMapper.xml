@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.LogisticsMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Logistics">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.Logistics">
         <id column="logistics_id" jdbcType="INTEGER" property="logisticsId"/>
         <result column="logistics_name" jdbcType="VARCHAR" property="logisticsName"/>
     </resultMap>
@@ -69,7 +69,7 @@
         logistics_id
         , logistics_name
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.LogisticsExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.LogisticsExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -94,17 +94,17 @@
         from logistics
         where logistics_id = #{logisticsId,jdbcType=INTEGER}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.LogisticsExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.LogisticsExample">
         delete from logistics
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.Logistics">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.Logistics">
         insert into logistics (logistics_id, logistics_name)
         values (#{logisticsId,jdbcType=INTEGER}, #{logisticsName,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Logistics">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.Logistics">
         insert into logistics
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="logisticsId != null">
@@ -123,7 +123,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.LogisticsExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.LogisticsExample" resultType="java.lang.Long">
         select count(*) from logistics
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -151,7 +151,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.Logistics">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.Logistics">
         update logistics
         <set>
             <if test="logisticsName != null">
@@ -160,7 +160,7 @@
         </set>
         where logistics_id = #{logisticsId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.Logistics">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.Logistics">
         update logistics
         set logistics_name = #{logisticsName,jdbcType=VARCHAR}
         where logistics_id = #{logisticsId,jdbcType=INTEGER}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityDetailsMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.CommodityDetails">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.CommodityDetails">
         <id column="details_id" jdbcType="BIGINT" property="detailsId"/>
         <result column="cid" jdbcType="BIGINT" property="cid"/>
         <result column="details_url" jdbcType="VARCHAR" property="detailsUrl"/>
@@ -70,7 +70,7 @@
         details_id
         , cid, details_url
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.CommodityDetailsExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.CommodityDetailsExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -96,17 +96,17 @@
         from commodity_details
         where details_id = #{detailsId,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.CommodityDetailsExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.CommodityDetailsExample">
         delete from commodity_details
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.CommodityDetails">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.CommodityDetails">
         insert into commodity_details (details_id, cid, details_url)
         values (#{detailsId,jdbcType=BIGINT}, #{cid,jdbcType=BIGINT}, #{detailsUrl,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.CommodityDetails">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.CommodityDetails">
         insert into commodity_details
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="detailsId != null">
@@ -131,7 +131,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.CommodityDetailsExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.CommodityDetailsExample"
             resultType="java.lang.Long">
         select count(*) from commodity_details
         <if test="_parameter != null">
@@ -164,7 +164,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.CommodityDetails">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.CommodityDetails">
         update commodity_details
         <set>
             <if test="cid != null">
@@ -176,7 +176,7 @@
         </set>
         where details_id = #{detailsId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.CommodityDetails">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.CommodityDetails">
         update commodity_details
         set cid         = #{cid,jdbcType=BIGINT},
             details_url = #{detailsUrl,jdbcType=VARCHAR}

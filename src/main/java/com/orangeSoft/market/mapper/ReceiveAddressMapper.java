@@ -1,7 +1,7 @@
 package com.orangeSoft.market.mapper;
 
-import com.orangeSoft.market.pojo.ReceiveAddress;
-import com.orangeSoft.market.pojo.ReceiveAddressExample;
+import com.orangeSoft.market.common.pojo.ReceiveAddress;
+import com.orangeSoft.market.common.pojo.ReceiveAddressExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

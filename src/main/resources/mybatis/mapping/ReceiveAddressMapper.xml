@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.ReceiveAddressMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.ReceiveAddress">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.ReceiveAddress">
         <id column="receive_address_id" jdbcType="INTEGER" property="receiveAddressId"/>
         <result column="uid" jdbcType="INTEGER" property="uid"/>
         <result column="address_details" jdbcType="VARCHAR" property="addressDetails"/>
@@ -71,7 +71,7 @@
         receive_address_id
         , uid, address_details, is_default
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.ReceiveAddressExample"
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddressExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -97,19 +97,19 @@
         from receive_address
         where receive_address_id = #{receiveAddressId,jdbcType=INTEGER}
     </delete>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.ReceiveAddressExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddressExample">
         delete from receive_address
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.ReceiveAddress">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddress">
         insert into receive_address (receive_address_id, uid, address_details,
                                      is_default)
         values (#{receiveAddressId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{addressDetails,jdbcType=VARCHAR},
                 #{isDefault,jdbcType=BIT})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.ReceiveAddress">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddress">
         insert into receive_address
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="receiveAddressId != null">
@@ -140,7 +140,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.ReceiveAddressExample"
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddressExample"
             resultType="java.lang.Long">
         select count(*) from receive_address
         <if test="_parameter != null">
@@ -177,7 +177,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.pojo.ReceiveAddress">
+    <update id="updateByPrimaryKeySelective" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddress">
         update receive_address
         <set>
             <if test="uid != null">
@@ -192,7 +192,7 @@
         </set>
         where receive_address_id = #{receiveAddressId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.pojo.ReceiveAddress">
+    <update id="updateByPrimaryKey" parameterType="com.orangeSoft.market.common.pojo.ReceiveAddress">
         update receive_address
         set uid             = #{uid,jdbcType=INTEGER},
             address_details = #{addressDetails,jdbcType=VARCHAR},

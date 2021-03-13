@@ -57,8 +57,7 @@ create table chat
     primary key (chat_id)
 );
 
-alter table chat
-    comment '�����û�֮�䣬���ߵ���֮�䶼������˽��.
+alter table chat comment '�����û�֮�䣬���ߵ���֮�䶼������˽��.
 ���ֻ�С��û����͡����̡�';
 
 /*==============================================================*/
@@ -183,8 +182,7 @@ create table manager
     primary key (manager_account)
 );
 
-alter table manager
-    comment '����Աר���˻�';
+alter table manager comment '����Աר���˻�';
 
 /*==============================================================*/
 /* Table: order_logistics                                       */
@@ -275,8 +273,7 @@ create table user_info
     primary key (uid)
 );
 
-alter table user_info
-    comment '�����û�';
+alter table user_info comment '�����û�';
 
 alter table chat
     add constraint FK_chat_receiver foreign key (sender_id)
@@ -292,9 +289,10 @@ alter table chat
 
 alter table commmodity_details
     add constraint FK_��Ʒ�����¼ foreign key (cid)
-        references commodity (cid) on
-            delete
-            restrict on update restrict;
+      references commodity (cid) on
+delete
+restrict on
+update restrict;
 
 alter table commodity
     add constraint FK_shop_commodity foreign key (sid)
@@ -314,27 +312,31 @@ alter table commodity_order
 
 alter table commodity_order
     add constraint FK_���ζ������� foreign key (comment_id)
-        references user_comment (comment_id) on
-            delete
-            restrict on update restrict;
+      references user_comment (comment_id) on
+delete
+restrict on
+update restrict;
 
 alter table commodity_order
     add constraint FK_�û��¶��� foreign key (uid)
-        references user_info (uid) on
-            delete
-            restrict on update restrict;
+      references user_info (uid) on
+delete
+restrict on
+update restrict;
 
 alter table commodity_order
     add constraint FK_����ָ����Ʒ foreign key (sub_id)
-        references sub_commodity (sub_id) on
-            delete
-            restrict on update restrict;
+      references sub_commodity (sub_id) on
+delete
+restrict on
+update restrict;
 
 alter table commodity_order
     add constraint FK_�����ջ���ַ foreign key (receive_address_id)
-        references receive_address (receive_address_id) on
-            delete
-            restrict on update restrict;
+      references receive_address (receive_address_id) on
+delete
+restrict on
+update restrict;
 
 alter table favorites_commodity
     add constraint FK_favorites_commodity foreign key (uid)
@@ -354,15 +356,17 @@ alter table favorites_shop
 
 alter table footprint
     add constraint FK_��ʷ��� foreign key (uid)
-        references user_info (uid) on
-            delete
-            restrict on update restrict;
+      references user_info (uid) on
+delete
+restrict on
+update restrict;
 
 alter table footprint
     add constraint FK_��ʷ�����Ʒ foreign key (cid)
-        references commodity (cid) on
-            delete
-            restrict on update restrict;
+      references commodity (cid) on
+delete
+restrict on
+update restrict;
 
 alter table order_logistics
     add constraint FK_order_logistics foreign key (order_id)
@@ -378,21 +382,24 @@ alter table order_stateflow
 
 alter table order_stateflow
     add constraint FK_����״̬��� foreign key (order_id)
-        references commodity_order (order_id) on
-            delete
-            restrict on update restrict;
+      references commodity_order (order_id) on
+delete
+restrict on
+update restrict;
 
 alter table receive_address
     add constraint FK_�û����ջ���ַ foreign key (uid)
-        references user_info (uid) on
-            delete
-            restrict on update restrict;
+      references user_info (uid) on
+delete
+restrict on
+update restrict;
 
 alter table shop
     add constraint FK_���ҿ����� foreign key (uid)
-        references user_info (uid) on
-            delete
-            restrict on update restrict;
+      references user_info (uid) on
+delete
+restrict on
+update restrict;
 
 alter table sub_commodity
     add constraint FK_commodity_sub foreign key (cid)
@@ -400,7 +407,8 @@ alter table sub_commodity
 
 alter table user_comment
     add constraint FK_�û����۹������� foreign key (uid)
-        references user_info (uid) on
-            delete
-            restrict on update restrict;
+      references user_info (uid) on
+delete
+restrict on
+update restrict;
 

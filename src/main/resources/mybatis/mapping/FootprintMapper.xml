@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.FootprintMapper">
-    <resultMap id="BaseResultMap" type="com.orangeSoft.market.pojo.Footprint">
+    <resultMap id="BaseResultMap" type="com.orangeSoft.market.common.pojo.Footprint">
         <result column="cid" jdbcType="BIGINT" property="cid"/>
         <result column="uid" jdbcType="INTEGER" property="uid"/>
         <result column="last_browser_date" jdbcType="DATE" property="lastBrowserDate"/>
@@ -70,7 +70,7 @@
         cid
         , uid, last_browser_date
     </sql>
-    <select id="selectByExample" parameterType="com.orangeSoft.market.pojo.FootprintExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.orangeSoft.market.common.pojo.FootprintExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -84,17 +84,17 @@
             order by ${orderByClause}
         </if>
     </select>
-    <delete id="deleteByExample" parameterType="com.orangeSoft.market.pojo.FootprintExample">
+    <delete id="deleteByExample" parameterType="com.orangeSoft.market.common.pojo.FootprintExample">
         delete from footprint
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.orangeSoft.market.pojo.Footprint">
+    <insert id="insert" parameterType="com.orangeSoft.market.common.pojo.Footprint">
         insert into footprint (cid, uid, last_browser_date)
         values (#{cid,jdbcType=BIGINT}, #{uid,jdbcType=INTEGER}, #{lastBrowserDate,jdbcType=DATE})
     </insert>
-    <insert id="insertSelective" parameterType="com.orangeSoft.market.pojo.Footprint">
+    <insert id="insertSelective" parameterType="com.orangeSoft.market.common.pojo.Footprint">
         insert into footprint
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cid != null">
@@ -119,7 +119,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.orangeSoft.market.pojo.FootprintExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.orangeSoft.market.common.pojo.FootprintExample" resultType="java.lang.Long">
         select count(*) from footprint
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
