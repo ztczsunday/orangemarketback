@@ -26,7 +26,6 @@ public class UserService {
 
 
     public boolean register(UserInfo userInfo) {
-//        passwordEncoder.encode(userInfo.getUserPassword());
         UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andUserTelephoneEqualTo(userInfo.getUserTelephone());
         if (userInfoMapperE.countByExample(userInfoExample) != 0) {
@@ -35,4 +34,10 @@ public class UserService {
         return userInfoMapperE.insertSelective(userInfo) == 1;
     }
 
+    public boolean update(UserInfo userInfo) {
+        if (userInfoMapperE.updateByPrimaryKeySelective(userInfo) != 1) {
+            return false;
+        }
+        return true;
+    }
 }

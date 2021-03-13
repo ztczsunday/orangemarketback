@@ -57,8 +57,8 @@ public class CommodityPictures {
         }
         CommodityPictures other = (CommodityPictures) that;
         return (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
-            && (this.getPictureUrl() == null ? other.getPictureUrl() == null : this.getPictureUrl().equals(other.getPictureUrl()))
-            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
+                && (this.getPictureUrl() == null ? other.getPictureUrl() == null : this.getPictureUrl().equals(other.getPictureUrl()))
+                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()));
     }
 
     @Override

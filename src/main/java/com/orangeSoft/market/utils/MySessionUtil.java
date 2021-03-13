@@ -6,10 +6,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class MySessionUtil {
     private final static String CURRENT_USER = "currUser";
 
-    public static UserInfo getCurrUser(){
+    public static UserInfo getCurrUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserInfo user = (UserInfo) principal;
-        return (UserInfo)principal;
+        return (UserInfo) principal;
     }
 
 }
