@@ -2,7 +2,6 @@ package com.orangeSoft.market.controller;
 
 import com.google.gson.Gson;
 import com.orangeSoft.market.common.utils.MySessionUtil;
-import com.orangeSoft.market.mapper.CommodityOrderMapper;
 import com.orangeSoft.market.service.impl.CommodityOrderServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

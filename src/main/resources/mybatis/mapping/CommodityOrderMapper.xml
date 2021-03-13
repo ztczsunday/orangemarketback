@@ -5,12 +5,12 @@
         <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
         <!-- property：主键在pojo中的属性名 -->
         <!-- column：主键在数据库中的列名 -->
-        <id property="orderId" column="order_id" />
+        <id property="orderId" column="order_id"/>
         <!-- 定义普通属性 -->
-        <result property="shopName" column="shop_name" />
-        <result property="commodityName" column="commodity_name" />
-        <result property="subName" column="sub_name" />
-        <result property="price" column="price" />
+        <result property="shopName" column="shop_name"/>
+        <result property="commodityName" column="commodity_name"/>
+        <result property="subName" column="sub_name"/>
+        <result property="price" column="price"/>
         <result property="countCommodity" column="count_commodity"/>
 
     </resultMap>
