@@ -26,4 +26,10 @@ public class UserService {
         return userInfoMapperE.insertSelective(userInfo) == 1;
     }
 
+    public boolean update(UserInfo userInfo){
+        if (userInfoMapperE.updateByPrimaryKeySelective(userInfo)!=1){
+            return false;
+        }
+        return true;
+    }
 }
