@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
     @RequestMapping("/login")
-    public String logia() {
+    public String login() {
         return "/login";
     }
 
@@ -19,10 +19,5 @@ public class TestController {
     @RequestMapping(value = "/loginFailure")
     public String toLoginError() {
         return "/failure";
-    }
-
-    @RequestMapping(value = "/tiaozhuan")
-    public String tiaozhuan() {
-        return "/tiaozhuan";
     }
 }
