@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityMapper">
+    <select id="findByLabel" resultType="Commodity">
+        select *
+        from commodity c
+        where c.cid
+                  in (select cid
+                      from commodity_label cl
+                      where cl.record_id in (select record_id
+                                             from data_dictionary d
+                                             where d.t_index = 'commodity_label' and d.item_name = #{label}))
+    </select>
 
 </mapper>
