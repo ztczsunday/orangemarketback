@@ -1,9 +1,15 @@
 package com.orangeSoft.market.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
+import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.CommodityOrder;
+import com.orangeSoft.market.entity.SubCommodity;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.CommodityOrderMapper;
 import com.orangeSoft.market.mapper.OrderLogisticsMapper;
@@ -33,15 +39,28 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         return Result.success(orderDetailResult);
     }
 
-    public Result.JSONResultMap findUserOrderByUid() {
+    public Result.JSONResultMap findUserOrderByUid(Page<UserOrderResult> page) {
         UserInfo userInfo = MySessionUtil.getCurrUser();
-        List<UserOrderResult> userOrderResults = commodityOrderMapper.findUserOrderByUserId(userInfo.getUid());
+        IPage<UserOrderResult> userOrderResults = commodityOrderMapper.findUserOrderByUserId(userInfo.getUid(), page);
         return Result.success(userOrderResults);
     }
 
-    public Result.JSONResultMap deleteOrderByOrderId(long orderId){
-        if (this.removeById(orderId)){
-            return Result.success("","已删除");
+    public Result.JSONResultMap deleteOrderByOrderId(long orderId) {
+        if (this.removeById(orderId)) {
+            return Result.success("", "已删除");
+        }
+        return Result.fail();
+    }
+
+    public Result.JSONResultMap addOrder(int subId,int receiveAddressId,int countCommodity){
+        CommodityOrder commodityOrder =new CommodityOrder();
+        commodityOrder.setCountCommodity(countCommodity);
+        commodityOrder.setReceiveAddressId(receiveAddressId);
+        commodityOrder.setSubId(subId);
+        commodityOrder.setSid(commodityOrderMapper.findSidBySubId(subId));
+        commodityOrder.setUid(MySessionUtil.getCurrUser().getUid());
+        if (this.save(commodityOrder)){
+            return Result.success();
         }
         return Result.fail();
     }
