@@ -1,4 +1,4 @@
-package com.orangeSoft.market.entity;
+package com.orangeSoft.market.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

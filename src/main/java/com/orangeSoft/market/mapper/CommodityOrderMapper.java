@@ -2,8 +2,8 @@ package com.orangeSoft.market.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.orangeSoft.market.entity.CommodityOrder;
-import com.orangeSoft.market.entity.OrderDetailResult;
-import com.orangeSoft.market.entity.UserOrderResult;
+import com.orangeSoft.market.pojo.OrderDetailResult;
+import com.orangeSoft.market.pojo.UserOrderResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
