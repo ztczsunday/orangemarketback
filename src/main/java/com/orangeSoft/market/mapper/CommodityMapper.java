@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CommodityMapper extends BaseMapper<Commodity> {
-    IPage<Commodity> findByLabel(IPage<Commodity> page, String label);
+    IPage<Commodity> findByLabel(IPage<Commodity> page, String label, Double minPrice, Double maxPrice);
 }
