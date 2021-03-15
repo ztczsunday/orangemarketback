@@ -12,6 +12,7 @@
         <result property="subName" column="sub_name"/>
         <result property="price" column="price"/>
         <result property="countCommodity" column="count_commodity"/>
+        <result property="itemName" column="item_name"/>
 
     </resultMap>
     <select id="findOrderDetailByOrderId" resultType="com.orangeSoft.market.pojo.OrderDetailResult">
@@ -22,7 +23,8 @@
                price,
                count_commodity,
                address_details,
-               status_date
+               status_date,
+               dd.item_name
         from commodity_order
                  left join order_logistics ol on commodity_order.order_id = ol.order_id
                  left join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
@@ -34,12 +36,15 @@
         where commodity_order.order_id = #{orderId}
     </select>
     <select id="findUserOrderByUserId" resultMap="userOrderResultMap">
-        select commodity_order.order_id, shop_name, commodity_name, sub_name, price, count_commodity
+        select commodity_order.order_id, shop_name, commodity_name, sub_name, price, count_commodity, dd.item_name
         from commodity_order
                  left join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
                  left join shop s on commodity_order.sid = s.sid
                  left join sub_commodity sc on commodity_order.sub_id = sc.sub_id
+                 left join order_stateflow os on commodity_order.order_id = os.order_id
+                 left join data_dictionary dd on os.record_id = dd.record_id
                  left join commodity c on s.sid = c.sid
         where commodity_order.uid = #{uid}
+        order by order_id DESC
     </select>
 </mapper>

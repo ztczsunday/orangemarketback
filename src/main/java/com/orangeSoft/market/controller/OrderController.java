@@ -1,16 +1,13 @@
 package com.orangeSoft.market.controller;
 
 import com.google.gson.Gson;
-import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.service.impl.CommodityOrderServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @CrossOrigin("http://localhost:8080")
 public class OrderController {
     @Autowired
@@ -26,5 +23,11 @@ public class OrderController {
     @PostMapping(value = "/orderDetail", produces = "application/json;charset=UTF-8")
     public String findOrderDetailByOrderId(@RequestParam("orderId") long orderId) {
         return new Gson().toJson(orderService.findOrderDetailByOrderId(orderId));
+    }
+
+    @ApiOperation(value = "删除订单记录")
+    @PostMapping(value = "/deleteOrder", produces = "application/json;charset=UTF-8")
+    public String deleteOrderByOrderId(@RequestParam("orderId") long orderId) {
+        return new Gson().toJson(orderService.deleteOrderByOrderId(orderId));
     }
 }

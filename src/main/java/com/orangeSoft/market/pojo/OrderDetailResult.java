@@ -16,4 +16,5 @@ public class OrderDetailResult {
     private int countCommodity;
     private String addressDetails;
     private Date statusDate;
+    private String itemName;
 }

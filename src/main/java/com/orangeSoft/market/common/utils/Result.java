@@ -26,6 +26,9 @@ public class Result {
         return jsonResultMap;
     }
 
+    public static JSONResultMap success() {
+        return getJSONResultMap().put(SUCCESS, true).put(INFORMATION, "").put(MESSAGE, "");
+    }
 
     public static JSONResultMap success(Object data) {
         return getJSONResultMap().put(SUCCESS, true).put(INFORMATION, data).put(MESSAGE, "");
@@ -37,6 +40,10 @@ public class Result {
 
     public static JSONResultMap fail(Object data) {
         return getJSONResultMap().put(SUCCESS, false).put(INFORMATION, data).put(MESSAGE, "");
+    }
+
+    public static JSONResultMap fail() {
+        return getJSONResultMap().put(SUCCESS, false).put(INFORMATION, "").put(MESSAGE, "");
     }
 
     public static JSONResultMap fail(Object data, String message) {
