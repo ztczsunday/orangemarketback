@@ -14,8 +14,6 @@ import com.orangeSoft.market.service.ICommodityOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * <p>
  * 服务实现类
@@ -46,14 +44,14 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         return Result.fail();
     }
 
-    public Result.JSONResultMap addOrder(int subId,int receiveAddressId,int countCommodity){
-        CommodityOrder commodityOrder =new CommodityOrder();
+    public Result.JSONResultMap addOrder(int subId, int receiveAddressId, int countCommodity) {
+        CommodityOrder commodityOrder = new CommodityOrder();
         commodityOrder.setCountCommodity(countCommodity);
         commodityOrder.setReceiveAddressId(receiveAddressId);
         commodityOrder.setSubId(subId);
         commodityOrder.setSid(commodityOrderMapper.findSidBySubId(subId));
         commodityOrder.setUid(MySessionUtil.getCurrUser().getUid());
-        if (this.save(commodityOrder)){
+        if (this.save(commodityOrder)) {
             return Result.success();
         }
         return Result.fail();

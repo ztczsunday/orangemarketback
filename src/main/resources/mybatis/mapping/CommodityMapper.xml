@@ -9,7 +9,8 @@
                       from commodity_label cl
                       where cl.record_id in (select record_id
                                              from data_dictionary d
-                                             where d.t_index = 'commodity_label' and d.item_name = #{label}))
+                                             where d.t_index = 'commodity_label'
+                                               and d.item_name = #{label}))
     </select>
 
 </mapper>

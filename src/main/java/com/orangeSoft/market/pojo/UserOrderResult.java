@@ -7,11 +7,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class UserOrderResult {
     private int orderId;
+    private String shopName;
     private String commodityName;
     private String subName;
-    private String shopName;
-    private int countCommodity;
     private double price;
+    private int countCommodity;
     private String itemName;
     private String subIcon;
 }

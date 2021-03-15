@@ -2,15 +2,11 @@ package com.orangeSoft.market.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.CommodityOrder;
 import com.orangeSoft.market.pojo.OrderDetailResult;
 import com.orangeSoft.market.pojo.UserOrderResult;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * <p>

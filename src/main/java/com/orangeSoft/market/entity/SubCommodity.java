@@ -23,7 +23,7 @@ public class SubCommodity implements Serializable {
     @TableId(value = "sub_id", type = IdType.AUTO)
     private Integer subId;
 
-//    @TableId(value = "cid")
+    //    @TableId(value = "cid")
     private Long cid;
 
     private String subName;
