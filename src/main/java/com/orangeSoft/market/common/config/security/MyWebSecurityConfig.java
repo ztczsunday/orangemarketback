@@ -1,4 +1,4 @@
-package com.orangeSoft.market.common.security;
+package com.orangeSoft.market.common.config.security;
 
 import com.google.gson.Gson;
 import com.orangeSoft.market.common.utils.MySessionUtil;

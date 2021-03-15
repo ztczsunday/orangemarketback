@@ -1,4 +1,4 @@
-package com.orangeSoft.market.common.swagger;
+package com.orangeSoft.market.common.config.swagger;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

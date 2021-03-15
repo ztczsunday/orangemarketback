@@ -1,4 +1,4 @@
-package com.orangeSoft.market.common.security;
+package com.orangeSoft.market.common.config.swagger;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

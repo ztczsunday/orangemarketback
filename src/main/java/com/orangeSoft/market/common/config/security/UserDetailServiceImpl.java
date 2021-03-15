@@ -1,4 +1,4 @@
-package com.orangeSoft.market.common.security;
+package com.orangeSoft.market.common.config.security;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.orangeSoft.market.entity.UserInfo;
