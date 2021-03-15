@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.orangeSoft.market.entity.Commodity;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * <p>
  * Mapper 接口

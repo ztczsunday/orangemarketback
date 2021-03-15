@@ -6,8 +6,6 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.CommodityOrder;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.CommodityOrderMapper;
-import com.orangeSoft.market.mapper.OrderLogisticsMapper;
-import com.orangeSoft.market.mapper.OrderStateflowMapper;
 import com.orangeSoft.market.pojo.OrderDetailResult;
 import com.orangeSoft.market.pojo.UserOrderResult;
 import com.orangeSoft.market.service.ICommodityOrderService;
@@ -39,9 +37,9 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         return Result.success(userOrderResults);
     }
 
-    public Result.JSONResultMap deleteOrderByOrderId(long orderId){
-        if (this.removeById(orderId)){
-            return Result.success("","已删除");
+    public Result.JSONResultMap deleteOrderByOrderId(long orderId) {
+        if (this.removeById(orderId)) {
+            return Result.success("", "已删除");
         }
         return Result.fail();
     }

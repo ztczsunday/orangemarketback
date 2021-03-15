@@ -26,6 +26,7 @@ public class TestController {
         return "/failure";
     }
 }
+
 @RestController
 class RestControllerTest {
     @GetMapping(value = "/test", produces = "application/json;charset=UTF-8")

@@ -3,6 +3,7 @@ package com.orangeSoft.market.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.CommodityServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ public class CommodityController {
     @Autowired
     CommodityServiceImpl commodityService;
 
+    @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findCommodityByKey
             (String keyword,
@@ -23,6 +25,7 @@ public class CommodityController {
         return Result.success(commodityService.findCommodityByKey(new Page<>(pages, pageSize), keyword));
     }
 
+    @ApiOperation(value = "根据标签查询商品")
     @PostMapping(value = "/findCommodityByLabel", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findCommodityByLabel
             (String label,

@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Service
 public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper, ReceiveAddress> implements IReceiveAddressService {
-    public Result.JSONResultMap findAddressByUid(){
+    public Result.JSONResultMap findAddressByUid() {
         UserInfo userInfo = MySessionUtil.getCurrUser();
         List<ReceiveAddress> receiveAddresses = this.query()
                 .eq("uid", userInfo.getUid())
@@ -29,23 +29,26 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
                 .list();
         return Result.success(receiveAddresses);
     }
-    public Result.JSONResultMap insertNewAddress(ReceiveAddress newReceiveAddress){
-        if(this.save(newReceiveAddress)){
-            return Result.success("","已新建地址");
+
+    public Result.JSONResultMap insertNewAddress(ReceiveAddress newReceiveAddress) {
+        if (this.save(newReceiveAddress)) {
+            return Result.success("", "已新建地址");
         }
         return Result.fail();
     }
-    public Result.JSONResultMap updateReceiveAddress(ReceiveAddress updatedReceiveAddress){
-        QueryWrapper<ReceiveAddress> wrapper=new QueryWrapper<>();
-        wrapper.eq("receive_address_id",updatedReceiveAddress.getReceiveAddressId());
-        if (this.update(updatedReceiveAddress,wrapper)){
-            return Result.success("","已更新");
+
+    public Result.JSONResultMap updateReceiveAddress(ReceiveAddress updatedReceiveAddress) {
+        QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
+        wrapper.eq("receive_address_id", updatedReceiveAddress.getReceiveAddressId());
+        if (this.update(updatedReceiveAddress, wrapper)) {
+            return Result.success("", "已更新");
         }
         return Result.fail();
     }
-    public Result.JSONResultMap deleteReceiveAddress(int receiveAddressId){
-        if (this.removeById(receiveAddressId)){
-            return Result.success("","已删除");
+
+    public Result.JSONResultMap deleteReceiveAddress(int receiveAddressId) {
+        if (this.removeById(receiveAddressId)) {
+            return Result.success("", "已删除");
         }
         return Result.fail();
     }

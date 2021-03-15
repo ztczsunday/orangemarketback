@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements IUserInfoService {
-    public Result.JSONResultMap register(UserInfo userInfo){
-        if (this.save(userInfo)){
+    public Result.JSONResultMap register(UserInfo userInfo) {
+        if (this.save(userInfo)) {
             return Result.success();
         }
         return Result.fail();
