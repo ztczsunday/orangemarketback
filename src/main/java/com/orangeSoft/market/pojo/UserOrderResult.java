@@ -12,4 +12,5 @@ public class UserOrderResult {
     private String shopName;
     private int countCommodity;
     private double price;
+    private String itemName;
 }

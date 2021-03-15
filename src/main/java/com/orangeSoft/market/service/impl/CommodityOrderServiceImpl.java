@@ -27,10 +27,6 @@ import java.util.List;
 public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper, CommodityOrder> implements ICommodityOrderService {
     @Autowired
     CommodityOrderMapper commodityOrderMapper;
-    @Autowired
-    OrderStateflowMapper orderStateflowMapper;
-    @Autowired
-    OrderLogisticsMapper orderLogisticsMapper;
 
     public Result.JSONResultMap findOrderDetailByOrderId(long orderId) {
         OrderDetailResult orderDetailResult = commodityOrderMapper.findOrderDetailByOrderId(orderId);
@@ -41,5 +37,12 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         UserInfo userInfo = MySessionUtil.getCurrUser();
         List<UserOrderResult> userOrderResults = commodityOrderMapper.findUserOrderByUserId(userInfo.getUid());
         return Result.success(userOrderResults);
+    }
+
+    public Result.JSONResultMap deleteOrderByOrderId(long orderId){
+        if (this.removeById(orderId)){
+            return Result.success("","已删除");
+        }
+        return Result.fail();
     }
 }
