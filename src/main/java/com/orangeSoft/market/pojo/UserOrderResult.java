@@ -13,4 +13,5 @@ public class UserOrderResult {
     private int countCommodity;
     private double price;
     private String itemName;
+    private String subIcon;
 }
