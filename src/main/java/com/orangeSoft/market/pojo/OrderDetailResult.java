@@ -17,5 +17,4 @@ public class OrderDetailResult {
     private String addressDetails;
     private Date statusDate;
     private String itemName;
-    private String subIcon;
 }
