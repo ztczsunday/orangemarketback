@@ -2,15 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityMapper">
     <select id="findByLabel" resultType="Commodity">
-        select *
+        select c.*
         from commodity c
-        where c.cid
-                  in (select cid
-                      from commodity_label cl
-                      where cl.record_id in (select record_id
-                                             from data_dictionary d
-                                             where d.t_index = 'commodity_label'
-                                               and d.item_name = #{label}))
+            inner join commodity_label cl on c.cid = cl.cid
+            inner join data_dictionary dd on cl.record_id = dd.record_id
+        where dd.item_name = #{label}
     </select>
-
+<!--    select *-->
+<!--    from commodity c-->
+<!--    where c.cid-->
+<!--    in (select cid-->
+<!--    from commodity_label cl-->
+<!--    where cl.record_id in (select record_id-->
+<!--    from data_dictionary d-->
+<!--    where d.t_index = 'commodity_label'-->
+<!--    and d.item_name = #{label}))-->
 </mapper>
