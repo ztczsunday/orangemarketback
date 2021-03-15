@@ -5,8 +5,15 @@
         select c.*
         from commodity c
             inner join commodity_label cl on c.cid = cl.cid
+            inner join sub_commodity sc on c.cid = sc.cid
             inner join data_dictionary dd on cl.record_id = dd.record_id
         where dd.item_name = #{label}
+        <if test="minValue != null">
+          and sc.price &gt;= #{minValue}
+        </if>
+        <if test="maxValue != null">
+          and sc.price &lt;= #{maxValue}
+        </if>
     </select>
 <!--    select *-->
 <!--    from commodity c-->
