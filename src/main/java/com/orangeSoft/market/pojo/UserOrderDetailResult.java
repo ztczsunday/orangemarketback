@@ -19,7 +19,5 @@ public class UserOrderDetailResult {
     private double price;
     private int countCommodity;
     private String addressDetails;
-    private Date statusDate;
-    private String itemName;
     private String subIcon;
 }

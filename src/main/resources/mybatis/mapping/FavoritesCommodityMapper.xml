@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.FavoritesCommodityMapper">
 
+    <select id="findFavoritesCommodityByUid" resultType="com.orangeSoft.market.entity.Commodity">
+        select commodity.cid, sid, commodity_name, commodity_status, main_icon
+        from commodity
+                 inner join favorites_commodity fc on commodity.cid = fc.cid
+        where uid = #{uid}
+    </select>
 </mapper>
