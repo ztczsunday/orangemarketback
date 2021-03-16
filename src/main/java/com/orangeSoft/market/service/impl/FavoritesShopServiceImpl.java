@@ -26,10 +26,13 @@ import org.springframework.stereotype.Service;
 public class FavoritesShopServiceImpl extends ServiceImpl<FavoritesShopMapper, FavoritesShop> implements IFavoritesShopService {
     @Autowired
     FavoritesShopMapper favoritesShopMapper;
+
+    @Override
     public Result.JSONResultMap getMyFavoriteShop(Page<Shop> page){
         return Result.success(favoritesShopMapper.findFavoritesShopByUid(page, MySessionUtil.getCurrUser().getUid()));
     }
 
+    @Override
     public Result.JSONResultMap deleteFavoritesShop(int sid) {
         QueryWrapper<FavoritesShop> queryWrapper =new QueryWrapper<>();
         queryWrapper.eq("sid",sid).eq("uid",MySessionUtil.getCurrUser().getUid());
@@ -39,6 +42,7 @@ public class FavoritesShopServiceImpl extends ServiceImpl<FavoritesShopMapper, F
         return Result.fail();
     }
 
+    @Override
     public Result.JSONResultMap addFavoritesShop(int sid) {
         FavoritesShop favoritesShop=new FavoritesShop();
         favoritesShop.setSid(sid);

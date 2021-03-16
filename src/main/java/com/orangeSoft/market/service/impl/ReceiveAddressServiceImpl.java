@@ -21,6 +21,8 @@ import java.util.List;
  */
 @Service
 public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper, ReceiveAddress> implements IReceiveAddressService {
+
+    @Override
     public Result.JSONResultMap findAddressByUid() {
         UserInfo userInfo = MySessionUtil.getCurrUser();
         List<ReceiveAddress> receiveAddresses = this.query()
@@ -30,6 +32,7 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         return Result.success(receiveAddresses);
     }
 
+    @Override
     public Result.JSONResultMap insertNewAddress(ReceiveAddress newReceiveAddress) {
         if (this.save(newReceiveAddress)) {
             return Result.success("", "已新建地址");
@@ -37,6 +40,7 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         return Result.fail();
     }
 
+    @Override
     public Result.JSONResultMap updateReceiveAddress(ReceiveAddress updatedReceiveAddress) {
         QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
         wrapper.eq("receive_address_id", updatedReceiveAddress.getReceiveAddressId());
@@ -46,6 +50,7 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         return Result.fail();
     }
 
+    @Override
     public Result.JSONResultMap deleteReceiveAddress(int receiveAddressId) {
         if (this.removeById(receiveAddressId)) {
             return Result.success("", "已删除");
