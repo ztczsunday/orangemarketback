@@ -47,25 +47,26 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     }
 
     @Override
-    public Result.JSONResultMap getCommodityById(Integer commodityId) {
+    public Result.JSONResultMap getCommodityById(Long commodityId) {
         Map<String, Object> result = new HashMap<>();
-        QueryWrapper<CommodityDetails> detailsQueryWrapper = new QueryWrapper<>();
-        detailsQueryWrapper.eq("cid", commodityId);
-        result.put("commodityDetails", commodityDetailsMapper.selectList(detailsQueryWrapper));
 
-        QueryWrapper<CommodityPictures> picturesQueryWrapper = new QueryWrapper<>();
-        picturesQueryWrapper.eq("cid", commodityId);
-        result.put("commodityPictures", commodityPicturesMapper.selectList(picturesQueryWrapper));
+        result.put("commodityDetails", commodityDetailsMapper
+                .selectList(new QueryWrapper<CommodityDetails>().eq("cid", commodityId)));
 
-        QueryWrapper<SubCommodity> subQueryWrapper = new QueryWrapper<>();
-        subQueryWrapper.eq("cid", commodityId);
-        result.put("subCommodity", subCommodityMapper.selectList(subQueryWrapper));
+        result.put("commodityPictures", commodityPicturesMapper
+                .selectList(new QueryWrapper<CommodityPictures>().eq("cid", commodityId)));
 
-        QueryWrapper<UserComment> userCommentQueryWrapper = new QueryWrapper<>();
-        userCommentQueryWrapper.eq("cid", commodityId);
-        userCommentQueryWrapper.orderByDesc("comment_time");
-        userCommentQueryWrapper.last("limit 3");
-        result.put("hotComments", userCommentMapper.selectList(userCommentQueryWrapper));
+        result.put("subCommodity", subCommodityMapper
+                .selectList(new QueryWrapper<SubCommodity>().eq("cid", commodityId)));
+
+        result.put("hotComments", userCommentMapper
+                .selectList(new QueryWrapper<UserComment>()
+                        .eq("cid", commodityId)
+                        .orderByDesc("comment_time")
+                        .last("limit 3")));
+
+        result.put("isCollected", new FavoritesCommodityServiceImpl().isCollected(commodityId));
+
         return Result.success(result);
     }
 }

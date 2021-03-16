@@ -34,8 +34,9 @@ public interface ICommodityService extends IService<Commodity> {
 
     /**
      * 根据商品ID查找商品详情
+     *
      * @param commodityId 商品ID
      * @return Result
      */
-    Result.JSONResultMap getCommodityById(Integer commodityId);
+    Result.JSONResultMap getCommodityById(Long commodityId);
 }

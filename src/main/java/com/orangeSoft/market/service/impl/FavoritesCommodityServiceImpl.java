@@ -12,8 +12,6 @@ import com.orangeSoft.market.service.IFavoritesCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * <p>
  * 服务实现类
@@ -25,26 +23,35 @@ import java.util.List;
 public class FavoritesCommodityServiceImpl extends ServiceImpl<FavoritesCommodityMapper, FavoritesCommodity> implements IFavoritesCommodityService {
     @Autowired
     FavoritesCommodityMapper favoritesCommodityMapper;
-    public Result.JSONResultMap getMyFavoriteCommodity(Page<Commodity> page){
-        return Result.success(favoritesCommodityMapper.findFavoritesCommodityByUid(page,MySessionUtil.getCurrUser().getUid()));
+
+    @Override
+    public Result.JSONResultMap getMyFavoriteCommodity(Page<Commodity> page) {
+        return Result.success(favoritesCommodityMapper.findFavoritesCommodityByUid(page, MySessionUtil.getCurrUser().getUid()));
     }
 
+    @Override
     public Result.JSONResultMap deleteFavoritesCommodity(long cid) {
-        QueryWrapper<FavoritesCommodity> queryWrapper =new QueryWrapper<>();
-        queryWrapper.eq("cid",cid).eq("uid",MySessionUtil.getCurrUser().getUid());
-        if (favoritesCommodityMapper.delete(queryWrapper)>0){
+        QueryWrapper<FavoritesCommodity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("cid", cid).eq("uid", MySessionUtil.getCurrUser().getUid());
+        if (favoritesCommodityMapper.delete(queryWrapper) > 0) {
             return Result.success();
         }
         return Result.fail();
     }
 
+    @Override
     public Result.JSONResultMap addFavoritesCommodity(long cid) {
-        FavoritesCommodity favoritesCommodity=new FavoritesCommodity();
-        favoritesCommodity.setCid(cid);
-        favoritesCommodity.setUid(MySessionUtil.getCurrUser().getUid());
-        if (this.save(favoritesCommodity)){
+        FavoritesCommodity favoritesCommodity = new FavoritesCommodity(MySessionUtil.getCurrUser().getUid(), cid);
+        if (this.save(favoritesCommodity)) {
             return Result.success();
         }
         return Result.fail();
+    }
+
+    @Override
+    public Boolean isCollected(Long commodityId) {
+        return this.count(new QueryWrapper<FavoritesCommodity>()
+                .eq("cid", commodityId)
+                .eq("uid", MySessionUtil.getCurrUser().getUid())) > 0;
     }
 }

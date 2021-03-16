@@ -3,6 +3,7 @@ package com.orangeSoft.market.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.CommodityServiceImpl;
+import com.orangeSoft.market.service.impl.FavoritesCommodityServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommodityController {
     @Autowired
     CommodityServiceImpl commodityService;
+    @Autowired
+    FavoritesCommodityServiceImpl favoritesCommodityService;
 
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
@@ -38,7 +41,13 @@ public class CommodityController {
 
     @ApiOperation(value = "根据id查找商品详细信息")
     @GetMapping(value = "/commodity", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap getCommodityById(Integer commodityId) {
+    public Result.JSONResultMap getCommodityById(Long commodityId) {
         return commodityService.getCommodityById(commodityId);
+    }
+
+    @ApiOperation(value = "根据商品ID收藏商品")
+    @PostMapping(value = "/commodity/collection", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap collectCommodity(@RequestParam(value = "cid") Long cid) {
+        return favoritesCommodityService.addFavoritesCommodity(cid);
     }
 }
