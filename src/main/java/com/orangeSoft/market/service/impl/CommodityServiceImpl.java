@@ -34,16 +34,19 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     @Autowired
     private UserCommentMapper userCommentMapper;
 
+    @Override
     public IPage<Commodity> findCommodityByKey(Page<Commodity> page, String keyword) {
         QueryWrapper<Commodity> wrapper = new QueryWrapper<>();
         wrapper.like("commodity_name", keyword);
         return commodityMapper.selectPage(page, wrapper);
     }
 
+    @Override
     public IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label, Double minValue, Double maxValue) {
         return commodityMapper.findByLabel(page, label, minValue, maxValue);
     }
 
+    @Override
     public Result.JSONResultMap getCommodityById(Integer commodityId) {
         Map<String, Object> result = new HashMap<>();
         QueryWrapper<CommodityDetails> detailsQueryWrapper = new QueryWrapper<>();
