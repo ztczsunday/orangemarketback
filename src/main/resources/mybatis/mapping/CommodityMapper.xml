@@ -3,15 +3,18 @@
 <mapper namespace="com.orangeSoft.market.mapper.CommodityMapper">
     <select id="findByLabel" resultType="com.orangeSoft.market.pojo.CommoditySearchResult">
         select *
-        from (select c.*, sc.price "lowestPrice"
-              from commodity c
-                       inner join commodity_label cl on c.cid = cl.cid
-                       inner join sub_commodity sc on c.cid = sc.cid
-                       inner join data_dictionary dd on cl.record_id = dd.record_id
-              where dd.item_name = #{label}
-                <if test="minValue != null">and sc.price &gt;= #{minValue}</if>
-                <if test="maxValue != null">and sc.price &lt;= #{maxValue}</if>
-              order by sc.price) as tmp
+        from (
+        select c.*, sc.price "lowestPrice"
+        from commodity c
+        inner join commodity_label cl on c.cid = cl.cid
+        inner join sub_commodity sc on c.cid = sc.cid
+        inner join data_dictionary dd on cl.record_id = dd.record_id
+        where dd.item_name = #{label},
+        and c.commodity_status = 1
+        <if test="minValue != null">and sc.price &gt;= #{minValue}</if>
+        <if test="maxValue != null">and sc.price &lt;= #{maxValue}</if>
+        order by sc.price
+        ) as tmp
         group by cid
     </select>
 </mapper>

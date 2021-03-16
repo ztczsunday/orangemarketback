@@ -17,30 +17,26 @@ import com.orangeSoft.market.pojo.UserOrderResult;
 public interface ICommodityOrderService extends IService<CommodityOrder> {
 
     /**
-     *
      * @param orderId 目标订单
      * @return 目标订单详情
      */
     Result.JSONResultMap findOrderDetailByOrderId(long orderId);
 
     /**
-     *
      * @param page 用户订单分页
      * @return 与买家用户有关的订单
      */
     Result.JSONResultMap findUserOrderByUid(Page<UserOrderResult> page);
 
     /**
-     *
-     * @param subId 商品种类ID
+     * @param subId            商品种类ID
      * @param receiveAddressId 收货地址ID
-     * @param countCommodity 购买总数
+     * @param countCommodity   购买总数
      * @return 订单是否创建成功
      */
     Result.JSONResultMap addOrder(int subId, int receiveAddressId, int countCommodity);
 
     /**
-     *
      * @param page 用户订单分页
      * @return 与卖家用户有关的订单
      */

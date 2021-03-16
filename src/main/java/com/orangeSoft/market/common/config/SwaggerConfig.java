@@ -38,6 +38,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("orangeSoftApi").description("OrangeSoft Market Api文档").version("1.0.0").build();
     }
+
     /**
      * 发现如果继承了WebMvcConfigurationSupport，则在yml中配置的相关内容会失效。 需要重新指定静态资源
      *

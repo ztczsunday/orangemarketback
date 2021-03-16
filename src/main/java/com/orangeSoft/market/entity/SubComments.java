@@ -13,10 +13,8 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
- * </p>
  *
- * @author 
+ * </p>
  * @since 2021-03-16
  */
 @Data
@@ -39,5 +37,5 @@ public class SubComments implements Serializable {
 
     private Long commentId;
 
-
+    private Boolean subCommodityStatus;
 }

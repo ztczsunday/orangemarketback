@@ -25,7 +25,7 @@ public class OrderStateflowServiceImpl extends ServiceImpl<OrderStateflowMapper,
         orderStateflow.setOrderId(orderId);
         orderStateflow.setRecordId(recordId);
         orderStateflow.setStatusDate(LocalDateTime.now());
-        if(this.save(orderStateflow)){
+        if (this.save(orderStateflow)) {
             return Result.success();
         }
         return Result.fail();

@@ -28,18 +28,13 @@ public class Commodity implements Serializable {
 
     @TableId(value = "cid", type = IdType.AUTO)
     private Long cid;
-
     private Integer sid;
-
     private String commodityName;
-
+    /**
+     * 为0表示被下架，1表示可出售
+     */
     private Boolean commodityStatus;
-
     private String mainIcon;
-
     private Integer commentCount;
-
     private Integer praiseCommentCount;
-
-
 }

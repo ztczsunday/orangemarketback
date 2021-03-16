@@ -15,8 +15,8 @@ public class FavoritesShopController {
     @ApiOperation(value = "查看收藏的商店")
     @GetMapping(value = "/favoritesShop", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findFavoritesCommodityByUid(@RequestParam(value = "page", defaultValue = "1") int pages,
-                                                            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
-        return favoritesShopService.getMyFavoriteShop(new Page<>(pages,pageSize));
+                                                            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        return favoritesShopService.getMyFavoriteShop(new Page<>(pages, pageSize));
     }
 
     @ApiOperation(value = "移除收藏的商店")

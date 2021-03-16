@@ -10,7 +10,6 @@ import com.orangeSoft.market.entity.CommodityOrder;
 import com.orangeSoft.market.entity.OrderStateflow;
 import com.orangeSoft.market.entity.Shop;
 import com.orangeSoft.market.entity.UserInfo;
-import com.orangeSoft.market.mapper.CommodityDetailsMapper;
 import com.orangeSoft.market.mapper.CommodityOrderMapper;
 import com.orangeSoft.market.mapper.OrderStateflowMapper;
 import com.orangeSoft.market.mapper.ShopMapper;
@@ -44,13 +43,13 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
     @Override
     public Result.JSONResultMap findOrderDetailByOrderId(long orderId) {
         UserOrderDetailResult orderDetailResult = commodityOrderMapper.findOrderDetailByOrderId(orderId);
-        QueryWrapper<OrderStateflow> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("order_id",orderId).orderBy(true,false,"record_id");
+        QueryWrapper<OrderStateflow> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("order_id", orderId).orderBy(true, false, "record_id");
         List<OrderStateflow> orderStateflows = orderStateflowMapper.selectList(queryWrapper);
-        Map<String,Object> map = new HashMap<>();
-        map.put("order",orderDetailResult);
-        map.put("state",orderStateflows);
-        return Result.success(map,"订单详情");
+        Map<String, Object> map = new HashMap<>();
+        map.put("order", orderDetailResult);
+        map.put("state", orderStateflows);
+        return Result.success(map, "订单详情");
     }
 
     @Override
@@ -75,9 +74,9 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
     }
 
     @Override
-    public Result.JSONResultMap findShopOrderByUid(Page<ShopOrderResult> page){
-        UserInfo userInfo=MySessionUtil.getCurrUser();
-        Shop shop=shopMapper.selectOne(new QueryWrapper<Shop>().eq("uid",userInfo.getUid()));
-        return Result.success(commodityOrderMapper.findShopOrderBySid(shop.getSid(),page));
+    public Result.JSONResultMap findShopOrderByUid(Page<ShopOrderResult> page) {
+        UserInfo userInfo = MySessionUtil.getCurrUser();
+        Shop shop = shopMapper.selectOne(new QueryWrapper<Shop>().eq("uid", userInfo.getUid()));
+        return Result.success(commodityOrderMapper.findShopOrderBySid(shop.getSid(), page));
     }
 }
