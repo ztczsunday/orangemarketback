@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityMapper">
-    <select id="findByLabel" resultType="Commodity">
-        select c.*
-        from commodity c
-            inner join commodity_label cl on c.cid = cl.cid
-            inner join sub_commodity sc on c.cid = sc.cid
-            inner join data_dictionary dd on cl.record_id = dd.record_id
-        where dd.item_name = #{label}
-        <if test="minValue != null">
-          and sc.price &gt;= #{minValue}
-        </if>
-        <if test="maxValue != null">
-          and sc.price &lt;= #{maxValue}
-        </if>
+    <select id="findByLabel" resultType="com.orangeSoft.market.pojo.CommoditySearchResult">
+        select *
+        from (select c.*, sc.price "lowestPrice"
+              from commodity c
+                       inner join commodity_label cl on c.cid = cl.cid
+                       inner join sub_commodity sc on c.cid = sc.cid
+                       inner join data_dictionary dd on cl.record_id = dd.record_id
+              where dd.item_name = #{label}
+                <if test="minValue != null">and sc.price &gt;= #{minValue}</if>
+                <if test="maxValue != null">and sc.price &lt;= #{maxValue}</if>
+              order by sc.price) as tmp
+        group by cid
     </select>
 </mapper>
