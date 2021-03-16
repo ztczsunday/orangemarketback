@@ -32,5 +32,6 @@ public class UserComment implements Serializable {
 
     private String commentDetails;
 
+    private Long cid;
 
 }

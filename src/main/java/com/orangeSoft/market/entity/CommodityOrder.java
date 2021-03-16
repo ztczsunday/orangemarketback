@@ -23,8 +23,6 @@ public class CommodityOrder implements Serializable {
     @TableId(value = "order_id", type = IdType.AUTO)
     private Long orderId;
 
-    private Long commentId;
-
     private Integer sid;
 
     private Integer uid;

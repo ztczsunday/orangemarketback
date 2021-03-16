@@ -18,3 +18,14 @@ ALTER TABLE orangesoft.commodity ADD comment_count INT NULL;
 ALTER TABLE orangesoft.commodity ADD praise_comment_count INT NULL;
 
 ALTER TABLE orangesoft.sub_comments MODIFY COLUMN sub_comment_id bigint(20) auto_increment NOT NULL;
+
+/** 修改评论的指向 **/
+ALTER TABLE orangesoft.commodity_order DROP FOREIGN KEY FK_本次订单评价;
+ALTER TABLE orangesoft.commodity_order DROP INDEX FK_本次订单评价;
+ALTER TABLE orangesoft.commodity_order DROP COLUMN comment_id;
+
+ALTER TABLE orangesoft.user_comment ADD cid BIGINT NULL;
+ALTER TABLE orangesoft.user_comment ADD CONSTRAINT user_comment_FK FOREIGN KEY (cid) REFERENCES orangesoft.commodity(cid) ON DELETE CASCADE;
+
+ALTER TABLE orangesoft.sub_comments MODIFY COLUMN comment_id BIGINT NULL;
+ALTER TABLE orangesoft.sub_comments ADD CONSTRAINT sub_comments_FK FOREIGN KEY (comment_id) REFERENCES orangesoft.user_comment(comment_id) ON DELETE CASCADE;

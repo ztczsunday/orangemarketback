@@ -30,7 +30,7 @@ public class SubComments implements Serializable {
 
     private Integer isDeleted;
 
-    private String commentId;
+    private Long commentId;
 
 
 }
