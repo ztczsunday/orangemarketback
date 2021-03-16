@@ -3,6 +3,7 @@ package com.orangeSoft.market.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
 
 /**
@@ -30,4 +31,11 @@ public interface ICommodityService extends IService<Commodity> {
      * @return 分页的商品列表
      */
     IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label, Double minValue, Double maxValue);
+
+    /**
+     * 根据商品ID查找商品详情
+     * @param commodityId 商品ID
+     * @return Result
+     */
+    Result.JSONResultMap getCommodityById(Integer commodityId);
 }

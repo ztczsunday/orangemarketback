@@ -5,10 +5,8 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.CommodityServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @CrossOrigin("http://localhost:8080")
@@ -34,5 +32,11 @@ public class CommodityController {
              @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
              @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue) {
         return Result.success(commodityService.findCommodityByLabel(new Page<>(pages, pageSize), label, minValue, maxValue));
+    }
+
+    @ApiOperation(value = "根据id查找商品详细信息")
+    @GetMapping(value = "/commodity", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getCommodityById(Integer commodityId) {
+        return commodityService.getCommodityById(commodityId);
     }
 }
