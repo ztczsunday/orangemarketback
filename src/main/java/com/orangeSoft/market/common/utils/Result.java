@@ -24,7 +24,7 @@ public class Result {
     }
 
     private static JSONResultMap setResultMap(boolean success, Object information, String message) {
-        return getJSONResultMap().putLink(SUCCESS, success).putLink(INFORMATION, information).putLink(MESSAGE, information);
+        return getJSONResultMap().putLink(SUCCESS, success).putLink(INFORMATION, information).putLink(MESSAGE, message);
     }
 
 
@@ -32,24 +32,24 @@ public class Result {
         return setResultMap(true, "", "");
     }
 
-    public static JSONResultMap success(Object data) {
-        return setResultMap(true, data, "");
+    public static JSONResultMap success(Object information) {
+        return setResultMap(true, information, "");
     }
 
-    public static JSONResultMap success(Object data, String message) {
-        return setResultMap(true, data, message);
+    public static JSONResultMap success(Object information, String message) {
+        return setResultMap(true, information, message);
     }
 
-    public static JSONResultMap fail(Object data) {
-        return setResultMap(false, data, "");
+    public static JSONResultMap fail(Object information) {
+        return setResultMap(false, information, "");
     }
 
     public static JSONResultMap fail() {
         return setResultMap(false, "", "");
     }
 
-    public static JSONResultMap fail(Object data, String message) {
-        return setResultMap(false, data, message);
+    public static JSONResultMap fail(Object information, String message) {
+        return setResultMap(false, information, message);
     }
 
 

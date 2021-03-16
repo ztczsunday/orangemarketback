@@ -1,11 +1,12 @@
 package com.orangeSoft.market.pojo;
 
-import com.orangeSoft.market.entity.Commodity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode
+@AllArgsConstructor
 public class CommoditySearchResult {
     private static final long serialVersionUID = 1L;
 
@@ -24,15 +25,4 @@ public class CommoditySearchResult {
     private Integer praiseCommentCount;
 
     private Double lowestPrice;
-
-    public CommoditySearchResult(Commodity commodity, Double lowestPrice) {
-        this.cid = commodity.getCid();
-        this.sid = commodity.getSid();
-        this.commentCount = commodity.getCommentCount();
-        this.commodityName = commodity.getCommodityName();
-        this.commodityStatus = commodity.getCommodityStatus();
-        this.mainIcon = commodity.getMainIcon();
-        this.praiseCommentCount = commodity.getPraiseCommentCount();
-        this.lowestPrice = lowestPrice;
-    }
 }
