@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "用户数据更新", notes = "114514")
-    @ApiImplicitParam(name = "userInfo", dataType = "UserInfo", value = "用户信息")
+    @ApiImplicitParam(name = "userInfo", dataType = "UserInfo", value = "用户信息", example = "0")
     @ResponseBody
     @PostMapping(value = "/userInfoUpdate", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap userUpdate(@RequestBody UserInfo userInfo) {

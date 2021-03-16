@@ -13,13 +13,13 @@ public class ReceiveAddressController {
     @Autowired
     ReceiveAddressServiceImpl receiveAddressService;
 
-    @ApiOperation(value = "查看用户所有收货地址", notes = "114514")
+    @ApiOperation(value = "查看用户所有收货地址")
     @PostMapping(value = "/address", produces = "application/json;charset=UTF-8")
     public String findAddressByUid() {
         return new Gson().toJson(receiveAddressService.findAddressByUid());
     }
 
-    @ApiOperation(value = "更新收货地址信息（包括默认地址）", notes = "114514")
+    @ApiOperation(value = "更新收货地址信息（包括默认地址）")
     @ApiImplicitParam(name = "receiveAddress", dataType = "ReceiveAddress", value = "新收货地址")
     @ResponseBody
     @PostMapping(value = "/updateAddress", produces = "application/json;charset=UTF-8")
@@ -27,8 +27,8 @@ public class ReceiveAddressController {
         return new Gson().toJson(receiveAddressService.updateReceiveAddress(updatedReceiveAddress));
     }
 
-    @ApiOperation(value = "添加收货地址", notes = "114514")
-    @ApiImplicitParam(name = "receiveAddress", dataType = "ReceiveAddress", value = "新收货地址")
+    @ApiOperation(value = "添加收货地址")
+    @ApiImplicitParam(name = "receiveAddress", dataType = "ReceiveAddress", value = "新收货地址", example = "0")
     @ResponseBody
     @PostMapping(value = "/insertAddress", produces = "application/json;charset=UTF-8")
     public String insertNewAddress(@RequestBody ReceiveAddress newReceiveAddress) {
