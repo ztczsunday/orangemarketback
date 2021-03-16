@@ -4,6 +4,6 @@
     <select id="findFootPrintByUid" resultType="com.orangeSoft.market.entity.Commodity">
         select c.*
         from footprint
-            inner join commodity c on footprint.cid = c.cid
+                 inner join commodity c on footprint.cid = c.cid
     </select>
 </mapper>
