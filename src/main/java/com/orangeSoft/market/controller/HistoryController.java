@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin("http://localhost:8080")
 public class HistoryController {
     @Autowired
     FootprintServiceImpl footprintService;
