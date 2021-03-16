@@ -25,5 +25,5 @@ public interface CommodityOrderMapper extends BaseMapper<CommodityOrder> {
 
     int findSidBySubId(Integer subId);
 
-    IPage<ShopOrderResult> findShopOrderBySid(@Param("uid") Integer uid, IPage<ShopOrderResult> page);
+    IPage<ShopOrderResult> findShopOrderBySid(@Param("sid") Integer sid, IPage<ShopOrderResult> page);
 }

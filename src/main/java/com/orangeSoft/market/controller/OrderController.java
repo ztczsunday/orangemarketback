@@ -3,6 +3,7 @@ package com.orangeSoft.market.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.CommodityOrderServiceImpl;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ public class OrderController {
     }
 
     @ApiOperation(value = "查找订单详情")
+    @ApiImplicitParam(name = "orderId", dataType = "int", value = "订单号", example = "1")
     @GetMapping(value = "/orderDetail", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findOrderDetailByOrderId(@RequestParam("orderId") long orderId) {
         return orderService.findOrderDetailByOrderId(orderId);

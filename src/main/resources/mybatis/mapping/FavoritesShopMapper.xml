@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.FavoritesShopMapper">
 
+    <select id="findFavoritesShopByUid" resultType="com.orangeSoft.market.entity.Shop">
+        select shop.sid, shop.uid, shop_name, shop_description, shop_address
+        from shop
+                 inner join favorites_shop fs on shop.sid = fs.sid
+        where fs.uid = #{uid}
+    </select>
 </mapper>

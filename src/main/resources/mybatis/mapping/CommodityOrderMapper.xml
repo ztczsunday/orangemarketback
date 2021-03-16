@@ -23,8 +23,6 @@
                price,
                count_commodity,
                address_details,
-               status_date,
-               dd.item_name,
                sub_icon
         from commodity_order
                  inner join order_logistics ol on commodity_order.order_id = ol.order_id
