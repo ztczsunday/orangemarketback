@@ -61,7 +61,6 @@ public class Result {
     public static class JSONResultMap extends HashMap<String, Object> {
         private JSONResultMap() {}
 
-        @NotNull
         public JSONResultMap putLink(String key, Object value) {
             super.put(key, value);
             return this;
