@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements IUserInfoService {
+
+    @Override
     public Result.JSONResultMap register(UserInfo userInfo) {
         userInfo.setUid(null);
         if (this.save(userInfo)) {
@@ -25,11 +27,13 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         return Result.fail();
     }
 
+    @Override
     public Result.JSONResultMap findUserInfoByUid() {
         UserInfo userInfo = MySessionUtil.getCurrUser();
         return Result.success(userInfo);
     }
 
+    @Override
     public Result.JSONResultMap updateUserInfo(UserInfo newUserInfo) {
         if (this.updateById(newUserInfo)) {
             return Result.success();

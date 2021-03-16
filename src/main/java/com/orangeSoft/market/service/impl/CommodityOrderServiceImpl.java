@@ -41,6 +41,7 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
     @Autowired
     ShopMapper shopMapper;
 
+    @Override
     public Result.JSONResultMap findOrderDetailByOrderId(long orderId) {
         UserOrderDetailResult orderDetailResult = commodityOrderMapper.findOrderDetailByOrderId(orderId);
         QueryWrapper<OrderStateflow> queryWrapper=new QueryWrapper<>();
@@ -52,12 +53,14 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         return Result.success(map,"订单详情");
     }
 
+    @Override
     public Result.JSONResultMap findUserOrderByUid(Page<UserOrderResult> page) {
         UserInfo userInfo = MySessionUtil.getCurrUser();
         IPage<UserOrderResult> userOrderResults = commodityOrderMapper.findUserOrderByUserId(userInfo.getUid(), page);
         return Result.success(userOrderResults);
     }
 
+    @Override
     public Result.JSONResultMap addOrder(int subId, int receiveAddressId, int countCommodity) {
         CommodityOrder commodityOrder = new CommodityOrder();
         commodityOrder.setCountCommodity(countCommodity);
@@ -71,6 +74,7 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         return Result.fail();
     }
 
+    @Override
     public Result.JSONResultMap findShopOrderByUid(Page<ShopOrderResult> page){
         UserInfo userInfo=MySessionUtil.getCurrUser();
         Shop shop=shopMapper.selectOne(new QueryWrapper<Shop>().eq("uid",userInfo.getUid()));

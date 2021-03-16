@@ -19,12 +19,13 @@ import java.time.LocalDateTime;
 @Service
 public class OrderStateflowServiceImpl extends ServiceImpl<OrderStateflowMapper, OrderStateflow> implements IOrderStateflowService {
 
+    @Override
     public Result.JSONResultMap updateOrderStateflow(long orderId, long recordId) {
         OrderStateflow orderStateflow = new OrderStateflow();
         orderStateflow.setOrderId(orderId);
         orderStateflow.setRecordId(recordId);
         orderStateflow.setStatusDate(LocalDateTime.now());
-        if(this.updateById(orderStateflow)){
+        if(this.save(orderStateflow)){
             return Result.success();
         }
         return Result.fail();
