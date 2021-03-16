@@ -3,9 +3,11 @@ package com.orangeSoft.market.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode
+@NoArgsConstructor
 @AllArgsConstructor
 public class CommoditySearchResult {
     private static final long serialVersionUID = 1L;

@@ -1,12 +1,16 @@
 package com.orangeSoft.market.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class ShopOrderResult {
     private int orderId;
     private String userName;
