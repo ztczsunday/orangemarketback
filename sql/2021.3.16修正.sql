@@ -29,3 +29,18 @@ ALTER TABLE orangesoft.user_comment ADD CONSTRAINT user_comment_FK FOREIGN KEY (
 
 ALTER TABLE orangesoft.sub_comments MODIFY COLUMN comment_id BIGINT NULL;
 ALTER TABLE orangesoft.sub_comments ADD CONSTRAINT sub_comments_FK FOREIGN KEY (comment_id) REFERENCES orangesoft.user_comment(comment_id) ON DELETE CASCADE;
+
+/** 增加店铺评价记录 **/
+ALTER TABLE orangesoft.shop ADD comment_count BIGINT NULL;
+ALTER TABLE orangesoft.shop ADD praise_count BIGINT NULL;
+/** 为商品子种类增加逻辑删除字段 **/
+ALTER TABLE orangesoft.sub_commodity ADD sub_commodity_status TINYINT DEFAULT 1 NULL;
+/** 商品上架状态默认为1 **/
+ALTER TABLE orangesoft.commodity MODIFY COLUMN commodity_status tinyint(1) DEFAULT 1 NULL;
+
+/** 修改所有数据库中时间类型为timestamp **/
+ALTER TABLE orangesoft.sub_comments MODIFY COLUMN sub_comment_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL;
+ALTER TABLE orangesoft.order_stateflow MODIFY COLUMN status_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL;
+ALTER TABLE orangesoft.footprint MODIFY COLUMN last_browser_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL;
+ALTER TABLE orangesoft.data_dictionary MODIFY COLUMN record_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL;
+ALTER TABLE orangesoft.chat MODIFY COLUMN chat_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL;
