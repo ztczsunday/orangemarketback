@@ -15,13 +15,4 @@
           and sc.price &lt;= #{maxValue}
         </if>
     </select>
-<!--    select *-->
-<!--    from commodity c-->
-<!--    where c.cid-->
-<!--    in (select cid-->
-<!--    from commodity_label cl-->
-<!--    where cl.record_id in (select record_id-->
-<!--    from data_dictionary d-->
-<!--    where d.t_index = 'commodity_label'-->
-<!--    and d.item_name = #{label}))-->
 </mapper>
