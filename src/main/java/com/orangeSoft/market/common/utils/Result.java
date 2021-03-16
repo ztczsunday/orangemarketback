@@ -24,10 +24,7 @@ public class Result {
     }
 
     private static JSONResultMap setResultMap(boolean success, Object information, String message) {
-        return getJSONResultMap()
-                .putLink(SUCCESS, success)
-                .putLink(INFORMATION, information)
-                .putLink(MESSAGE, information);
+        return getJSONResultMap().putLink(SUCCESS, success).putLink(INFORMATION, information).putLink(MESSAGE, information);
     }
 
 
@@ -57,7 +54,8 @@ public class Result {
 
 
     public static class JSONResultMap extends HashMap<String, Object> {
-        private JSONResultMap() {}
+        private JSONResultMap() {
+        }
 
         public JSONResultMap putLink(String key, Object value) {
             super.put(key, value);
