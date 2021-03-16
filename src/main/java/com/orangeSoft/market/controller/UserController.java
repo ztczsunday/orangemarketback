@@ -6,7 +6,10 @@ import com.orangeSoft.market.service.impl.UserInfoServiceImpl;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
@@ -22,7 +25,7 @@ public class UserController {
     @ApiOperation(value = "用户数据更新", notes = "114514")
     @ApiImplicitParam(name = "userInfo", dataType = "UserInfo", value = "用户信息")
     @ResponseBody
-    @PostMapping(value = "/UserInfoUpdate", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/userInfoUpdate", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap userUpdate(@RequestBody UserInfo userInfo) {
         return userInfoService.updateUserInfo(userInfo);
     }

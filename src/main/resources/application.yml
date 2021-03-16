@@ -7,6 +7,12 @@ spring:
     url: jdbc:mysql://192.168.101.116:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: orangesoft
     password: orangesoft
+  mvc:
+    static-path-pattern: /**
+  web:
+    resources:
+      static-locations: /static/
+
 
 mybatis-plus:
   type-aliases-package: com.orangeSoft.market.entity
