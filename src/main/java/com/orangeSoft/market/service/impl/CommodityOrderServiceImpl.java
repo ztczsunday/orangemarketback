@@ -1,14 +1,18 @@
 package com.orangeSoft.market.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.CommodityOrder;
+import com.orangeSoft.market.entity.Shop;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.CommodityOrderMapper;
-import com.orangeSoft.market.pojo.OrderDetailResult;
+import com.orangeSoft.market.mapper.ShopMapper;
+import com.orangeSoft.market.pojo.ShopOrderResult;
+import com.orangeSoft.market.pojo.UserOrderDetailResult;
 import com.orangeSoft.market.pojo.UserOrderResult;
 import com.orangeSoft.market.service.ICommodityOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +29,11 @@ import org.springframework.stereotype.Service;
 public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper, CommodityOrder> implements ICommodityOrderService {
     @Autowired
     CommodityOrderMapper commodityOrderMapper;
+    @Autowired
+    ShopMapper shopMapper;
 
     public Result.JSONResultMap findOrderDetailByOrderId(long orderId) {
-        OrderDetailResult orderDetailResult = commodityOrderMapper.findOrderDetailByOrderId(orderId);
+        UserOrderDetailResult orderDetailResult = commodityOrderMapper.findOrderDetailByOrderId(orderId);
         return Result.success(orderDetailResult);
     }
 
@@ -35,13 +41,6 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         UserInfo userInfo = MySessionUtil.getCurrUser();
         IPage<UserOrderResult> userOrderResults = commodityOrderMapper.findUserOrderByUserId(userInfo.getUid(), page);
         return Result.success(userOrderResults);
-    }
-
-    public Result.JSONResultMap deleteOrderByOrderId(long orderId) {
-        if (this.removeById(orderId)) {
-            return Result.success("", "已删除");
-        }
-        return Result.fail();
     }
 
     public Result.JSONResultMap addOrder(int subId, int receiveAddressId, int countCommodity) {
@@ -55,5 +54,11 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
             return Result.success();
         }
         return Result.fail();
+    }
+
+    public Result.JSONResultMap findShopOrderByUid(Page<ShopOrderResult> page){
+        UserInfo userInfo=MySessionUtil.getCurrUser();
+        Shop shop=shopMapper.selectOne(new QueryWrapper<Shop>().eq("uid",userInfo.getUid()));
+        return Result.success(commodityOrderMapper.findShopOrderBySid(shop.getSid(),page));
     }
 }

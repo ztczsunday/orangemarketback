@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityOrderMapper">
-    <select id="findOrderDetailByOrderId" resultType="com.orangeSoft.market.pojo.OrderDetailResult">
+    <!--    <resultMap id="userOrderResultMap" type="com.orangeSoft.market.pojo.UserOrderResult">-->
+    <!--        &lt;!&ndash; 定义主键 ,非常重要。如果是多个字段,则定义多个id &ndash;&gt;-->
+    <!--        &lt;!&ndash; property：主键在pojo中的属性名 &ndash;&gt;-->
+    <!--        &lt;!&ndash; column：主键在数据库中的列名 &ndash;&gt;-->
+    <!--        <id property="orderId" column="order_id"/>-->
+    <!--        &lt;!&ndash; 定义普通属性 &ndash;&gt;-->
+    <!--        <result property="shopName" column="shop_name"/>-->
+    <!--        <result property="commodityName" column="commodity_name"/>-->
+    <!--        <result property="subName" column="sub_name"/>-->
+    <!--        <result property="price" column="price"/>-->
+    <!--        <result property="countCommodity" column="count_commodity"/>-->
+    <!--        <result property="itemName" column="item_name"/>-->
+    <!--        <result property="subIcon" column="sub_icon"/>-->
+    <!--    </resultMap>-->
+    <select id="findOrderDetailByOrderId" resultType="com.orangeSoft.market.pojo.UserOrderDetailResult">
         select commodity_order.order_id,
                shop_name,
                commodity_name,
@@ -46,5 +60,26 @@
         from sub_commodity
                  inner join commodity co on sub_commodity.cid = co.cid
         where sub_id = #{subId}
+    </select>
+    <select id="findShopOrderBySid" resultType="com.orangeSoft.market.pojo.ShopOrderResult">
+        select commodity_order.order_id,
+               user_name,
+               commodity_name,
+               sub_name,
+               price,
+               count_commodity,
+               address_details,
+               dd.item_name,
+               sub_icon
+        from commodity_order
+                 inner join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
+                 inner join shop s on commodity_order.sid = s.sid
+                 inner join sub_commodity sc on commodity_order.sub_id = sc.sub_id
+                 inner join order_stateflow os on commodity_order.order_id = os.order_id
+                 inner join data_dictionary dd on os.record_id = dd.record_id
+                 inner join commodity c on s.sid = c.sid
+                 inner join user_info ui on commodity_order.uid = ui.uid
+        where commodity_order.sid = #{sid}
+        order by order_id DESC
     </select>
 </mapper>

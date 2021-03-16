@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode
-public class OrderDetailResult {
+public class UserOrderDetailResult {
     private int orderId;
     private String shopName;
     private String commodityName;
