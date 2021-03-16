@@ -29,5 +29,5 @@ public interface ICommodityService extends IService<Commodity> {
      * @param label 商品标签
      * @return 分页的商品列表
      */
-    IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label);
+    IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label, Double minValue, Double maxValue);
 }

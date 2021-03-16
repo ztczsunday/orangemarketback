@@ -28,7 +28,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         return commodityMapper.selectPage(page, wrapper);
     }
 
-    public IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label) {
-        return commodityMapper.findByLabel(page, label);
+    public IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label, Double minValue, Double maxValue) {
+        return commodityMapper.findByLabel(page, label, minValue, maxValue);
     }
 }

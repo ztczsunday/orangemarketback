@@ -30,7 +30,9 @@ public class CommodityController {
     public Result.JSONResultMap findCommodityByLabel
             (String label,
              @RequestParam(value = "page", defaultValue = "1") int pages,
-             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        return Result.success(commodityService.findCommodityByLabel(new Page<>(pages, pageSize), label));
+             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+             @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
+             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue) {
+        return Result.success(commodityService.findCommodityByLabel(new Page<>(pages, pageSize), label, minValue, maxValue));
     }
 }
