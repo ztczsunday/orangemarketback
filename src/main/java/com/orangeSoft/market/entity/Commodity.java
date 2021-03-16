@@ -30,4 +30,10 @@ public class Commodity implements Serializable {
     private Boolean commodityStatus;
 
     private String mainIcon;
+
+    private Integer commentCount;
+
+    private Integer praiseCommentCount;
+
+
 }

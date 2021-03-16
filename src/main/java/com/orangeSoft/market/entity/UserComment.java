@@ -28,9 +28,9 @@ public class UserComment implements Serializable {
 
     private Boolean praise;
 
-    private Long subComment;
-
     private LocalDateTime commentTime;
+
+    private String commentDetails;
 
 
 }
