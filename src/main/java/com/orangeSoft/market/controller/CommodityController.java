@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.CommodityServiceImpl;
 import com.orangeSoft.market.service.impl.FavoritesCommodityServiceImpl;
+import com.orangeSoft.market.service.impl.SubCommentsServiceImpl;
 import com.orangeSoft.market.service.impl.UserCommentServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class CommodityController {
     FavoritesCommodityServiceImpl favoritesCommodityService;
     @Autowired
     UserCommentServiceImpl userCommentService;
+    @Autowired
+    SubCommentsServiceImpl subCommentsService;
 
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
@@ -60,5 +63,11 @@ public class CommodityController {
     @GetMapping(value = "/commodity/comment", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getAllCommentsByCid(@RequestParam(value = "cid") Long cid) {
         return userCommentService.getAllCommentsByCid(cid);
+    }
+
+    @ApiOperation(value = "查找评论下所有子评论")
+    @GetMapping(value = "/commodity/comment/subComments", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getSubComments(@RequestParam(value = "commentId") Long commentId) {
+        return subCommentsService.getSubComments(commentId);
     }
 }

@@ -30,4 +30,8 @@ public class UserCommentResult {
     private String commentDetails;
 
     private Long cid;
+
+    private String userSelfie;
+
+    private String userName;
 }

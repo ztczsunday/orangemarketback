@@ -37,6 +37,6 @@ public class UserCommentServiceImpl extends ServiceImpl<UserCommentMapper, UserC
 
     @Override
     public Result.JSONResultMap getAllCommentsByCid(Long cid) {
-        return Result.success(this.query().eq("cid", cid).list());
+        return Result.success(this.baseMapper.findAllCommentsByCid(cid));
     }
 }

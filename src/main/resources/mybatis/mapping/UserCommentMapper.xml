@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.UserCommentMapper">
 
+    <select id="findAllCommentsByCid" resultType="com.orangeSoft.market.pojo.UserCommentResult">
+        select *
+        from (select uc.*, ui.user_name, ui.user_selfie
+              from user_comment uc
+                       inner join user_info ui on uc.uid = ui.uid
+              where uc.cid = #{cid}
+              order by uc.comment_id desc)
+                 as tmp
+    </select>
 </mapper>

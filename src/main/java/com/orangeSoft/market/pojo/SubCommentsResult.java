@@ -27,4 +27,8 @@ public class SubCommentsResult {
     private Long commentId;
 
     private Integer uid;
+
+    private String userSelfie;
+
+    private String userName;
 }

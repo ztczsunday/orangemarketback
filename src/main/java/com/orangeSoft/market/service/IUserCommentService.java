@@ -30,7 +30,7 @@ public interface IUserCommentService extends IService<UserComment> {
     Result.JSONResultMap getMyAllComments();
 
     /**
-     * 根据商品id查找其所有评论，不包括子评论
+     * 根据商品id查找其所有评论，包括评论人用户名以及头像，不包括子评论
      *
      * @param cid 目标商品
      * @return 结果
