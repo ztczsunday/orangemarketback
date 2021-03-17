@@ -8,6 +8,7 @@ import com.orangeSoft.market.entity.ReceiveAddress;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.ReceiveAddressMapper;
 import com.orangeSoft.market.service.IReceiveAddressService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,9 @@ import java.util.List;
 @Service
 public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper, ReceiveAddress> implements IReceiveAddressService {
 
+    @Autowired
+    ReceiveAddressMapper receiveAddressMapper;
+
     @Override
     public Result.JSONResultMap findAddressByUid() {
         UserInfo userInfo = MySessionUtil.getCurrUser();
@@ -34,6 +38,13 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
 
     @Override
     public Result.JSONResultMap insertNewAddress(ReceiveAddress newReceiveAddress) {
+        UserInfo userInfo=MySessionUtil.getCurrUser();
+        newReceiveAddress.setUid(userInfo.getUid());
+        QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
+        wrapper.eq("uid",userInfo.getUid()).eq("is_default",true);
+        if (receiveAddressMapper.selectCount(wrapper)==0){
+            newReceiveAddress.setIsDefault(true);
+        }
         if (this.save(newReceiveAddress)) {
             return Result.success("", "已新建地址");
         }
@@ -42,7 +53,15 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
 
     @Override
     public Result.JSONResultMap updateReceiveAddress(ReceiveAddress updatedReceiveAddress) {
+        updatedReceiveAddress.setUid(MySessionUtil.getCurrUser().getUid());
         QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
+        if (updatedReceiveAddress.getIsDefault()){
+            wrapper.eq("is_default",true);
+            ReceiveAddress oldDefaultAddress=this.getOne(wrapper);
+            oldDefaultAddress.setIsDefault(false);
+            this.updateById(oldDefaultAddress);
+        }
+        wrapper.clear();
         wrapper.eq("receive_address_id", updatedReceiveAddress.getReceiveAddressId());
         if (this.update(updatedReceiveAddress, wrapper)) {
             return Result.success("", "已更新");
