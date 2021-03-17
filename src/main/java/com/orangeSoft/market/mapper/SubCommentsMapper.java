@@ -5,6 +5,8 @@ import com.orangeSoft.market.entity.SubComments;
 import com.orangeSoft.market.pojo.SubCommentsResult;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <p>
  * Mapper 接口
@@ -14,6 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SubCommentsMapper extends BaseMapper<SubComments> {
-    SubCommentsResult findSubComments(Long commentId);
+    List<SubCommentsResult> findSubComments(Long commentId);
 
 }

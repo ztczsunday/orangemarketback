@@ -59,10 +59,13 @@ public class CommodityController {
         return favoritesCommodityService.addFavoritesCommodity(cid);
     }
 
-    @ApiOperation(value = "根据商品id查找其所有评论", notes = "不包括子评论")
+    @ApiOperation(value = "根据商品id分页查找其所有评论", notes = "不包括子评论")
     @GetMapping(value = "/commodity/comment", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap getAllCommentsByCid(@RequestParam(value = "cid") Long cid) {
-        return userCommentService.getAllCommentsByCid(cid);
+    public Result.JSONResultMap getAllCommentsByCid(
+            @RequestParam(value = "cid") Long cid,
+            @RequestParam(value = "page", defaultValue = "1") int pages,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        return userCommentService.getAllCommentsByCid(new Page<>(pages, pageSize), cid);
     }
 
     @ApiOperation(value = "查找评论下所有子评论")

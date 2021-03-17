@@ -1,6 +1,7 @@
 package com.orangeSoft.market.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.orangeSoft.market.entity.UserComment;
 import com.orangeSoft.market.pojo.UserCommentResult;
 import org.springframework.stereotype.Repository;
@@ -14,5 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserCommentMapper extends BaseMapper<UserComment> {
-    UserCommentResult findAllCommentsByCid(Long cid);
+    IPage<UserCommentResult> findAllCommentsByCid(IPage<UserCommentResult> userCommentIPage, Long cid);
 }
