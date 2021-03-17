@@ -40,5 +40,6 @@ public class SubCommodity implements Serializable {
 
     private Double price;
 
+    private Boolean subCommodityStatus;
 
 }

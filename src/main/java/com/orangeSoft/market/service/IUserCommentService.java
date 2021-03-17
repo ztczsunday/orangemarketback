@@ -1,6 +1,7 @@
 package com.orangeSoft.market.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.orangeSoft.market.entity.SubComments;
 import com.orangeSoft.market.entity.UserComment;
 
 /**

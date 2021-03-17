@@ -16,4 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubCommentsServiceImpl extends ServiceImpl<SubCommentsMapper, SubComments> implements ISubCommentsService {
 
+    @Override
+    public Boolean subEvaluation(SubComments subComments) {
+        return this.save(subComments.setIsDeleted(false).setSubCommentTime(null));
+    }
 }

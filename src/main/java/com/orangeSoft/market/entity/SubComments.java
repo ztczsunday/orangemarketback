@@ -33,9 +33,8 @@ public class SubComments implements Serializable {
 
     private LocalDateTime subCommentTime;
 
-    private Integer isDeleted;
+    private Boolean isDeleted;
 
     private Long commentId;
 
-    private Boolean subCommodityStatus;
 }
