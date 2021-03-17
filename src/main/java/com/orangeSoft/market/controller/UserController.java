@@ -55,4 +55,10 @@ public class UserController {
     public Result.JSONResultMap subEvaluation(@RequestBody SubComments subComments) {
         return Result.success(subCommentsService.subEvaluation(subComments));
     }
+
+    @ApiOperation(value = "查看当前用户所有评论", notes = "不包括回复别人的子评论")
+    @PostMapping(value = "/user/myComments", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getMyAllComments() {
+        return userCommentService.getMyAllComments();
+    }
 }
