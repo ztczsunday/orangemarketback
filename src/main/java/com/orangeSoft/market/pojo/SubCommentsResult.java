@@ -1,9 +1,4 @@
-package com.orangeSoft.market.entity;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+package com.orangeSoft.market.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,22 +6,16 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-/**
- * <p>
- *
- * </p>
- * @since 2021-03-16
- */
+import java.time.LocalDateTime;
+
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class SubComments implements Serializable {
-
+public class SubCommentsResult {
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "sub_comment_id", type = IdType.AUTO)
     private Long subCommentId;
 
     private String subCommentDetails;
@@ -38,5 +27,4 @@ public class SubComments implements Serializable {
     private Long commentId;
 
     private Integer uid;
-
 }

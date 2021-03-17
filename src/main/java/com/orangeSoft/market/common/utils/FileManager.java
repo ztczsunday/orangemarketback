@@ -5,19 +5,16 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Date;
+import java.util.Objects;
 
 public class FileManager {
     private final static String MAINFILEPATH = "F:/OrangeSoft/NetSuperMarket/projectRepository";
 
-    public static String saveFile(MultipartFile file, String filePath) throws IOException {
-        File localFile = new File(MAINFILEPATH + filePath);
-        if (!localFile.exists()) {
-            localFile.mkdirs();
-        }
+    public static String saveFile(MultipartFile file) throws IOException {
         FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
-        String fileName = java.net.URLEncoder.encode(file.getOriginalFilename(), "utf-8");
-        String newFileName = new Date().getTime() + "." + fileName;
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath + File.separator + newFileName));
+        String fileName = java.net.URLEncoder.encode(Objects.requireNonNull(file.getOriginalFilename()), "utf-8");
+        String newFileName = new Date().getTime() + "." + fileName.replace("/","");
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(MAINFILEPATH + File.separator + newFileName));
         byte[] bs = new byte[1024];
         int len;
         while ((len = fileInputStream.read(bs)) != -1) {
@@ -34,7 +31,7 @@ public class FileManager {
             return Result.fail(null, "喔唷,找不到文件,可能是文件不存在");
         }
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileName.split("/")[2]);
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName.split("/")[1]);
         byte[] buff = new byte[1024];
         //创建缓冲输入流
         BufferedInputStream bis = null;
