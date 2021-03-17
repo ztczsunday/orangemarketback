@@ -66,6 +66,10 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
         result.put("isCollected", new FavoritesCommodityServiceImpl().isCollected(commodityId));
 
+        Shop shop = new ShopServiceImpl().getShopById(this.query().eq("cid", commodityId).one().getSid());
+        result.put("shopName", shop.getShopName());
+        result.put("shopDescription", shop.getShopDescription());
+
         return Result.success(result);
     }
 }

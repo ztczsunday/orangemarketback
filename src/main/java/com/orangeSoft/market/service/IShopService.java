@@ -11,5 +11,11 @@ import com.orangeSoft.market.entity.Shop;
  * @since 2021-03-13
  */
 public interface IShopService extends IService<Shop> {
-
+    /**
+     * 根据店铺id查询店铺
+     *
+     * @param sid 目标店铺
+     * @return 目标店铺
+     */
+    Shop getShopById(Integer sid);
 }
