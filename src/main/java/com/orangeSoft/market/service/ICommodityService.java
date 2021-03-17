@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
+import com.orangeSoft.market.pojo.CommoditySearchResult;
 
 /**
  * <p>
@@ -21,7 +22,7 @@ public interface ICommodityService extends IService<Commodity> {
      * @param keyword 关键词
      * @return 分页的商品列表
      */
-    IPage<Commodity> findCommodityByKey(Page<Commodity> page, String keyword);
+    IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue);
 
     /**
      * 根据标签对商品进行分页查询
@@ -30,7 +31,7 @@ public interface ICommodityService extends IService<Commodity> {
      * @param label 商品标签
      * @return 分页的商品列表
      */
-    IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label, Double minValue, Double maxValue);
+    IPage<CommoditySearchResult> findCommodityByLabel(Page<CommoditySearchResult> page, String label, Double minValue, Double maxValue);
 
     /**
      * 根据商品ID查找商品详情
