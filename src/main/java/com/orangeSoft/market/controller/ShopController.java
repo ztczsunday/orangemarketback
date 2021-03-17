@@ -35,4 +35,6 @@ public class ShopController {
                                               @RequestParam(value = "pageSize", defaultValue = "40") int pageSize) {
         return shopService.shopCommodity(new Page<>(pages,pageSize));
     }
+
+
 }
