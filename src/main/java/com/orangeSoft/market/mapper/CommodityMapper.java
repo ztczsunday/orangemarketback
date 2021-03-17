@@ -3,6 +3,7 @@ package com.orangeSoft.market.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.orangeSoft.market.entity.Commodity;
+import com.orangeSoft.market.pojo.CommoditySearchResult;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,5 +15,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CommodityMapper extends BaseMapper<Commodity> {
-    IPage<Commodity> findByLabel(IPage<Commodity> page, String label, Double minPrice, Double maxPrice);
+    IPage<CommoditySearchResult> findByLabel(IPage<CommoditySearchResult> page, String label, Double minValue, Double maxValue);
+    IPage<CommoditySearchResult> findByKey(IPage<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue);
 }

@@ -24,8 +24,10 @@ public class CommodityController {
     public Result.JSONResultMap findCommodityByKey
             (String keyword,
              @RequestParam(value = "page", defaultValue = "1") int pages,
-             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        return Result.success(commodityService.findCommodityByKey(new Page<>(pages, pageSize), keyword));
+             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+             @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
+             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue) {
+        return Result.success(commodityService.findCommodityByKey(new Page<>(pages, pageSize), keyword, minValue, maxValue));
     }
 
     @ApiOperation(value = "根据标签查询商品")

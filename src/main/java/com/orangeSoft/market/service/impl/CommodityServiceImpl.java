@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.*;
 import com.orangeSoft.market.mapper.*;
+import com.orangeSoft.market.pojo.CommoditySearchResult;
 import com.orangeSoft.market.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,14 +36,12 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private UserCommentMapper userCommentMapper;
 
     @Override
-    public IPage<Commodity> findCommodityByKey(Page<Commodity> page, String keyword) {
-        QueryWrapper<Commodity> wrapper = new QueryWrapper<>();
-        wrapper.like("commodity_name", keyword);
-        return commodityMapper.selectPage(page, wrapper);
+    public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue) {
+        return commodityMapper.findByKey(page, keyword, minValue, maxValue);
     }
 
     @Override
-    public IPage<Commodity> findCommodityByLabel(Page<Commodity> page, String label, Double minValue, Double maxValue) {
+    public IPage<CommoditySearchResult> findCommodityByLabel(Page<CommoditySearchResult> page, String label, Double minValue, Double maxValue) {
         return commodityMapper.findByLabel(page, label, minValue, maxValue);
     }
 
