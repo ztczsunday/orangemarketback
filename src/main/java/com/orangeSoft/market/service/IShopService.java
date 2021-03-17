@@ -1,6 +1,9 @@
 package com.orangeSoft.market.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.orangeSoft.market.common.utils.Result;
+import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.Shop;
 
 /**
@@ -11,11 +14,22 @@ import com.orangeSoft.market.entity.Shop;
  * @since 2021-03-13
  */
 public interface IShopService extends IService<Shop> {
+
     /**
-     * 根据店铺id查询店铺
-     *
-     * @param sid 目标店铺
-     * @return 目标店铺
+     * @param newShop 注册商店的基本信息
+     * @return 是否创建成功
      */
-    Shop getShopById(Integer sid);
+    Result.JSONResultMap registerShop(Shop newShop);
+
+    /**
+     * @param newShop 商店更新信息
+     * @return 是否更新成功
+     */
+    Result.JSONResultMap updateShop(Shop newShop);
+
+    /**
+     * @param page 商店界面分页
+     * @return 商店商品基本信息
+     */
+    Result.JSONResultMap shopCommodity(Page<Commodity> page);
 }

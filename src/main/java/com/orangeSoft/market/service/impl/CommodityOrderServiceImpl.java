@@ -6,13 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
-import com.orangeSoft.market.entity.CommodityOrder;
-import com.orangeSoft.market.entity.OrderStateflow;
-import com.orangeSoft.market.entity.Shop;
-import com.orangeSoft.market.entity.UserInfo;
-import com.orangeSoft.market.mapper.CommodityOrderMapper;
-import com.orangeSoft.market.mapper.OrderStateflowMapper;
-import com.orangeSoft.market.mapper.ShopMapper;
+import com.orangeSoft.market.entity.*;
+import com.orangeSoft.market.mapper.*;
 import com.orangeSoft.market.pojo.ShopOrderResult;
 import com.orangeSoft.market.pojo.UserOrderDetailResult;
 import com.orangeSoft.market.pojo.UserOrderResult;
@@ -39,6 +34,8 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
     OrderStateflowMapper orderStateflowMapper;
     @Autowired
     ShopMapper shopMapper;
+    @Autowired
+    SubCommodityMapper subCommodityMapper;
 
     @Override
     public Result.JSONResultMap findOrderDetailByOrderId(long orderId) {
@@ -65,6 +62,8 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         commodityOrder.setCountCommodity(countCommodity);
         commodityOrder.setReceiveAddressId(receiveAddressId);
         commodityOrder.setSubId(subId);
+        SubCommodity subCommodity=subCommodityMapper.selectById(subId);
+        subCommodity.setStock(subCommodity.getStock()-countCommodity);
         commodityOrder.setSid(commodityOrderMapper.findSidBySubId(subId));
         commodityOrder.setUid(MySessionUtil.getCurrUser().getUid());
         if (this.save(commodityOrder)) {
