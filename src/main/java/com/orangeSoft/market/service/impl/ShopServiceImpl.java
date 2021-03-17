@@ -64,4 +64,8 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         return Result.success(commodityMapper.selectPage(page,commodityQueryWrapper));
     }
 
+    @Override
+    public Shop getShopById(Integer sid) {
+        return this.query().eq("sid", sid).one();
+    }
 }

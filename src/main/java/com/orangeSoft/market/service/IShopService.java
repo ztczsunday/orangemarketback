@@ -32,4 +32,11 @@ public interface IShopService extends IService<Shop> {
      * @return 商店商品基本信息
      */
     Result.JSONResultMap shopCommodity(Page<Commodity> page);
+    /**
+     * 根据店铺id查询店铺
+     *
+     * @param sid 目标店铺
+     * @return 目标店铺
+     */
+    Shop getShopById(Integer sid);
 }
