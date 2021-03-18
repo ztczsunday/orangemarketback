@@ -11,9 +11,9 @@
         inner join data_dictionary dd on cl.record_id = dd.record_id
         where dd.item_name = #{label}
         and c.commodity_status = 1
-        <if test="minValue != null">and sc.price &gt;= #{minValue}</if>
-        <if test="maxValue != null">and sc.price &lt;= #{maxValue}</if>
-        order by sc.price, <if test="orderColumn != null">, ${orderColumn}</if>
+        <if test="minValue != null">and sc.price &lt;= #{minValue}</if>
+        <if test="maxValue != null">and sc.price &gt;= #{maxValue}</if>
+        order by sc.price<if test="orderColumn != null">, ${orderColumn}</if>
         ) as tmp
         group by cid
     </select>
@@ -28,9 +28,9 @@
         inner join data_dictionary dd on cl.record_id = dd.record_id
         where c.commodity_name like #{keyword}
         and c.commodity_status = 1
-        <if test="minValue != null">and sc.price &gt;= #{minValue}</if>
-        <if test="maxValue != null">and sc.price &lt;= #{maxValue}</if>
-        order by sc.price, <if test="orderColumn != null">, ${orderColumn}</if>
+        <if test="minValue != null">and sc.price &lt;= #{minValue}</if>
+        <if test="maxValue != null">and sc.price &gt;= #{maxValue}</if>
+        order by sc.price<if test="orderColumn != null">, ${orderColumn}</if>
         ) as tmp
         group by cid
     </select>
