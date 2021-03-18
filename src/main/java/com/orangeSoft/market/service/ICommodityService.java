@@ -45,12 +45,17 @@ public interface ICommodityService extends IService<Commodity> {
     /**
      * 查询店铺所有商品，按出售中以及已下架分开，同时包含最低价格
      *
-     * @param sid 店铺ID
+     * @param sid  店铺ID
      * @param page 分页器
      * @return 结果
      */
     Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid);
 
+    /**
+     * 首页推荐商品
+     *
+     * @return 推荐商品列表
+     */
     Result.JSONResultMap recommendCommodities();
 
     Result.JSONResultMap newCommodity(NewCommodityData newCommodityData);
