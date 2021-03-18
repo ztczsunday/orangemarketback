@@ -32,8 +32,9 @@ public class CommodityController {
              @RequestParam(value = "page", defaultValue = "1") int pages,
              @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
              @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
-             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue) {
-        return Result.success(commodityService.findCommodityByKey(new Page<>(pages, pageSize), keyword, minValue, maxValue));
+             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue,
+             @RequestParam(value = "orderColumn", defaultValue = "null") String orderColumn) {
+        return Result.success(commodityService.findCommodityByKey(new Page<>(pages, pageSize), keyword, minValue, maxValue, orderColumn));
     }
 
     @ApiOperation(value = "根据标签查询商品")
@@ -43,8 +44,9 @@ public class CommodityController {
              @RequestParam(value = "page", defaultValue = "1") int pages,
              @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
              @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
-             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue) {
-        return Result.success(commodityService.findCommodityByLabel(new Page<>(pages, pageSize), label, minValue, maxValue));
+             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue,
+             @RequestParam(value = "orderColumn", defaultValue = "null") String orderColumn) {
+        return Result.success(commodityService.findCommodityByLabel(new Page<>(pages, pageSize), label, minValue, maxValue, orderColumn));
     }
 
     @ApiOperation(value = "根据id查找商品详细信息")

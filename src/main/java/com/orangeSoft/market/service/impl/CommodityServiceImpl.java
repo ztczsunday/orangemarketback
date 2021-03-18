@@ -36,13 +36,27 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private UserCommentMapper userCommentMapper;
 
     @Override
-    public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue) {
-        return commodityMapper.findByKey(page, keyword, minValue, maxValue);
+    public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
+        if ("time".equals(orderColumn)) {
+            orderColumn = "c.cid";
+        } else if ("comment".equals(orderColumn)) {
+            orderColumn = "(c.praise_count / c.comment_count)";
+        } else {
+            orderColumn = null;
+        }
+        return commodityMapper.findByKey(page, keyword, minValue, maxValue, orderColumn);
     }
 
     @Override
-    public IPage<CommoditySearchResult> findCommodityByLabel(Page<CommoditySearchResult> page, String label, Double minValue, Double maxValue) {
-        return commodityMapper.findByLabel(page, label, minValue, maxValue);
+    public IPage<CommoditySearchResult> findCommodityByLabel(Page<CommoditySearchResult> page, String label, Double minValue, Double maxValue, String orderColumn) {
+        if ("time".equals(orderColumn)) {
+            orderColumn = "c.cid";
+        } else if ("comment".equals(orderColumn)) {
+            orderColumn = "(c.praise_count / c.comment_count)";
+        } else {
+            orderColumn = null;
+        }
+        return commodityMapper.findByLabel(page, label, minValue, maxValue, orderColumn);
     }
 
     @Override
