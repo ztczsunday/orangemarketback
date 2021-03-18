@@ -17,6 +17,7 @@
         ) as tmp
         group by cid
     </select>
+
     <select id="findByKey" resultType="com.orangeSoft.market.pojo.CommoditySearchResult">
         select *
         from (
@@ -31,6 +32,32 @@
         <if test="maxValue != null">and sc.price &lt;= #{maxValue}</if>
         order by sc.price
         ) as tmp
+        group by cid
+    </select>
+
+    <select id="findCommodityBySidOpen" resultType="com.orangeSoft.market.pojo.CommoditySearchResult">
+        select *
+        from (
+                 select c.*, sc.price "lowestPrice"
+                 from commodity c
+                          inner join sub_commodity sc on c.cid = sc.cid
+                 where c.sid = #{sid}
+                   and c.commodity_status = 1
+                 order by sc.price, c.comment_count desc
+             ) as tmp
+        group by cid
+    </select>
+
+    <select id="findCommodityBySidClose" resultType="com.orangeSoft.market.pojo.CommoditySearchResult">
+        select *
+        from (
+                 select c.*, sc.price "lowestPrice"
+                 from commodity c
+                          inner join sub_commodity sc on c.cid = sc.cid
+                 where c.sid = #{sid}
+                   and c.commodity_status = 0
+                 order by sc.price, c.comment_count desc
+             ) as tmp
         group by cid
     </select>
 </mapper>

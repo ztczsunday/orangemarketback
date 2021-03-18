@@ -40,4 +40,13 @@ public interface ICommodityService extends IService<Commodity> {
      * @return Result
      */
     Result.JSONResultMap getCommodityById(Long commodityId);
+
+    /**
+     * 查询店铺所有商品，按出售中以及已下架分开，同时包含最低价格
+     *
+     * @param sid 店铺ID
+     * @param page 分页器
+     * @return 结果
+     */
+    Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid);
 }

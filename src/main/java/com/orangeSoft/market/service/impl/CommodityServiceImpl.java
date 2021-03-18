@@ -72,4 +72,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
         return Result.success(result);
     }
+
+    @Override
+    public Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid) {
+        Map<String, IPage<CommoditySearchResult>> rs = new HashMap<>();
+        IPage<CommoditySearchResult> commodityOpen = this.baseMapper.findCommodityBySidOpen(page, sid);
+        IPage<CommoditySearchResult> commodityClose = this.baseMapper.findCommodityBySidClose(page, sid);
+        rs.put("commodityOpen", commodityOpen);
+        rs.put("commodityClose", commodityClose);
+        return Result.success(rs);
+    }
 }

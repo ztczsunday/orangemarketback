@@ -18,4 +18,8 @@ public interface CommodityMapper extends BaseMapper<Commodity> {
     IPage<CommoditySearchResult> findByLabel(IPage<CommoditySearchResult> page, String label, Double minValue, Double maxValue);
 
     IPage<CommoditySearchResult> findByKey(IPage<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue);
+
+    IPage<CommoditySearchResult> findCommodityBySidOpen(IPage<CommoditySearchResult> page, Integer sid);
+
+    IPage<CommoditySearchResult> findCommodityBySidClose(IPage<CommoditySearchResult> page, Integer sid);
 }
