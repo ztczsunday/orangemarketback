@@ -130,39 +130,36 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     }
 
     @Override
-    public Result.JSONResultMap newCommodity(NewCommodityData newCommodityData){
-        UserInfo userInfo= MySessionUtil.getCurrUser();
-        Commodity commodity=new Commodity();
-        CommodityPictures commodityPictures=new CommodityPictures();
-        CommodityDetails commodityDetails=new CommodityDetails();
-        QueryWrapper<Shop> shopQueryWrapper=new QueryWrapper<>();
-        Shop shop=shopMapper.selectOne(shopQueryWrapper.eq("uid",userInfo.getUid()));
+    public Result.JSONResultMap newCommodity(NewCommodityData newCommodityData) {
+        UserInfo userInfo = MySessionUtil.getCurrUser();
+        Commodity commodity = new Commodity();
+        CommodityPictures commodityPictures = new CommodityPictures();
+        CommodityDetails commodityDetails = new CommodityDetails();
+        QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
+        Shop shop = shopMapper.selectOne(shopQueryWrapper.eq("uid", userInfo.getUid()));
         commodity.setMainIcon(newCommodityData.getMainIcon());
         commodity.setCommodityName(newCommodityData.getCommodityName());
         commodity.setCommodityStatus(true);
         commodity.setSid(shop.getSid());
-        if (commodityMapper.insert(commodity)==1){
-            for(SubCommodity subCommodity:newCommodityData.getSubCommodity()){
-                if(subCommodityMapper.insert(subCommodity)==1){
-                }else {
+        if (commodityMapper.insert(commodity) == 1) {
+            for (SubCommodity subCommodity : newCommodityData.getSubCommodity()) {
+                subCommodity.setCid(commodity.getCid());
+                subCommodity.setSubCommodityStatus(true);
+                if (subCommodityMapper.insert(subCommodity) != 1) {
                     return Result.fail();
                 }
             }
-            for(String mainIcon:newCommodityData.getMainIcons()){
+            for (String mainIcon : newCommodityData.getMainIcons()) {
                 commodityPictures.setCid(commodity.getCid());
                 commodityPictures.setPictureUrl(mainIcon);
-                commodityPictures.setPid(null);
-                if (commodityPicturesMapper.insert(commodityPictures)==1){
-                }else {
+                if (commodityPicturesMapper.insert(commodityPictures) != 1) {
                     return Result.fail();
                 }
             }
-            for(String commodityDetail:newCommodityData.getCommodityDetails()){
+            for (String commodityDetail : newCommodityData.getCommodityDetails()) {
                 commodityDetails.setCid(commodity.getCid());
                 commodityDetails.setDetailsUrl(commodityDetail);
-                commodityDetails.setDetailsId(null);
-                if (commodityDetailsMapper.insert(commodityDetails)==1){
-                }else {
+                if (commodityDetailsMapper.insert(commodityDetails) != 1) {
                     return Result.fail();
                 }
             }
@@ -170,5 +167,4 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
         return Result.fail();
     }
-
 }

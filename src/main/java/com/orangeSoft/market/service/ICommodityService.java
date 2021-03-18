@@ -58,5 +58,11 @@ public interface ICommodityService extends IService<Commodity> {
      */
     Result.JSONResultMap recommendCommodities();
 
+    /**
+     * 新建商品
+     *
+     * @param newCommodityData 新建商品信息，包括轮播图，商品种类信息
+     * @return 是否添加完成
+     */
     Result.JSONResultMap newCommodity(NewCommodityData newCommodityData);
 }
