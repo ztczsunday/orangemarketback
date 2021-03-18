@@ -26,17 +26,17 @@ public class AlipayServiceImpl implements IAlipayService {
         // 获取初始化的AliPayClient
         AlipayClient alipayClient = new DefaultAlipayClient(
                 AlipayConfig.gatewayUrl,
-                AlipayConfig.app_id,
-                AlipayConfig.merchant_private_key,
+                AlipayConfig.appId,
+                AlipayConfig.merchantPrivateKey,
                 "json",
                 AlipayConfig.charset,
-                AlipayConfig.alipay_public_key,
-                AlipayConfig.sign_type);
+                AlipayConfig.alipayPublicKey,
+                AlipayConfig.signType);
         // 设置请求参数
         // PC端为AlipayTradePagePayRequest
         AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();
-        alipayRequest.setReturnUrl(AlipayConfig.return_url);
-        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+        alipayRequest.setReturnUrl(AlipayConfig.returnUrl);
+        alipayRequest.setNotifyUrl(AlipayConfig.notifyUrl);
         //商户订单号，商户网站订单系统中唯一订单号，必填
         String out_trade_no = String.valueOf(orderId);
         UserOrderDetailResult userOrderDetailResult = commodityOrderMapper.findOrderDetailByOrderId(orderId);
