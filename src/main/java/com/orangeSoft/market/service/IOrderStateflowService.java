@@ -19,4 +19,6 @@ public interface IOrderStateflowService extends IService<OrderStateflow> {
      * @return 添加指定订单状态
      */
     Result.JSONResultMap updateOrderStateflow(long orderId, long recordId);
+
+    Result.JSONResultMap updateOrderStateflow(long orderId, long recordId, int logisticsId);
 }

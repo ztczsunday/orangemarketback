@@ -34,8 +34,9 @@ public class OrderController {
     @PostMapping(value = "/order", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap addOrder(@RequestParam("subId") int subId,
                                          @RequestParam("countCommodity") int countCommodity,
-                                         @RequestParam("receiveAddressId") int receiveAddressId) {
-        return orderService.addOrder(subId, receiveAddressId, countCommodity);
+                                         @RequestParam("receiveAddressId") int receiveAddressId,
+                                         @RequestParam("orderLogisticsId") int orderLogisticsId) {
+        return orderService.addOrder(subId, receiveAddressId, countCommodity, orderLogisticsId);
     }
 
     @ApiOperation(value = "商家查看订单")

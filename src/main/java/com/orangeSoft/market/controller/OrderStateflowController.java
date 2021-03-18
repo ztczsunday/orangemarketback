@@ -20,4 +20,12 @@ public class OrderStateflowController {
                                             @RequestParam(value = "recordId") long recordId) {
         return orderStateflowService.updateOrderStateflow(orderId, recordId);
     }
+
+    @ApiOperation(value = "订单状态更改（发货）")
+    @PutMapping(value = "/orderLogistics", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap updateOrder(@RequestParam(value = "orderId") long orderId,
+                                            @RequestParam(value = "recordId") long recordId,
+                                            @RequestParam(value = "logisticsId") int logisticsId) {
+        return orderStateflowService.updateOrderStateflow(orderId, recordId, logisticsId);
+    }
 }

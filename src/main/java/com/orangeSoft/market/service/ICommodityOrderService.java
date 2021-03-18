@@ -32,9 +32,10 @@ public interface ICommodityOrderService extends IService<CommodityOrder> {
      * @param subId            商品种类ID
      * @param receiveAddressId 收货地址ID
      * @param countCommodity   购买总数
+     * @param orderLogisticsId 选择物流ID
      * @return 订单是否创建成功
      */
-    Result.JSONResultMap addOrder(int subId, int receiveAddressId, int countCommodity);
+    Result.JSONResultMap addOrder(int subId, int receiveAddressId, int countCommodity, int orderLogisticsId);
 
     /**
      * @param page 用户订单分页

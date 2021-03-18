@@ -2,6 +2,7 @@ package com.orangeSoft.market.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.Result;
+import com.orangeSoft.market.entity.OrderLogistics;
 import com.orangeSoft.market.entity.OrderStateflow;
 import com.orangeSoft.market.mapper.OrderStateflowMapper;
 import com.orangeSoft.market.service.IOrderStateflowService;
@@ -26,6 +27,17 @@ public class OrderStateflowServiceImpl extends ServiceImpl<OrderStateflowMapper,
         orderStateflow.setRecordId(recordId);
         orderStateflow.setStatusDate(LocalDateTime.now());
         if (this.save(orderStateflow)) {
+            return Result.success();
+        }
+        return Result.fail();
+    }
+
+    @Override
+    public Result.JSONResultMap updateOrderStateflow(long orderId, long recordId, int logisticsId){
+        OrderLogistics orderLogistics = new OrderLogistics();
+        orderLogistics.setLogisticsId(logisticsId);
+        orderLogistics.setOrderId(orderId);
+        if((new OrderLogisticsServiceImpl().save(orderLogistics))&&(boolean)updateOrderStateflow(orderId,recordId).get("success")){
             return Result.success();
         }
         return Result.fail();
