@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.*;
 import com.orangeSoft.market.mapper.*;
@@ -12,8 +13,11 @@ import com.orangeSoft.market.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -95,5 +99,30 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         rs.put("commodityOpen", commodityOpen);
         rs.put("commodityClose", commodityClose);
         return Result.success(rs);
+    }
+
+    @Override
+    public Result.JSONResultMap recommendCommodities() {
+        List<Commodity> footprints = this.query()
+                .eq("uid", MySessionUtil.getCurrUser().getUid())
+                .orderByDesc("last_browser_date")
+                .last("limit 3")
+                .list();
+        //没有历史浏览记录则直接找10个好评率最高的商品
+        if (footprints.size() == 0) {
+            return Result.success(this.baseMapper.findNewRecommends());
+        }
+        List<Commodity> recommends = new ArrayList<>();
+        List<List<CommodityLabel>> commodityLabels = footprints.stream()
+                .map(item -> new CommodityLabelServiceImpl().getLabelsByCid(item.getCid()))
+                .collect(Collectors.toList());
+        //循环遍历找到的所有历史商品，从其所有标签中随机选取1个搜索好评率最高的10个商品，再从其中随机选取一个
+        for (int i = 0; i < 10; i++) {
+            int index = (int) (Math.random() * commodityLabels.size());
+            recommends.add(this.baseMapper
+                    .findRecommends(commodityLabels.get(i % footprints.size()).get(index).getCid())
+                    .get((int) (Math.random() * 10)));
+        }
+        return Result.success(recommends);
     }
 }

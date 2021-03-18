@@ -6,6 +6,8 @@ import com.orangeSoft.market.mapper.CommodityLabelMapper;
 import com.orangeSoft.market.service.ICommodityLabelService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 服务实现类
@@ -16,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommodityLabelServiceImpl extends ServiceImpl<CommodityLabelMapper, CommodityLabel> implements ICommodityLabelService {
 
+    @Override
+    public List<CommodityLabel> getLabelsByCid(Long cid) {
+        return this.query().eq("cid", cid).list();
+    }
 }

@@ -49,4 +49,6 @@ public interface ICommodityService extends IService<Commodity> {
      * @return 结果
      */
     Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid);
+
+    Result.JSONResultMap recommendCommodities();
 }

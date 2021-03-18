@@ -6,6 +6,8 @@ import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.pojo.CommoditySearchResult;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <p>
  * Mapper 接口
@@ -22,4 +24,8 @@ public interface CommodityMapper extends BaseMapper<Commodity> {
     IPage<CommoditySearchResult> findCommodityBySidOpen(IPage<CommoditySearchResult> page, Integer sid);
 
     IPage<CommoditySearchResult> findCommodityBySidClose(IPage<CommoditySearchResult> page, Integer sid);
+
+    List<Commodity> findRecommends(Long recordId);
+
+    List<Commodity> findNewRecommends();
 }
