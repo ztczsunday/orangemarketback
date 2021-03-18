@@ -52,7 +52,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         if ("time".equals(orderColumn)) {
             orderColumn = "c.cid desc";
         } else if ("comment".equals(orderColumn)) {
-            orderColumn = "(c.praise_count / c.comment_count)";
+            orderColumn = "(c.praise_count / c.comment_count) desc";
         } else {
             orderColumn = null;
         }
