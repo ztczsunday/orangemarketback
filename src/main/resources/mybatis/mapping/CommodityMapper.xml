@@ -13,7 +13,8 @@
         and c.commodity_status = 1
         <if test="minValue != null">and sc.price &lt;= #{minValue}</if>
         <if test="maxValue != null">and sc.price &gt;= #{maxValue}</if>
-        order by sc.price<if test="orderColumn != null">, ${orderColumn}</if>
+        order by sc.price
+        <if test="orderColumn != null">, ${orderColumn}</if>
         ) as tmp
         group by cid
     </select>
@@ -30,7 +31,8 @@
         and c.commodity_status = 1
         <if test="minValue != null">and sc.price &lt;= #{minValue}</if>
         <if test="maxValue != null">and sc.price &gt;= #{maxValue}</if>
-        order by sc.price<if test="orderColumn != null">, ${orderColumn}</if>
+        order by sc.price
+        <if test="orderColumn != null">, ${orderColumn}</if>
         ) as tmp
         group by cid
     </select>
