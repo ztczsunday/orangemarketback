@@ -38,7 +38,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
         if ("time".equals(orderColumn)) {
-            orderColumn = "c.cid";
+            orderColumn = "c.cid desc";
         } else if ("comment".equals(orderColumn)) {
             orderColumn = "(c.praise_count / c.comment_count)";
         } else {
@@ -50,7 +50,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     @Override
     public IPage<CommoditySearchResult> findCommodityByLabel(Page<CommoditySearchResult> page, String label, Double minValue, Double maxValue, String orderColumn) {
         if ("time".equals(orderColumn)) {
-            orderColumn = "c.cid";
+            orderColumn = "c.cid desc";
         } else if ("comment".equals(orderColumn)) {
             orderColumn = "(c.praise_count / c.comment_count)";
         } else {
