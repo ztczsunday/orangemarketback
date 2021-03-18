@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.pojo.CommoditySearchResult;
+import com.orangeSoft.market.pojo.NewCommodityData;
 
 /**
  * <p>
@@ -51,4 +52,6 @@ public interface ICommodityService extends IService<Commodity> {
     Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid);
 
     Result.JSONResultMap recommendCommodities();
+
+    Result.JSONResultMap newCommodity(NewCommodityData newCommodityData);
 }

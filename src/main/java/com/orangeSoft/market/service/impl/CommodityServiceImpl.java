@@ -9,6 +9,7 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.*;
 import com.orangeSoft.market.mapper.*;
 import com.orangeSoft.market.pojo.CommoditySearchResult;
+import com.orangeSoft.market.pojo.NewCommodityData;
 import com.orangeSoft.market.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private SubCommodityMapper subCommodityMapper;
     @Autowired
     private UserCommentMapper userCommentMapper;
+    @Autowired
+    private ShopMapper shopMapper;
 
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
@@ -125,4 +128,47 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
         return Result.success(recommends);
     }
+
+    @Override
+    public Result.JSONResultMap newCommodity(NewCommodityData newCommodityData){
+        UserInfo userInfo= MySessionUtil.getCurrUser();
+        Commodity commodity=new Commodity();
+        CommodityPictures commodityPictures=new CommodityPictures();
+        CommodityDetails commodityDetails=new CommodityDetails();
+        QueryWrapper<Shop> shopQueryWrapper=new QueryWrapper<>();
+        Shop shop=shopMapper.selectOne(shopQueryWrapper.eq("uid",userInfo.getUid()));
+        commodity.setMainIcon(newCommodityData.getMainIcon());
+        commodity.setCommodityName(newCommodityData.getCommodityName());
+        commodity.setCommodityStatus(true);
+        commodity.setSid(shop.getSid());
+        if (commodityMapper.insert(commodity)==1){
+            for(SubCommodity subCommodity:newCommodityData.getSubCommodity()){
+                if(subCommodityMapper.insert(subCommodity)==1){
+                }else {
+                    return Result.fail();
+                }
+            }
+            for(String mainIcon:newCommodityData.getMainIcons()){
+                commodityPictures.setCid(commodity.getCid());
+                commodityPictures.setPictureUrl(mainIcon);
+                commodityPictures.setPid(null);
+                if (commodityPicturesMapper.insert(commodityPictures)==1){
+                }else {
+                    return Result.fail();
+                }
+            }
+            for(String commodityDetail:newCommodityData.getCommodityDetails()){
+                commodityDetails.setCid(commodity.getCid());
+                commodityDetails.setDetailsUrl(commodityDetail);
+                commodityDetails.setDetailsId(null);
+                if (commodityDetailsMapper.insert(commodityDetails)==1){
+                }else {
+                    return Result.fail();
+                }
+            }
+            return Result.success();
+        }
+        return Result.fail();
+    }
+
 }
