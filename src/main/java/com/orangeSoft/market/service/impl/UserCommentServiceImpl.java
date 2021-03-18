@@ -1,9 +1,12 @@
 package com.orangeSoft.market.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
+import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.UserComment;
 import com.orangeSoft.market.mapper.UserCommentMapper;
+import com.orangeSoft.market.pojo.UserCommentResult;
 import com.orangeSoft.market.service.IUserCommentService;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +28,17 @@ public class UserCommentServiceImpl extends ServiceImpl<UserCommentMapper, UserC
                         .setCid(cid)
                         .setCommentDetails(commentDetails)
                         .setPraise(praise));
+    }
+
+    @Override
+    public Result.JSONResultMap getMyAllComments() {
+        return Result.success(this.query()
+                .eq("uid", MySessionUtil.getCurrUser().getUid())
+                .orderByDesc("comment_id").list());
+    }
+
+    @Override
+    public Result.JSONResultMap getAllCommentsByCid(IPage<UserCommentResult> userCommentIPage, Long cid) {
+        return Result.success(this.baseMapper.findAllCommentsByCid(userCommentIPage, cid));
     }
 }

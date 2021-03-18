@@ -4,9 +4,16 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.101.116:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.101.29:3306/orangesoft?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: orangesoft
     password: orangesoft
+
+  thymeleaf:
+    cache: false # 禁用 thymeleaf 缓存
+  servlet:
+    multipart:
+      max-file-size: 10485760  # 上传文件最大为 10M
+      max-request-size: 10485760 # 上传请求最大为 10M（默认值10M)
 
 mybatis-plus:
   type-aliases-package: com.orangeSoft.market.entity

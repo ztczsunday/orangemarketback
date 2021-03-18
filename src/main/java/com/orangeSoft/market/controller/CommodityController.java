@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.CommodityServiceImpl;
 import com.orangeSoft.market.service.impl.FavoritesCommodityServiceImpl;
+import com.orangeSoft.market.service.impl.SubCommentsServiceImpl;
+import com.orangeSoft.market.service.impl.UserCommentServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,10 @@ public class CommodityController {
     CommodityServiceImpl commodityService;
     @Autowired
     FavoritesCommodityServiceImpl favoritesCommodityService;
+    @Autowired
+    UserCommentServiceImpl userCommentService;
+    @Autowired
+    SubCommentsServiceImpl subCommentsService;
 
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
@@ -51,5 +57,20 @@ public class CommodityController {
     @PostMapping(value = "/commodity/collection", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap collectCommodity(@RequestParam(value = "cid") Long cid) {
         return favoritesCommodityService.addFavoritesCommodity(cid);
+    }
+
+    @ApiOperation(value = "根据商品id分页查找其所有评论", notes = "不包括子评论")
+    @GetMapping(value = "/commodity/comment", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getAllCommentsByCid(
+            @RequestParam(value = "cid") Long cid,
+            @RequestParam(value = "page", defaultValue = "1") int pages,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        return userCommentService.getAllCommentsByCid(new Page<>(pages, pageSize), cid);
+    }
+
+    @ApiOperation(value = "查找评论下所有子评论")
+    @GetMapping(value = "/commodity/comment/subComments", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getSubComments(@RequestParam(value = "commentId") Long commentId) {
+        return subCommentsService.getSubComments(commentId);
     }
 }
