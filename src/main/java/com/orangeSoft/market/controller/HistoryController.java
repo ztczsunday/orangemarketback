@@ -14,7 +14,7 @@ public class HistoryController {
 
     @ApiOperation(value = "查询历史记录")
     @GetMapping(value = "/histories", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap GetHistories(
+    public Result.JSONResultMap getHistories(
             @RequestParam(value = "page", defaultValue = "1") int pages,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         return Result.success(footprintService.findFootPrintByUid(new Page<>(pages, pageSize)));
