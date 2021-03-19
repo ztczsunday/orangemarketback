@@ -11,24 +11,28 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 @RestController
 public class FileController {
 
     @ApiOperation(value = "下载文件", notes = "fileName对应数据库存储的")
-    @GetMapping(value = "/download")
+    @GetMapping(value = "/download", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap downloadFile(@RequestParam("fileName") String fileName, HttpServletResponse response) {
-        return FileManager.getFile(fileName, response);
+        if (!new File(FileManager.MAINFILEPATH + fileName).exists()) {
+            return Result.fail(null, "喔唷,找不到文件,可能是文件不存在");
+        }
+        FileManager.getFile(fileName, response);
+        return Result.success();
     }
 
     @ApiOperation(value = "上传文件", notes = "文件不能为空，文件名不能为空和包含'/'")
-    @PostMapping(value = "/upload")
+    @PostMapping(value = "/upload", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
-        if (file.isEmpty() || StringUtils.isBlank(file.getName())){
+        if (file.isEmpty() || StringUtils.isBlank(file.getName())) {
             return Result.fail("文件为空");
         }
-        FileManager.saveFile(file);
-        return Result.success();
+        return Result.success(FileManager.saveFile(file));
     }
 }

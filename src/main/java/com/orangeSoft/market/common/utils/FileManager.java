@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class FileManager {
-    private final static String MAINFILEPATH = "F:/OrangeSoft/NetSuperMarket/projectRepository/";
+    public final static String MAINFILEPATH = "F:/OrangeSoft/NetSuperMarket/projectRepository/";
 
     public static String saveFile(MultipartFile file) throws IOException {
         FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
@@ -22,14 +22,10 @@ public class FileManager {
         }
         bos.flush();
         bos.close();
-        return newFileName;
+        return MAINFILEPATH + newFileName;
     }
 
-    public static Result.JSONResultMap getFile(String fileName, HttpServletResponse response) {
-        File file = new File(MAINFILEPATH + fileName);
-        if (!file.exists()) {
-            return Result.fail(null, "喔唷,找不到文件,可能是文件不存在");
-        }
+    public static void getFile(String fileName, HttpServletResponse response) {
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName.split("/")[1]);
         byte[] buff = new byte[1024];
@@ -67,6 +63,5 @@ public class FileManager {
                 }
             }
         }
-        return Result.success();
     }
 }
