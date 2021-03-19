@@ -28,10 +28,10 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
 
     @Override
     public Result.JSONResultMap findAddressByUid() {
-        QueryWrapper<ReceiveAddress> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("uid",MySessionUtil.getCurrUser().getUid());
-        if(receiveAddressMapper.selectCount(queryWrapper)==0){
-            return Result.fail("","没有设置收货地址");
+        QueryWrapper<ReceiveAddress> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid());
+        if (receiveAddressMapper.selectCount(queryWrapper) == 0) {
+            return Result.fail("", "没有设置收货地址");
         }
         return Result.success(receiveAddressMapper.selectList(queryWrapper));
     }
@@ -71,12 +71,12 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
 
     @Override
     public Result.JSONResultMap deleteReceiveAddress(int receiveAddressId) {
-        ReceiveAddress receiveAddress=this.getById(receiveAddressId);
-        if (receiveAddress.getIsDefault()){
-            QueryWrapper<ReceiveAddress> queryWrapper=new QueryWrapper<>();
-            queryWrapper.eq("uid",MySessionUtil.getCurrUser().getUid()).ne("receive_address_id",receiveAddressId);
-            List<ReceiveAddress> receiveAddressList=receiveAddressMapper.selectList(queryWrapper);
-            if(!receiveAddressList.isEmpty()){
+        ReceiveAddress receiveAddress = this.getById(receiveAddressId);
+        if (receiveAddress.getIsDefault()) {
+            QueryWrapper<ReceiveAddress> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid()).ne("receive_address_id", receiveAddressId);
+            List<ReceiveAddress> receiveAddressList = receiveAddressMapper.selectList(queryWrapper);
+            if (!receiveAddressList.isEmpty()) {
                 receiveAddressList.get(0).setIsDefault(true);
                 receiveAddressMapper.updateById(receiveAddressList.get(0));
             }
@@ -88,11 +88,11 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
     }
 
     @Override
-    public Result.JSONResultMap returnDefaultAddress(){
-        QueryWrapper<ReceiveAddress> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("uid",MySessionUtil.getCurrUser().getUid()).eq("is_default",true);
-        if(receiveAddressMapper.selectCount(queryWrapper)==0){
-            return Result.fail("","没有设置收货地址");
+    public Result.JSONResultMap returnDefaultAddress() {
+        QueryWrapper<ReceiveAddress> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid()).eq("is_default", true);
+        if (receiveAddressMapper.selectCount(queryWrapper) == 0) {
+            return Result.fail("", "没有设置收货地址");
         }
         return Result.success(receiveAddressMapper.selectOne(queryWrapper));
     }

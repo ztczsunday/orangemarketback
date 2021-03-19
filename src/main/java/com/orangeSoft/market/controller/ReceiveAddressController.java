@@ -1,6 +1,5 @@
 package com.orangeSoft.market.controller;
 
-import com.google.gson.Gson;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.ReceiveAddress;
 import com.orangeSoft.market.service.impl.ReceiveAddressServiceImpl;
