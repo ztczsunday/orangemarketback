@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -47,7 +48,7 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
         Footprint footprint = new Footprint()
                 .setCid(cid)
                 .setUid(MySessionUtil.getCurrUser().getUid())
-                .setLastBrowserDate(LocalDate.now());
+                .setLastBrowserDate(LocalDateTime.now());
         if (this.saveOrUpdate(footprint)) {
             return Result.success();
         }

@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -29,5 +30,5 @@ public class Footprint implements Serializable {
 
     private Integer uid;
 
-    private LocalDate lastBrowserDate;
+    private LocalDateTime lastBrowserDate;
 }
