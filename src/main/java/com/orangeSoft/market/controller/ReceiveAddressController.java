@@ -1,6 +1,7 @@
 package com.orangeSoft.market.controller;
 
 import com.google.gson.Gson;
+import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.ReceiveAddress;
 import com.orangeSoft.market.service.impl.ReceiveAddressServiceImpl;
 import io.swagger.annotations.ApiImplicitParam;
@@ -15,27 +16,33 @@ public class ReceiveAddressController {
 
     @ApiOperation(value = "查看用户所有收货地址")
     @GetMapping(value = "/address", produces = "application/json;charset=UTF-8")
-    public String findAddressByUid() {
-        return new Gson().toJson(receiveAddressService.findAddressByUid());
+    public Result.JSONResultMap findAddressByUid() {
+        return receiveAddressService.findAddressByUid();
     }
 
     @ApiOperation(value = "更新收货地址信息（包括默认地址）")
     @ApiImplicitParam(name = "receiveAddress", dataType = "ReceiveAddress", value = "新收货地址")
     @PutMapping(value = "/address", produces = "application/json;charset=UTF-8")
-    public String updateReceiveAddress(@RequestBody ReceiveAddress updatedReceiveAddress) {
-        return new Gson().toJson(receiveAddressService.updateReceiveAddress(updatedReceiveAddress));
+    public Result.JSONResultMap updateReceiveAddress(@RequestBody ReceiveAddress updatedReceiveAddress) {
+        return receiveAddressService.updateReceiveAddress(updatedReceiveAddress);
     }
 
     @ApiOperation(value = "添加收货地址")
     @ApiImplicitParam(name = "receiveAddress", dataType = "ReceiveAddress", value = "新收货地址", example = "0")
     @PostMapping(value = "/address", produces = "application/json;charset=UTF-8")
-    public String insertNewAddress(@RequestBody ReceiveAddress newReceiveAddress) {
-        return new Gson().toJson(receiveAddressService.insertNewAddress(newReceiveAddress));
+    public Result.JSONResultMap insertNewAddress(@RequestBody ReceiveAddress newReceiveAddress) {
+        return receiveAddressService.insertNewAddress(newReceiveAddress);
     }
 
     @ApiOperation(value = "删除收货地址")
     @DeleteMapping(value = "/address", produces = "application/json;charset=UTF-8")
-    public String deleteReceiveAddress(@RequestParam Integer receiveAddressId) {
-        return new Gson().toJson(receiveAddressService.deleteReceiveAddress(receiveAddressId));
+    public Result.JSONResultMap deleteReceiveAddress(@RequestParam Integer receiveAddressId) {
+        return receiveAddressService.deleteReceiveAddress(receiveAddressId);
+    }
+
+    @ApiOperation(value = "查看默认收货地址")
+    @GetMapping(value = "/defaultAddress", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap returnDefaultAddress() {
+        return receiveAddressService.returnDefaultAddress();
     }
 }

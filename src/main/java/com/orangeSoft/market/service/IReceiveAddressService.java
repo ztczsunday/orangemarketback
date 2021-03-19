@@ -42,4 +42,11 @@ public interface IReceiveAddressService extends IService<ReceiveAddress> {
      * @return 是否移除指定收货地址
      */
     Result.JSONResultMap deleteReceiveAddress(int receiveAddressId);
+
+    /**
+     * 查看用户默认收货地址
+     *
+     * @return 默认收货地址
+     */
+    Result.JSONResultMap returnDefaultAddress();
 }
