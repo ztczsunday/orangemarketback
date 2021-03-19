@@ -41,4 +41,6 @@ public class Shop implements Serializable {
 
     private Long praise_count;
 
+    private String shopIcon;
+
 }

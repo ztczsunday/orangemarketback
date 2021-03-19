@@ -23,10 +23,7 @@ public class DataDictionaryServiceImpl extends ServiceImpl<DataDictionaryMapper,
 
     @Override
     public Result.JSONResultMap getAllLabels() {
-        List<CommodityLabel> labelsId = new CommodityLabelServiceImpl().query().list();
-        return Result.success(labelsId.stream().map(label ->
-                this.query().eq("record_id", label.getRecordId()).one())
-                .collect(Collectors.toList()));
+        return Result.success(this.query().eq("t_index", "order_stateflow").list());
     }
 
     @Override

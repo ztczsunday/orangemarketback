@@ -42,5 +42,5 @@ public class Chat implements Serializable {
 
     private String receiverType;
 
-
+    private Boolean isRead;
 }
