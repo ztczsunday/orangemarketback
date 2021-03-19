@@ -107,7 +107,7 @@ public class CommodityController {
     }
 
     @ApiOperation(value = "新增标签")
-    @GetMapping(value = "/commodity/newLabel", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/commodity/newLabel", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap addNewLabel(@RequestParam(value = "labelName") String labelName) {
         return dictionaryService.addNewLabel(labelName);
     }
