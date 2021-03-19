@@ -64,20 +64,20 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         commodityOrder.setCountCommodity(countCommodity);
         commodityOrder.setReceiveAddressId(receiveAddressId);
         commodityOrder.setSubId(subId);
-        SubCommodity subCommodity=subCommodityMapper.selectById(subId);
-        subCommodity.setStock(subCommodity.getStock()-countCommodity);
+        SubCommodity subCommodity = subCommodityMapper.selectById(subId);
+        subCommodity.setStock(subCommodity.getStock() - countCommodity);
         subCommodityMapper.updateById(subCommodity);
         commodityOrder.setSid(commodityOrderMapper.findSidBySubId(subId));
         commodityOrder.setUid(MySessionUtil.getCurrUser().getUid());
-        OrderLogistics orderLogistics=new OrderLogistics();
-        OrderStateflow orderStateflow=new OrderStateflow();
+        OrderLogistics orderLogistics = new OrderLogistics();
+        OrderStateflow orderStateflow = new OrderStateflow();
 
-        if (commodityOrderMapper.insert(commodityOrder)==1) {
+        if (commodityOrderMapper.insert(commodityOrder) == 1) {
             orderLogistics.setOrderId(commodityOrder.getOrderId());
             orderLogistics.setLogisticsId(orderLogisticsId);
-            orderStateflow.setRecordId((long)1);
+            orderStateflow.setRecordId((long) 1);
             orderStateflow.setOrderId(commodityOrder.getOrderId());
-            if ((orderLogisticsMapper.insert(orderLogistics)==1)&&orderStateflowMapper.insert(orderStateflow)==1){
+            if ((orderLogisticsMapper.insert(orderLogistics) == 1) && orderStateflowMapper.insert(orderStateflow) == 1) {
                 return Result.success(commodityOrder.getOrderId());
             }
         }

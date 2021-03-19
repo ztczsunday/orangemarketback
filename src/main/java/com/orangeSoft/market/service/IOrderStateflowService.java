@@ -25,8 +25,8 @@ public interface IOrderStateflowService extends IService<OrderStateflow> {
     /**
      * 订单状态更改（发货）
      *
-     * @param orderId 订单ID
-     * @param recordId 订单状态ID
+     * @param orderId     订单ID
+     * @param recordId    订单状态ID
      * @param logisticsId 物流ID
      * @return 更改是否成功
      */
