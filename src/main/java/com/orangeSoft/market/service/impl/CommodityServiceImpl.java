@@ -138,7 +138,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         Commodity commodity = new Commodity();
         CommodityPictures commodityPictures = new CommodityPictures();
         CommodityDetails commodityDetails = new CommodityDetails();
-        CommodityLabel commodityLabel=new CommodityLabel();
+        CommodityLabel commodityLabel = new CommodityLabel();
         QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         Shop shop = shopMapper.selectOne(shopQueryWrapper.eq("uid", userInfo.getUid()));
         commodity.setMainIcon(newCommodityData.getMainIcon());
@@ -181,20 +181,20 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
     @Override
     public Result.JSONResultMap getUpdatedCommodity(long cid) {
-        CommodityUpdateData commodityUpdateData=new CommodityUpdateData();
-        Commodity commodity=commodityMapper.selectById(cid);
-        List<CommodityLabel> commodityLabelList=commodityLabelMapper.selectList(new QueryWrapper<CommodityLabel>().eq("cid",cid));
-        List<CommodityPictures> commodityPicturesList=commodityPicturesMapper.selectList(new QueryWrapper<CommodityPictures>().eq("cid", cid));
-        List<SubCommodity> subCommodityList=subCommodityMapper.selectList(new QueryWrapper<SubCommodity>().eq("cid", cid));
-        List<CommodityDetails> commodityDetailsList=commodityDetailsMapper.selectList(new QueryWrapper<CommodityDetails>().eq("cid", cid));
+        CommodityUpdateData commodityUpdateData = new CommodityUpdateData();
+        Commodity commodity = commodityMapper.selectById(cid);
+        List<CommodityLabel> commodityLabelList = commodityLabelMapper.selectList(new QueryWrapper<CommodityLabel>().eq("cid", cid));
+        List<CommodityPictures> commodityPicturesList = commodityPicturesMapper.selectList(new QueryWrapper<CommodityPictures>().eq("cid", cid));
+        List<SubCommodity> subCommodityList = subCommodityMapper.selectList(new QueryWrapper<SubCommodity>().eq("cid", cid));
+        List<CommodityDetails> commodityDetailsList = commodityDetailsMapper.selectList(new QueryWrapper<CommodityDetails>().eq("cid", cid));
         commodityUpdateData.setCid(cid);
         commodityUpdateData.setCommodityName(commodity.getCommodityName());
         commodityUpdateData.setCommodityStatus(commodity.getCommodityStatus());
         commodityUpdateData.setMainIcon(commodity.getMainIcon());
-        CommodityLabel[] commodityLabels=new CommodityLabel[commodityDetailsList.size()];
-        SubCommodity[] subCommodities=new SubCommodity[subCommodityList.size()];
-        CommodityPictures[] commodityPictures=new CommodityPictures[commodityPicturesList.size()];
-        CommodityDetails[] commodityDetails=new CommodityDetails[commodityDetailsList.size()];
+        CommodityLabel[] commodityLabels = new CommodityLabel[commodityDetailsList.size()];
+        SubCommodity[] subCommodities = new SubCommodity[subCommodityList.size()];
+        CommodityPictures[] commodityPictures = new CommodityPictures[commodityPicturesList.size()];
+        CommodityDetails[] commodityDetails = new CommodityDetails[commodityDetailsList.size()];
         commodityLabelList.toArray(commodityLabels);
         commodityPicturesList.toArray(commodityPictures);
         subCommodityList.toArray(subCommodities);
@@ -210,7 +210,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public Result.JSONResultMap updatedCommodity(CommodityUpdateData commodityUpdateData) {
         UserInfo userInfo = MySessionUtil.getCurrUser();
         Commodity commodity = new Commodity();
-        QueryWrapper<CommodityLabel> commodityLabelQueryWrapper=new QueryWrapper<>();
+        QueryWrapper<CommodityLabel> commodityLabelQueryWrapper = new QueryWrapper<>();
         QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         Shop shop = shopMapper.selectOne(shopQueryWrapper.eq("uid", userInfo.getUid()));
         commodity.setCid(commodityUpdateData.getCid());
@@ -234,7 +234,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
                     return Result.fail();
                 }
             }
-            commodityLabelQueryWrapper.eq("cid",commodityUpdateData.getCid());
+            commodityLabelQueryWrapper.eq("cid", commodityUpdateData.getCid());
             commodityLabelMapper.delete(commodityLabelQueryWrapper);
             for (CommodityLabel commodityLabel : commodityUpdateData.getCommodityLabels()) {
                 if (commodityLabelMapper.insert(commodityLabel) != 1) {

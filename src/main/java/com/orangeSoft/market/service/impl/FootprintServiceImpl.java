@@ -26,4 +26,9 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
     public IPage<Commodity> findFootPrintByUid(Page<Footprint> page) {
         return footprintMapper.findFootPrintByUid(MySessionUtil.getCurrUser().getUid(), page);
     }
+
+    @Override
+    public boolean addFootPrint(long cid) {
+        return this.save(new Footprint(cid, MySessionUtil.getCurrUser().getUid(), null));
+    }
 }

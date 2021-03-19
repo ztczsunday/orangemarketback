@@ -29,7 +29,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "/tiaozhuan")
-    public String tiaozhuan(){
+    public String tiaozhuan() {
         return "/tiaozhuan";
     }
 }
@@ -43,9 +43,10 @@ class RestControllerTest {
         map.put(2, 2);
         return Result.success(map);
     }
+
     @PostMapping(value = "/uploadTest", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
-        if (file.isEmpty() || StringUtils.isBlank(file.getName())){
+        if (file.isEmpty() || StringUtils.isBlank(file.getName())) {
             return Result.fail("文件为空");
         }
         return Result.success(FileManager.saveFile(file));

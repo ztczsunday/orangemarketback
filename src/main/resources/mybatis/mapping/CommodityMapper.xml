@@ -70,7 +70,7 @@
             select record_id
             from commodity_label cl
             where cl.cid = c.cid)
-        and c.commodity_status = 1
+          and c.commodity_status = 1
         order by (c.praise_comment_count / c.comment_count) desc
         limit 10
     </select>

@@ -30,6 +30,4 @@ public class Footprint implements Serializable {
     private Integer uid;
 
     private LocalDate lastBrowserDate;
-
-
 }

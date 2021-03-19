@@ -38,11 +38,11 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
 
     @Override
     public Result.JSONResultMap insertNewAddress(ReceiveAddress newReceiveAddress) {
-        UserInfo userInfo=MySessionUtil.getCurrUser();
+        UserInfo userInfo = MySessionUtil.getCurrUser();
         newReceiveAddress.setUid(userInfo.getUid());
         QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
-        wrapper.eq("uid",userInfo.getUid()).eq("is_default",true);
-        if (receiveAddressMapper.selectCount(wrapper)==0){
+        wrapper.eq("uid", userInfo.getUid()).eq("is_default", true);
+        if (receiveAddressMapper.selectCount(wrapper) == 0) {
             newReceiveAddress.setIsDefault(true);
         }
         if (this.save(newReceiveAddress)) {
@@ -55,9 +55,9 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
     public Result.JSONResultMap updateReceiveAddress(ReceiveAddress updatedReceiveAddress) {
         updatedReceiveAddress.setUid(MySessionUtil.getCurrUser().getUid());
         QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
-        if (updatedReceiveAddress.getIsDefault()){
-            wrapper.eq("is_default",true);
-            ReceiveAddress oldDefaultAddress=this.getOne(wrapper);
+        if (updatedReceiveAddress.getIsDefault()) {
+            wrapper.eq("is_default", true);
+            ReceiveAddress oldDefaultAddress = this.getOne(wrapper);
             oldDefaultAddress.setIsDefault(false);
             this.updateById(oldDefaultAddress);
         }

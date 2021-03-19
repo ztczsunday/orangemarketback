@@ -33,11 +33,11 @@ public class OrderStateflowServiceImpl extends ServiceImpl<OrderStateflowMapper,
     }
 
     @Override
-    public Result.JSONResultMap updateOrderStateflow(long orderId, long recordId, int logisticsId){
+    public Result.JSONResultMap updateOrderStateflow(long orderId, long recordId, int logisticsId) {
         OrderLogistics orderLogistics = new OrderLogistics();
         orderLogistics.setLogisticsId(logisticsId);
         orderLogistics.setOrderId(orderId);
-        if((new OrderLogisticsServiceImpl().save(orderLogistics))&&(boolean)updateOrderStateflow(orderId,recordId).get("success")){
+        if ((new OrderLogisticsServiceImpl().save(orderLogistics)) && (boolean) updateOrderStateflow(orderId, recordId).get("success")) {
             return Result.success();
         }
         return Result.fail();

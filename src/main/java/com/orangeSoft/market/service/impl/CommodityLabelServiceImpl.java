@@ -40,7 +40,7 @@ public class CommodityLabelServiceImpl extends ServiceImpl<CommodityLabelMapper,
 
     @Override
     public CommodityLabelResult addNewLabel(String labelName) {
-        if(dictionaryService.query().eq("item_name", labelName).count() > 0){
+        if (dictionaryService.query().eq("item_name", labelName).count() > 0) {
             return null;
         }
 

@@ -1,6 +1,5 @@
 package com.orangeSoft.market.pojo;
 
-import com.orangeSoft.market.entity.CommodityLabel;
 import com.orangeSoft.market.entity.SubCommodity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
