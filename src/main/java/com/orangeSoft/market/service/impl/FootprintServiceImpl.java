@@ -44,10 +44,10 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
 
     @Override
     public Result.JSONResultMap addFootPrint(long cid) {
-        Footprint footprint = new Footprint();
-        footprint.setCid(cid);
-        footprint.setUid(MySessionUtil.getCurrUser().getUid());
-        footprint.setLastBrowserDate(LocalDate.now());
+        Footprint footprint = new Footprint()
+                .setCid(cid)
+                .setUid(MySessionUtil.getCurrUser().getUid())
+                .setLastBrowserDate(LocalDate.now());
         if (this.save(footprint)) {
             return Result.success();
         }
