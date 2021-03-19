@@ -3,8 +3,8 @@ package com.orangeSoft.market.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.Footprint;
+import com.orangeSoft.market.pojo.History;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FootprintMapper extends BaseMapper<Footprint> {
-    IPage<Commodity> findFootPrintByUid(Integer uid, Page<Footprint> page);
+    IPage<History> findFootPrintByUid(Integer uid, Page<Footprint> page);
 }

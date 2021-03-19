@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.orangeSoft.market.common.utils.Result;
-import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.Footprint;
+import com.orangeSoft.market.pojo.History;
 
 /**
  * <p>
@@ -22,7 +22,7 @@ public interface IFootprintService extends IService<Footprint> {
      * @param page 分页标签
      * @return 该页历史记录
      */
-    IPage<Commodity> findFootPrintByUid(Page<Footprint> page);
+    IPage<History> findFootPrintByUid(Page<Footprint> page);
 
     /**
      * 删除历史记录

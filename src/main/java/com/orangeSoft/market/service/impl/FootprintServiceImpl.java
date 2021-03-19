@@ -6,9 +6,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
-import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.Footprint;
 import com.orangeSoft.market.mapper.FootprintMapper;
+import com.orangeSoft.market.pojo.History;
 import com.orangeSoft.market.service.IFootprintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
     FootprintMapper footprintMapper;
 
     @Override
-    public IPage<Commodity> findFootPrintByUid(Page<Footprint> page) {
+    public IPage<History> findFootPrintByUid(Page<Footprint> page) {
         return footprintMapper.findFootPrintByUid(MySessionUtil.getCurrUser().getUid(), page);
     }
 
@@ -48,7 +48,7 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
                 .setCid(cid)
                 .setUid(MySessionUtil.getCurrUser().getUid())
                 .setLastBrowserDate(LocalDate.now());
-        if (this.save(footprint)) {
+        if (this.saveOrUpdate(footprint)) {
             return Result.success();
         }
         return Result.fail();

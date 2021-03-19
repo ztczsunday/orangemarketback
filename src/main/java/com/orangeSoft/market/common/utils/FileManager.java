@@ -28,7 +28,7 @@ public class FileManager {
 
     public static void getFile(String fileName, HttpServletResponse response) {
         response.setContentType("image/jpeg");
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileName.split("/")[1]);
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
         byte[] buff = new byte[1024];
         //创建缓冲输入流
         BufferedInputStream bis = null;
