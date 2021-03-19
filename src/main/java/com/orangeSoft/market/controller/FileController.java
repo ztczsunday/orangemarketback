@@ -20,7 +20,7 @@ public class FileController {
     @ApiOperation(value = "下载文件", notes = "fileName对应数据库存储的")
     @GetMapping(value = "/download", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap downloadFile(@RequestParam("fileName") String fileName, HttpServletResponse response) {
-        if (!new File(FileManager.MAINFILEPATH + fileName).exists()) {
+        if (!new File(FileManager.MAIN_FILE_PATH + fileName).exists()) {
             return Result.fail(null, "喔唷,找不到文件,可能是文件不存在");
         }
         FileManager.getFile(fileName, response);

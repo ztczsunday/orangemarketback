@@ -8,13 +8,14 @@ import java.util.Date;
 import java.util.Objects;
 
 public class FileManager {
-    public final static String MAINFILEPATH = "F:/OrangeSoft/NetSuperMarket/projectRepository/";
+    public final static String MAIN_FILE_PATH = "F:/OrangeSoft/NetSuperMarket/projectRepository/";
+    public final static String DOWNLOAD_PATH = "http://localhost:8081/download?fileName=";
 
     public static String saveFile(MultipartFile file) throws IOException {
         FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
         String fileName = java.net.URLEncoder.encode(Objects.requireNonNull(file.getOriginalFilename()), "utf-8");
         String newFileName = new Date().getTime() + "." + fileName.replace("/", "");
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(MAINFILEPATH + newFileName));
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(MAIN_FILE_PATH + newFileName));
         byte[] bs = new byte[1024];
         int len;
         while ((len = fileInputStream.read(bs)) != -1) {
@@ -22,11 +23,10 @@ public class FileManager {
         }
         bos.flush();
         bos.close();
-        return MAINFILEPATH + newFileName;
+        return DOWNLOAD_PATH + newFileName;
     }
 
     public static void getFile(String fileName, HttpServletResponse response) {
-//        response.setContentType("application/octet-stream");
         response.setContentType("image/jpeg");
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName.split("/")[1]);
         byte[] buff = new byte[1024];
@@ -38,7 +38,7 @@ public class FileManager {
             outputStream = response.getOutputStream();
 
             //这个路径为待下载文件的路径
-            bis = new BufferedInputStream(new FileInputStream(new File(MAINFILEPATH + fileName)));
+            bis = new BufferedInputStream(new FileInputStream(MAIN_FILE_PATH + fileName));
             int read = bis.read(buff);
             //通过while循环写入到指定了的文件夹中
             while (read != -1) {
