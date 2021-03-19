@@ -15,7 +15,7 @@
         </commentGenerator>
         <!--覆盖生成XML文件-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.101.138:3306/orangesoft"
+                        connectionURL="jdbc:mysql://192.168.101.108:3306/orangesoft"
                         userId="orangesoft"
                         password="orangesoft">
         </jdbcConnection>

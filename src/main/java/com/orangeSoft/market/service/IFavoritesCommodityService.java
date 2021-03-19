@@ -24,18 +24,24 @@ public interface IFavoritesCommodityService extends IService<FavoritesCommodity>
     Boolean isCollected(Long commodityId);
 
     /**
+     * 查看收藏商品
+     *
      * @param page 收藏商品栏分页
      * @return 所有被该用户收藏的商品
      */
     Result.JSONResultMap getMyFavoriteCommodity(Page<Commodity> page);
 
     /**
+     * 移除收藏商品
+     *
      * @param cid 移除指定收藏商品
      * @return 是否被成功移除
      */
     Result.JSONResultMap deleteFavoritesCommodity(long cid);
 
     /**
+     * 收藏商品
+     *
      * @param cid 添加指定收藏商品
      * @return 是否被成功收藏
      */
