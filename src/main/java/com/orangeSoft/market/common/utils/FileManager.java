@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.Objects;
 
 public class FileManager {
-    private final static String MAINFILEPATH = "F:/OrangeSoft/NetSuperMarket/projectRepository";
+    private final static String MAINFILEPATH = "F:/OrangeSoft/NetSuperMarket/projectRepository/";
 
     public static String saveFile(MultipartFile file) throws IOException {
         FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
         String fileName = java.net.URLEncoder.encode(Objects.requireNonNull(file.getOriginalFilename()), "utf-8");
-        String newFileName = new Date().getTime() + "." + fileName.replace("/","");
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(MAINFILEPATH + File.separator + newFileName));
+        String newFileName = new Date().getTime() + "." + fileName.replace("/", "");
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(MAINFILEPATH + newFileName));
         byte[] bs = new byte[1024];
         int len;
         while ((len = fileInputStream.read(bs)) != -1) {
