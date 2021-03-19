@@ -103,7 +103,7 @@ public class CommodityController {
     @ApiOperation(value = "查找所有标签")
     @GetMapping(value = "/commodity/labels", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getAllLabels() {
-        return Result.success(dictionaryService.getAllLabels());
+        return dictionaryService.getAllLabels();
     }
 
     @ApiOperation(value = "新增标签")
