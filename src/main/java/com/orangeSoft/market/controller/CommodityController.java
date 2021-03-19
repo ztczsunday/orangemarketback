@@ -5,16 +5,11 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.pojo.CommodityUpdateData;
 import com.orangeSoft.market.pojo.NewCommodityData;
-import com.orangeSoft.market.service.impl.CommodityServiceImpl;
-import com.orangeSoft.market.service.impl.FavoritesCommodityServiceImpl;
-import com.orangeSoft.market.service.impl.SubCommentsServiceImpl;
-import com.orangeSoft.market.service.impl.UserCommentServiceImpl;
+import com.orangeSoft.market.service.impl.*;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 
 
 @RestController
@@ -27,6 +22,8 @@ public class CommodityController {
     UserCommentServiceImpl userCommentService;
     @Autowired
     SubCommentsServiceImpl subCommentsService;
+    @Autowired
+    CommodityLabelServiceImpl commodityLabelService;
 
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
@@ -88,7 +85,7 @@ public class CommodityController {
     @ApiOperation(value = "卖家新增商品")
     @PostMapping(value = "/commodity", produces = "application/json;charset=UTF-8")
     @ApiImplicitParam(name = "NewCommodityData", dataType = "NewCommodityData", value = "新商品信息")
-    public Result.JSONResultMap newCommodity(@RequestBody NewCommodityData newCommodityData){
+    public Result.JSONResultMap newCommodity(@RequestBody NewCommodityData newCommodityData) {
         return commodityService.newCommodity(newCommodityData);
     }
 
@@ -102,5 +99,11 @@ public class CommodityController {
     @PutMapping(value = "/commodityUpdate", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getUpdatedCommodity(@RequestBody CommodityUpdateData commodityUpdateData){
         return commodityService.updatedCommodity(commodityUpdateData);
+    }
+
+    @ApiOperation(value = "查找所有标签")
+    @GetMapping(value = "/commodity/labels", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getAllLabels() {
+        return Result.success(commodityLabelService.getAllLabels());
     }
 }
