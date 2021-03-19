@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -38,5 +38,5 @@ public class History implements Serializable {
     private String mainIcon;
     private Integer commentCount;
     private Integer praiseCommentCount;
-    private LocalDate lastBrowserDate;
+    private LocalDateTime lastBrowserDate;
 }
