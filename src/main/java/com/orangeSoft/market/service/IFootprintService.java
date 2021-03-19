@@ -3,6 +3,7 @@ package com.orangeSoft.market.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.entity.Footprint;
 
@@ -14,23 +15,28 @@ import com.orangeSoft.market.entity.Footprint;
  * @since 2021-03-13
  */
 public interface IFootprintService extends IService<Footprint> {
+
     /**
-     * <p>
-     * 按分页查询历史记录
-     * </p>
+     * 用户查看历史记录
      *
-     * @param page 分页参数
-     * @return 结果
+     * @param page 分页标签
+     * @return 该页历史记录
      */
     IPage<Commodity> findFootPrintByUid(Page<Footprint> page);
 
     /**
-     * <p>
-     * 增加历史记录
-     * </p>
+     * 删除历史记录
      *
-     * @param cid 历史记录中需要记录浏览的商品
-     * @return 成功插入则返回true，否则返回false
+     * @param cid 该历史记录对应的商品ID
+     * @return 是否删除完成
      */
-    boolean addFootPrint(long cid);
+    Result.JSONResultMap deleteFootPrint(long cid);
+
+    /**
+     * 添加历史记录
+     *
+     * @param cid 该历史记录对应的商品ID
+     * @return 是否添加完成
+     */
+    Result.JSONResultMap addFootPrint(long cid);
 }

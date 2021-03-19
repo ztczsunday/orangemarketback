@@ -5,7 +5,7 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.FootprintServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,20 +16,22 @@ public class HistoryController {
     FootprintServiceImpl footprintService;
 
     @ApiOperation(value = "查询历史记录")
-    @GetMapping(value = "/histories", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/histories", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap GetHistories(
-            @RequestParam(value = "page", defaultValue = "1") Integer pages,
-            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+            @RequestParam(value = "page", defaultValue = "1") int pages,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         return Result.success(footprintService.findFootPrintByUid(new Page<>(pages, pageSize)));
     }
 
-    @ApiOperation(value = "增加历史记录")
+    @ApiOperation(value = "删除历史记录")
+    @DeleteMapping(value = "/histories", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap deleteFootPrint(@RequestParam("cid") long cid) {
+        return footprintService.deleteFootPrint(cid);
+    }
+
+    @ApiOperation(value = "添加历史记录")
     @PostMapping(value = "/histories", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap AddHistories(@RequestParam(value = "cid") Long cid) {
-        if (footprintService.addFootPrint(cid)) {
-            return Result.success();
-        } else {
-            return Result.fail();
-        }
+    public Result.JSONResultMap addFootPrint(@RequestParam("cid") long cid) {
+        return footprintService.addFootPrint(cid);
     }
 }
