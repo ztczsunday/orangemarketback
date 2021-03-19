@@ -2,7 +2,6 @@ package com.orangeSoft.market.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
-import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.pojo.CommodityUpdateData;
 import com.orangeSoft.market.pojo.NewCommodityData;
 import com.orangeSoft.market.service.impl.*;
@@ -23,7 +22,7 @@ public class CommodityController {
     @Autowired
     SubCommentsServiceImpl subCommentsService;
     @Autowired
-    CommodityLabelServiceImpl commodityLabelService;
+    DataDictionaryServiceImpl dictionaryService;
 
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
@@ -91,19 +90,25 @@ public class CommodityController {
 
     @ApiOperation(value = "查看待编辑商品信息")
     @GetMapping(value = "/commodityUpdate", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap getUpdatedCommodity(@RequestParam("cid") long cid){
+    public Result.JSONResultMap getUpdatedCommodity(@RequestParam("cid") long cid) {
         return commodityService.getUpdatedCommodity(cid);
     }
 
     @ApiOperation(value = "更新商品信息")
     @PutMapping(value = "/commodityUpdate", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap getUpdatedCommodity(@RequestBody CommodityUpdateData commodityUpdateData){
+    public Result.JSONResultMap getUpdatedCommodity(@RequestBody CommodityUpdateData commodityUpdateData) {
         return commodityService.updatedCommodity(commodityUpdateData);
     }
 
     @ApiOperation(value = "查找所有标签")
     @GetMapping(value = "/commodity/labels", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getAllLabels() {
-        return Result.success(commodityLabelService.getAllLabels());
+        return Result.success(dictionaryService.getAllLabels());
+    }
+
+    @ApiOperation(value = "新增标签")
+    @GetMapping(value = "/commodity/newLabel", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap addNewLabel(@RequestParam(value = "labelName") String labelName) {
+        return dictionaryService.addNewLabel(labelName);
     }
 }
