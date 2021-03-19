@@ -5,10 +5,7 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.service.impl.FootprintServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HistoryController {
@@ -16,7 +13,7 @@ public class HistoryController {
     FootprintServiceImpl footprintService;
 
     @ApiOperation(value = "查询历史记录")
-    @PostMapping(value = "/histories", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/histories", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap GetHistories(
             @RequestParam(value = "page", defaultValue = "1") int pages,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
