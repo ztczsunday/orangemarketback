@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
 import com.orangeSoft.market.pojo.CommoditySearchResult;
+import com.orangeSoft.market.pojo.CommodityUpdateData;
 import com.orangeSoft.market.pojo.NewCommodityData;
 
 /**
@@ -65,4 +66,20 @@ public interface ICommodityService extends IService<Commodity> {
      * @return 是否添加完成
      */
     Result.JSONResultMap newCommodity(NewCommodityData newCommodityData);
+
+    /**
+     * 商家查看商品详细信息
+     *
+     * @param cid 需要查看的商品ID
+     * @return 该商品的详细信息
+     */
+    Result.JSONResultMap getUpdatedCommodity(long cid);
+
+    /**
+     * 商家修改商品详细信息
+     *
+     * @param commodityUpdateData 商品被修改后的详细信息
+     * @return 【是否完成
+     */
+    Result.JSONResultMap updatedCommodity(CommodityUpdateData commodityUpdateData);
 }

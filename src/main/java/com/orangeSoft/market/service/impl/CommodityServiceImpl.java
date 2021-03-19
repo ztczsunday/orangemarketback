@@ -9,6 +9,7 @@ import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.*;
 import com.orangeSoft.market.mapper.*;
 import com.orangeSoft.market.pojo.CommoditySearchResult;
+import com.orangeSoft.market.pojo.CommodityUpdateData;
 import com.orangeSoft.market.pojo.NewCommodityData;
 import com.orangeSoft.market.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private UserCommentMapper userCommentMapper;
     @Autowired
     private ShopMapper shopMapper;
+    @Autowired
+    private CommodityLabelMapper commodityLabelMapper;
 
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
@@ -135,6 +138,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         Commodity commodity = new Commodity();
         CommodityPictures commodityPictures = new CommodityPictures();
         CommodityDetails commodityDetails = new CommodityDetails();
+        CommodityLabel commodityLabel=new CommodityLabel();
         QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         Shop shop = shopMapper.selectOne(shopQueryWrapper.eq("uid", userInfo.getUid()));
         commodity.setMainIcon(newCommodityData.getMainIcon());
@@ -160,6 +164,80 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
                 commodityDetails.setCid(commodity.getCid());
                 commodityDetails.setDetailsUrl(commodityDetail);
                 if (commodityDetailsMapper.insert(commodityDetails) != 1) {
+                    return Result.fail();
+                }
+            }
+            for (long labelId : newCommodityData.getLabelId()) {
+                commodityLabel.setCid(commodity.getCid());
+                commodityLabel.setRecordId(labelId);
+                if (commodityLabelMapper.insert(commodityLabel) != 1) {
+                    return Result.fail();
+                }
+            }
+            return Result.success();
+        }
+        return Result.fail();
+    }
+
+    @Override
+    public Result.JSONResultMap getUpdatedCommodity(long cid) {
+        CommodityUpdateData commodityUpdateData=new CommodityUpdateData();
+        Commodity commodity=commodityMapper.selectById(cid);
+        List<CommodityLabel> commodityLabelList=commodityLabelMapper.selectList(new QueryWrapper<CommodityLabel>().eq("cid",cid));
+        List<CommodityPictures> commodityPicturesList=commodityPicturesMapper.selectList(new QueryWrapper<CommodityPictures>().eq("cid", cid));
+        List<SubCommodity> subCommodityList=subCommodityMapper.selectList(new QueryWrapper<SubCommodity>().eq("cid", cid));
+        List<CommodityDetails> commodityDetailsList=commodityDetailsMapper.selectList(new QueryWrapper<CommodityDetails>().eq("cid", cid));
+        commodityUpdateData.setCid(cid);
+        commodityUpdateData.setCommodityName(commodity.getCommodityName());
+        commodityUpdateData.setCommodityStatus(commodity.getCommodityStatus());
+        commodityUpdateData.setMainIcon(commodity.getMainIcon());
+        CommodityLabel[] commodityLabels=new CommodityLabel[commodityDetailsList.size()];
+        SubCommodity[] subCommodities=new SubCommodity[subCommodityList.size()];
+        CommodityPictures[] commodityPictures=new CommodityPictures[commodityPicturesList.size()];
+        CommodityDetails[] commodityDetails=new CommodityDetails[commodityDetailsList.size()];
+        commodityLabelList.toArray(commodityLabels);
+        commodityPicturesList.toArray(commodityPictures);
+        subCommodityList.toArray(subCommodities);
+        commodityDetailsList.toArray(commodityDetails);
+        commodityUpdateData.setCommodityLabels(commodityLabels);
+        commodityUpdateData.setMainIcons(commodityPictures);
+        commodityUpdateData.setSubCommodity(subCommodities);
+        commodityUpdateData.setCommodityDetails(commodityDetails);
+        return Result.success(commodityUpdateData);
+    }
+
+    @Override
+    public Result.JSONResultMap updatedCommodity(CommodityUpdateData commodityUpdateData) {
+        UserInfo userInfo = MySessionUtil.getCurrUser();
+        Commodity commodity = new Commodity();
+        QueryWrapper<CommodityLabel> commodityLabelQueryWrapper=new QueryWrapper<>();
+        QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
+        Shop shop = shopMapper.selectOne(shopQueryWrapper.eq("uid", userInfo.getUid()));
+        commodity.setCid(commodityUpdateData.getCid());
+        commodity.setMainIcon(commodityUpdateData.getMainIcon());
+        commodity.setCommodityName(commodityUpdateData.getCommodityName());
+        commodity.setCommodityStatus(commodityUpdateData.isCommodityStatus());
+        commodity.setSid(shop.getSid());
+        if (commodityMapper.updateById(commodity) == 1) {
+            for (SubCommodity subCommodity : commodityUpdateData.getSubCommodity()) {
+                if (subCommodityMapper.updateById(subCommodity) != 1) {
+                    return Result.fail();
+                }
+            }
+            for (CommodityPictures commodityPictures : commodityUpdateData.getMainIcons()) {
+                if (commodityPicturesMapper.updateById(commodityPictures) != 1) {
+                    return Result.fail();
+                }
+            }
+            for (CommodityDetails commodityDetails : commodityUpdateData.getCommodityDetails()) {
+                if (commodityDetailsMapper.updateById(commodityDetails) != 1) {
+                    return Result.fail();
+                }
+            }
+            commodityLabelQueryWrapper.eq("cid",commodityUpdateData.getCid());
+            commodityLabelMapper.delete(commodityLabelQueryWrapper);
+            for (CommodityLabel commodityLabel : commodityUpdateData.getCommodityLabels()) {
+                if (commodityLabelMapper.insert(commodityLabel) != 1) {
                     return Result.fail();
                 }
             }

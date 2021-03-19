@@ -1,5 +1,7 @@
 package com.orangeSoft.market.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +28,7 @@ public class CommodityPictures implements Serializable {
 
     private String pictureUrl;
 
+    @TableId(value = "pid", type = IdType.AUTO)
     private Long pid;
 
     private Long cid;

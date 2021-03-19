@@ -1,6 +1,8 @@
 package com.orangeSoft.market.pojo;
 
+import com.orangeSoft.market.entity.CommodityDetails;
 import com.orangeSoft.market.entity.CommodityLabel;
+import com.orangeSoft.market.entity.CommodityPictures;
 import com.orangeSoft.market.entity.SubCommodity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,11 +15,13 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class NewCommodityData {
+public class CommodityUpdateData {
+    private long cid;
     private String commodityName;
     private String mainIcon;
-    private long[] labelId;
-    private String[] mainIcons;
-    private String[] commodityDetails;
+    private boolean commodityStatus;
+    private CommodityLabel[] commodityLabels;
+    private CommodityPictures[] mainIcons;
+    private CommodityDetails[] commodityDetails;
     private SubCommodity[] subCommodity;
 }

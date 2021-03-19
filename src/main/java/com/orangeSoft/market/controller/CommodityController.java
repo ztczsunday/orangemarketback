@@ -3,6 +3,7 @@ package com.orangeSoft.market.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
+import com.orangeSoft.market.pojo.CommodityUpdateData;
 import com.orangeSoft.market.pojo.NewCommodityData;
 import com.orangeSoft.market.service.impl.CommodityServiceImpl;
 import com.orangeSoft.market.service.impl.FavoritesCommodityServiceImpl;
@@ -89,5 +90,17 @@ public class CommodityController {
     @ApiImplicitParam(name = "NewCommodityData", dataType = "NewCommodityData", value = "新商品信息")
     public Result.JSONResultMap newCommodity(@RequestBody NewCommodityData newCommodityData){
         return commodityService.newCommodity(newCommodityData);
+    }
+
+    @ApiOperation(value = "查看待编辑商品信息")
+    @GetMapping(value = "/commodityUpdate", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getUpdatedCommodity(@RequestParam("cid") long cid){
+        return commodityService.getUpdatedCommodity(cid);
+    }
+
+    @ApiOperation(value = "更新商品信息")
+    @PutMapping(value = "/commodityUpdate", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getUpdatedCommodity(@RequestBody CommodityUpdateData commodityUpdateData){
+        return commodityService.updatedCommodity(commodityUpdateData);
     }
 }
