@@ -20,9 +20,9 @@ public interface IChatService extends IService<Chat> {
     Result.JSONResultMap getAboutChats();
 
     /**
-     * 根据对方用户id获取与对方
+     * 根据对方用户id获取与对方的所有聊天记录
      * @param oppUid 对方uid
-     * @param oppType 对方身份
+     * @param oppType 对方聊天身份
      * @return 结果
      */
     Result.JSONResultMap getAllChatsWithOpp(Integer oppUid, String oppType);
