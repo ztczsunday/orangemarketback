@@ -57,7 +57,7 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
                     chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName()));
                 } else {
                     UserInfo oppUser = userInfoService.getById(oppId);
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getUsername()));
+                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getTrueUserName()));
                 }
             }
         });
