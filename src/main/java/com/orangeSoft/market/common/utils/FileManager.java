@@ -30,15 +30,9 @@ public class FileManager {
         response.setContentType("image/jpeg");
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
         byte[] buff = new byte[1024];
-        //创建缓冲输入流
-        BufferedInputStream bis = null;
-        OutputStream outputStream = null;
 
-        try {
-            outputStream = response.getOutputStream();
-
-            //这个路径为待下载文件的路径
-            bis = new BufferedInputStream(new FileInputStream(MAIN_FILE_PATH + fileName));
+        try (OutputStream outputStream = response.getOutputStream();
+             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(MAIN_FILE_PATH + fileName))) {
             int read = bis.read(buff);
             //通过while循环写入到指定了的文件夹中
             while (read != -1) {
@@ -48,21 +42,6 @@ public class FileManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

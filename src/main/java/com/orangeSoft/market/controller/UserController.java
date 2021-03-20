@@ -31,7 +31,7 @@ public class UserController {
 
     @ApiOperation(value = "用户数据更新", notes = "114514")
     @ApiImplicitParam(name = "userInfo", dataType = "UserInfo", value = "用户信息", example = "0")
-    @PutMapping(value = "/UserInfo", produces = "application/json;charset=UTF-8")
+    @PutMapping(value = "/userInfo", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap userUpdate(@RequestBody UserInfo userInfo) {
         return userInfoService.updateUserInfo(userInfo);
     }
@@ -75,8 +75,7 @@ public class UserController {
     @GetMapping(value = "/user/receiveChats", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getAllChatsWithOpp(@RequestParam(value = "oppUid") Integer oppUid,
                                                    @RequestParam(value = "isOppUser") Boolean isOppUser) {
-        String oppType = "";
-        oppType = isOppUser ? "用户" : "商家";
+        String oppType = isOppUser ? "用户" : "商家";
         return chatService.getAllChatsWithOpp(oppUid, oppType);
     }
 
@@ -86,8 +85,7 @@ public class UserController {
                                          @RequestParam(value = "oppUid", defaultValue = "null") Integer oppUid,
                                          @RequestParam(value = "oppSid", defaultValue = "bull") Integer oppSid,
                                          @RequestParam(value = "chatContent") String chatContent) {
-        String myType = "";
-        myType = amIUser ? "用户" : "商家";
+        String myType = amIUser ? "用户" : "商家";
         return chatService.sendChat(myType, oppUid, oppSid, chatContent);
     }
 
