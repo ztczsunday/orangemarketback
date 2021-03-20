@@ -2,14 +2,10 @@ package com.orangeSoft.market.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.Result;
-import com.orangeSoft.market.entity.CommodityLabel;
 import com.orangeSoft.market.entity.DataDictionary;
 import com.orangeSoft.market.mapper.DataDictionaryMapper;
 import com.orangeSoft.market.service.IDataDictionaryService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * <p>

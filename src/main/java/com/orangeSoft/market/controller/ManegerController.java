@@ -42,7 +42,7 @@ public class ManegerController {
     @ApiOperation(value = "管理员登录")
     @GetMapping(value = "/Manager/login", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap ManagerLogin(@RequestParam("ManagerPassword") String managerPassword,
-                                           @RequestParam("ManagerAccount") String managerAccount) {
+                                             @RequestParam("ManagerAccount") String managerAccount) {
         return managerService.managerLogin(managerAccount, managerPassword);
     }
 }

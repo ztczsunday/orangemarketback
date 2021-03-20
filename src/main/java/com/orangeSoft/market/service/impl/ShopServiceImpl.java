@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Commodity;
-import com.orangeSoft.market.entity.FavoritesShop;
 import com.orangeSoft.market.entity.Shop;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.CommodityMapper;
@@ -15,9 +14,6 @@ import com.orangeSoft.market.mapper.ShopMapper;
 import com.orangeSoft.market.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>

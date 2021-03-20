@@ -14,7 +14,7 @@ import com.orangeSoft.market.entity.Logistics;
 public interface ILogisticsService extends IService<Logistics> {
 
     /**
-     *查看所有物流公司
+     * 查看所有物流公司
      *
      * @return 物流公司信息
      */

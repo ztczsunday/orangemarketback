@@ -24,12 +24,12 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public Result.JSONResultMap findAllLogistics() {
-        return Result.success(logisticsMapper.selectList(new QueryWrapper<Logistics>().orderBy(true,true,"logistics_id")));
+        return Result.success(logisticsMapper.selectList(new QueryWrapper<Logistics>().orderBy(true, true, "logistics_id")));
     }
 
     @Override
     public Result.JSONResultMap updateLogistics(Logistics logistics) {
-        if(this.updateById(logistics)){
+        if (this.updateById(logistics)) {
             return Result.success();
         }
         return Result.fail();
@@ -37,7 +37,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public Result.JSONResultMap insertLogistics(Logistics logistics) {
-        if(this.save(logistics)){
+        if (this.save(logistics)) {
             return Result.success();
         }
         return Result.fail();
@@ -45,7 +45,7 @@ public class LogisticsServiceImpl extends ServiceImpl<LogisticsMapper, Logistics
 
     @Override
     public Result.JSONResultMap deleteLogistics(Integer logisticsId) {
-        if(this.removeById(logisticsId)){
+        if (this.removeById(logisticsId)) {
             return Result.success();
         }
         return Result.fail();

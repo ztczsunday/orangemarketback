@@ -41,10 +41,6 @@ public class UserInfo implements Serializable, UserDetails {
     private String userEmail;
     private String userLicense;
 
-    public String getTrueUserName() {
-        return this.userName;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -57,7 +53,7 @@ public class UserInfo implements Serializable, UserDetails {
 
     @Override
     public String getUsername() {
-        return userTelephone;
+        return userName;
     }
 
     /**

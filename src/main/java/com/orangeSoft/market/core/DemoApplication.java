@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan("com.orangeSoft.market.mapper")
 @EnableSwagger2
 public class DemoApplication extends WebMvcConfigurationSupport {
-
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }

@@ -2,9 +2,7 @@ package com.orangeSoft.market.controller;
 
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Logistics;
-import com.orangeSoft.market.entity.ReceiveAddress;
 import com.orangeSoft.market.service.impl.LogisticsServiceImpl;
-import com.orangeSoft.market.service.impl.ReceiveAddressServiceImpl;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

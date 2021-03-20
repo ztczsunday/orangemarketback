@@ -29,7 +29,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             return Result.fail(null, "密码格式错误");
         } else if (this.save(userInfo)) {
             return Result.success();
-        }else {
+        } else {
             return Result.fail();
         }
     }
