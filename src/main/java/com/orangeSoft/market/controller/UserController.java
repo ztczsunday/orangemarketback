@@ -90,4 +90,6 @@ public class UserController {
         myType = amIUser ? "用户" : "商家";
         return chatService.sendChat(myType, oppUid, oppSid, chatContent);
     }
+
+
 }
