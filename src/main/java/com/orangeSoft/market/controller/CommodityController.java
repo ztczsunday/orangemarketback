@@ -96,7 +96,7 @@ public class CommodityController {
 
     @ApiOperation(value = "更新商品信息")
     @PutMapping(value = "/commodityUpdate", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap getUpdatedCommodity(@RequestBody CommodityUpdateData commodityUpdateData) {
+    public Result.JSONResultMap UpdatedCommodity(@RequestBody CommodityUpdateData commodityUpdateData) {
         return commodityService.updatedCommodity(commodityUpdateData);
     }
 
