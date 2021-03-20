@@ -69,7 +69,7 @@ public class AdminServiceImpl implements IAdminService {
         LocalDateTime localDateTime=LocalDateTime.now();
         for(int i=0;i<days;i++){
             resultMap.put(localDateTime,orderStateflowMapper.selectCount(new QueryWrapper<OrderStateflow>()
-                    .eq("record_id",i)
+                    .eq("record_id",1)
                     .le("status_time",localDateTime)
                     .ge("status_time",localDateTime.minus(1, ChronoUnit.DAYS))));
         }
