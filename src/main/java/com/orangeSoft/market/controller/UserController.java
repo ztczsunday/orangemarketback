@@ -3,6 +3,7 @@ package com.orangeSoft.market.controller;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.SubComments;
 import com.orangeSoft.market.entity.UserInfo;
+import com.orangeSoft.market.service.impl.ChatServiceImpl;
 import com.orangeSoft.market.service.impl.SubCommentsServiceImpl;
 import com.orangeSoft.market.service.impl.UserCommentServiceImpl;
 import com.orangeSoft.market.service.impl.UserInfoServiceImpl;
@@ -19,6 +20,8 @@ public class UserController {
     UserCommentServiceImpl userCommentService;
     @Autowired
     SubCommentsServiceImpl subCommentsService;
+    @Autowired
+    ChatServiceImpl chatService;
 
     @ApiOperation(value = "查找用户信息")
     @GetMapping(value = "/userInfo", produces = "application/json;charset=UTF-8")
@@ -60,5 +63,31 @@ public class UserController {
     @PostMapping(value = "/user/myComments", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getMyAllComments() {
         return userCommentService.getMyAllComments();
+    }
+
+    @ApiOperation(value = "查看当前用户最新聊天", notes = "包含一条最新的消息")
+    @GetMapping(value = "/user/aboutChats", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getAboutChats() {
+        return chatService.getAboutChats();
+    }
+
+    @ApiOperation(value = "查看来信", notes = "点击最新消息进入，从中获取对方uid以及身份")
+    @GetMapping(value = "/user/receiveChats", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getAllChatsWithOpp(@RequestParam(value = "oppUid") Integer oppUid,
+                                                   @RequestParam(value = "isOppUser") Boolean isOppUser) {
+        String oppType = "";
+        oppType = isOppUser ? "用户" : "商家";
+        return chatService.getAllChatsWithOpp(oppUid, oppType);
+    }
+
+    @ApiOperation(value = "发送私信", notes = "对方uid和sid二选一，对应向用户和向店铺发送私信")
+    @PostMapping(value = "/user/sendChat", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap sendChat(@RequestParam(value = "amIUser") Boolean amIUser,
+                                         @RequestParam(value = "oppUid", defaultValue = "null") Integer oppUid,
+                                         @RequestParam(value = "oppSid", defaultValue = "bull") Integer oppSid,
+                                         @RequestParam(value = "chatContent") String chatContent) {
+        String myType = "";
+        myType = amIUser ? "用户" : "商家";
+        return chatService.sendChat(myType, oppUid, oppSid, chatContent);
     }
 }

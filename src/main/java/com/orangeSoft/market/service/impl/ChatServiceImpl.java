@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.Chat;
+import com.orangeSoft.market.entity.ChatDetails;
 import com.orangeSoft.market.entity.Shop;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.ChatMapper;
@@ -72,5 +73,18 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
                         .or()
                         .eq("receiver_id", oppUid)
                         .eq("receiver_type", oppType).list());
+    }
+
+    @Override
+    public Result.JSONResultMap sendChat(String myType, Integer oppUid, Integer oppSid, String chatContent) {
+        ChatDetails chatDetails = new ChatDetails(null, chatContent);
+        chatDetailsService.save(chatDetails);
+        String oppType = "用户";
+        if (oppUid == null) {
+            oppUid = shopService.getById(oppSid).getUid();
+            oppType = "商家";
+        }
+        this.save(new Chat(null, chatDetails.getChatContentId(), null, MySessionUtil.getCurrUser().getUid(), myType, oppUid, oppType, false));
+        return Result.success();
     }
 }
