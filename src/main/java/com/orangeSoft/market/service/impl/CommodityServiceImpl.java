@@ -44,6 +44,12 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private ShopMapper shopMapper;
     @Autowired
     private CommodityLabelMapper commodityLabelMapper;
+    @Autowired
+    private FavoritesCommodityServiceImpl favoritesCommodityService;
+    @Autowired
+    private ShopServiceImpl shopService;
+    @Autowired
+    private CommodityLabelServiceImpl commodityLabelService;
 
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
@@ -88,9 +94,9 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
                         .orderByDesc("comment_time")
                         .last("limit 3")));
 
-        result.put("isCollected", new FavoritesCommodityServiceImpl().isCollected(commodityId));
+        result.put("isCollected", favoritesCommodityService.isCollected(commodityId));
 
-        Shop shop = new ShopServiceImpl().getShopById(this.query().eq("cid", commodityId).one().getSid());
+        Shop shop = shopService.getShopById(this.query().eq("cid", commodityId).one().getSid());
         result.put("shopName", shop.getShopName());
         result.put("shopDescription", shop.getShopDescription());
 
@@ -120,7 +126,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
         List<Commodity> recommends = new ArrayList<>();
         List<List<CommodityLabel>> commodityLabels = footprints.stream()
-                .map(item -> new CommodityLabelServiceImpl().getLabelsByCid(item.getCid()))
+                .map(item -> commodityLabelService.getLabelsByCid(item.getCid()))
                 .collect(Collectors.toList());
         //循环遍历找到的所有历史商品，从其所有标签中随机选取1个搜索好评率最高的10个商品，再从其中随机选取一个
         for (int i = 0; i < 10; i++) {

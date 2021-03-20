@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FavoritesCommodityServiceImpl extends ServiceImpl<FavoritesCommodityMapper, FavoritesCommodity> implements IFavoritesCommodityService {
     @Autowired
-    FavoritesCommodityMapper favoritesCommodityMapper;
+    private FavoritesCommodityMapper favoritesCommodityMapper;
 
     @Override
     public Result.JSONResultMap getMyFavoriteCommodity(Page<Commodity> page) {
