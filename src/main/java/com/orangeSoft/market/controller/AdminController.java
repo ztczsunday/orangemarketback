@@ -16,25 +16,26 @@ public class AdminController {
 
     @ApiOperation(value = "查看用户总数")
     @GetMapping(value = "/admin/userAmount", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap findUserAmount(){
+    public Result.JSONResultMap findUserAmount() {
         return adminService.findUserAmount();
     }
 
     @ApiOperation(value = "查看各个状态的订单数")
     @GetMapping(value = "/admin/orderAmount", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap findOrderStatus(){
+    public Result.JSONResultMap findOrderStatus() {
         return adminService.findOrderStatus();
     }
 
     @ApiOperation(value = "查看商品好评率")
     @GetMapping(value = "/admin/praiseAmount", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap findCommodityPraise(){
+    public Result.JSONResultMap findCommodityPraise() {
         return adminService.findCommodityPraise();
     }
 
     @ApiOperation(value = "查看每天订单量")
     @GetMapping(value = "/admin/everydayOrderAmount", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap findEverydayOrderAmount(@RequestParam("days") int days){
-        return adminService.findEverydayOrderAmount(days);
+    public Result.JSONResultMap findEverydayOrderAmount(@RequestParam("days") int days,
+                                                        @RequestParam("recordId") int recordId) {
+        return adminService.findEverydayOrderAmount(days, recordId);
     }
 }

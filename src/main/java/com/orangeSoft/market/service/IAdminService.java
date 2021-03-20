@@ -34,8 +34,9 @@ public interface IAdminService {
     /**
      * 查看每天订单量
      *
-     * @param days 查询天数
+     * @param days     查询天数
+     * @param recordId 查询订单状态
      * @return 每天订单量
      */
-    Result.JSONResultMap findEverydayOrderAmount(int days);
+    Result.JSONResultMap findEverydayOrderAmount(int days, int recordId);
 }

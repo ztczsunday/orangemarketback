@@ -64,12 +64,12 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     @Override
-    public Result.JSONResultMap findEverydayOrderAmount(int days){
+    public Result.JSONResultMap findEverydayOrderAmount(int days, int recordId){
         Map<LocalDateTime,Integer> resultMap=new HashMap<>();
         LocalDateTime localDateTime=LocalDateTime.now();
         for(int i=0;i<days;i++){
             resultMap.put(localDateTime,orderStateflowMapper.selectCount(new QueryWrapper<OrderStateflow>()
-                    .eq("record_id",1)
+                    .eq("record_id",recordId)
                     .le("status_time",localDateTime)
                     .ge("status_time",localDateTime.minus(1, ChronoUnit.DAYS))));
         }
