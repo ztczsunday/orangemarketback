@@ -193,22 +193,27 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         List<CommodityPictures> commodityPicturesList = commodityPicturesMapper.selectList(new QueryWrapper<CommodityPictures>().eq("cid", cid));
         List<SubCommodity> subCommodityList = subCommodityMapper.selectList(new QueryWrapper<SubCommodity>().eq("cid", cid));
         List<CommodityDetails> commodityDetailsList = commodityDetailsMapper.selectList(new QueryWrapper<CommodityDetails>().eq("cid", cid));
-        commodityUpdateData.setCid(cid);
-        commodityUpdateData.setCommodityName(commodity.getCommodityName());
-        commodityUpdateData.setCommodityStatus(commodity.getCommodityStatus());
-        commodityUpdateData.setMainIcon(commodity.getMainIcon());
-        CommodityLabel[] commodityLabels = new CommodityLabel[commodityDetailsList.size()];
-        SubCommodity[] subCommodities = new SubCommodity[subCommodityList.size()];
-        CommodityPictures[] commodityPictures = new CommodityPictures[commodityPicturesList.size()];
-        CommodityDetails[] commodityDetails = new CommodityDetails[commodityDetailsList.size()];
-        commodityLabelList.toArray(commodityLabels);
-        commodityPicturesList.toArray(commodityPictures);
-        subCommodityList.toArray(subCommodities);
-        commodityDetailsList.toArray(commodityDetails);
-        commodityUpdateData.setCommodityLabels(commodityLabels);
-        commodityUpdateData.setMainIcons(commodityPictures);
-        commodityUpdateData.setSubCommodity(subCommodities);
-        commodityUpdateData.setCommodityDetails(commodityDetails);
+        commodityUpdateData
+                .setCid(cid)
+                .setCommodityName(commodity.getCommodityName())
+                .setCommodityStatus(commodity.getCommodityStatus())
+                .setMainIcon(commodity.getMainIcon())
+                .setCommodityLabels(commodityLabelList)
+                .setMainIcons(commodityPicturesList)
+                .setSubCommodity(subCommodityList)
+                .setCommodityDetails(commodityDetailsList);
+//        CommodityLabel[] commodityLabels = new CommodityLabel[commodityDetailsList.size()];
+//        SubCommodity[] subCommodities = new SubCommodity[subCommodityList.size()];
+//        CommodityPictures[] commodityPictures = new CommodityPictures[commodityPicturesList.size()];
+//        CommodityDetails[] commodityDetails = new CommodityDetails[commodityDetailsList.size()];
+//        commodityLabelList.toArray(commodityLabels);
+//        commodityPicturesList.toArray(commodityPictures);
+//        subCommodityList.toArray(subCommodities);
+//        commodityDetailsList.toArray(commodityDetails);
+//        commodityUpdateData.setCommodityLabels(commodityLabels);
+//        commodityUpdateData.setMainIcons(commodityPictures);
+//        commodityUpdateData.setSubCommodity(subCommodities);
+//        commodityUpdateData.setCommodityDetails(commodityDetails);
         return Result.success(commodityUpdateData);
     }
 

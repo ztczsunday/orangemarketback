@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -20,8 +22,8 @@ public class CommodityUpdateData {
     private String commodityName;
     private String mainIcon;
     private boolean commodityStatus;
-    private CommodityLabel[] commodityLabels;
-    private CommodityPictures[] mainIcons;
-    private CommodityDetails[] commodityDetails;
-    private SubCommodity[] subCommodity;
+    private List<CommodityLabel> commodityLabels;
+    private List<CommodityPictures> mainIcons;
+    private List<CommodityDetails> commodityDetails;
+    private List<SubCommodity> subCommodity;
 }
