@@ -23,11 +23,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class History implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @TableId(value = "cid", type = IdType.AUTO)
+public class History {
     private Long cid;
     private Integer sid;
     private String commodityName;

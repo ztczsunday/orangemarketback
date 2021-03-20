@@ -15,23 +15,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class NewChatResult {
-
     private LocalDateTime chatDate;
-
     private Integer senderId;
-
     private String senderType;
-
     private Integer receiverId;
-
     private String receiverType;
-
     private Boolean isRead;
-
     private String newChatContent;
-
     private String oppSelfie;
-
     private String oppName;
 
     public NewChatResult(Chat chat, String chatContent, String oppSelfie, String oppName) {

@@ -16,22 +16,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class UserCommentResult {
-    private static final long serialVersionUID = 1L;
-
-    @TableId(value = "comment_id", type = IdType.AUTO)
     private Long commentId;
-
     private Integer uid;
-
     private Boolean praise;
-
     private LocalDateTime commentTime;
-
     private String commentDetails;
-
     private Long cid;
-
     private String userSelfie;
-
     private String userName;
+    private Integer subCommentCount;
 }

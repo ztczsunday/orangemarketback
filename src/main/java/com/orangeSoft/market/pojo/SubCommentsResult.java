@@ -14,21 +14,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class SubCommentsResult {
-    private static final long serialVersionUID = 1L;
-
     private Long subCommentId;
-
     private String subCommentDetails;
-
     private LocalDateTime subCommentTime;
-
     private Boolean isDeleted;
-
     private Long commentId;
-
     private Integer uid;
-
     private String userSelfie;
-
     private String userName;
 }

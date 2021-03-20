@@ -4,10 +4,10 @@
 
     <select id="findAllCommentsByCid" resultType="com.orangeSoft.market.pojo.UserCommentResult">
         select *
-        from (select uc.*, ui.user_name, ui.user_selfie
-              from user_comment uc
+        from (select uc.*, ui.user_name, ui.user_selfie,count(sc.sub_comment_id) "subCommentCount"
+              from (user_comment uc, sub_comments sc)
                        inner join user_info ui on uc.uid = ui.uid
-              where uc.cid = #{cid}
+              where uc.cid = #{cid} and sc.comment_id = uc.comment_id
               order by uc.comment_id desc)
                  as tmp
     </select>
