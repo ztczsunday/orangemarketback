@@ -21,10 +21,17 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result.JSONResultMap register(UserInfo userInfo) {
         userInfo.setUid(null);
-        if (this.save(userInfo)) {
+        if ("".equals(userInfo.getUserTelephone()) || "".equals(userInfo.getPassword()) || "".equals(userInfo.getUsername())) {
+            return Result.fail(null, "用户名、密码、手机号不能为空");
+        } else if (this.query().eq("user_telephone", userInfo.getUserTelephone()).count() != 0) {
+            return Result.fail(null, "该手机号已被注册");
+        } else if (userInfo.getPassword().length() > 16 || userInfo.getPassword().length() < 8) {
+            return Result.fail(null, "密码格式错误");
+        } else if (this.save(userInfo)) {
             return Result.success();
+        }else {
+            return Result.fail();
         }
-        return Result.fail();
     }
 
     @Override
