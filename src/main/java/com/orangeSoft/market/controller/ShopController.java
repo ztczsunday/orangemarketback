@@ -39,13 +39,13 @@ public class ShopController {
         return shopService.shopCommodity(new Page<>(pages, pageSize));
     }
 
-    @ApiOperation(value = "查看某商店详情", notes = "买家进入店铺查看商品")
+    @ApiOperation(value = "查看某商店详情", notes = "买家进入店铺查看商品，包括其详细信息，以及是否被收藏")
     @GetMapping(value = "/shop/visit", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getShopCommodities(
             @RequestParam(value = "page", defaultValue = "1") int pages,
             @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
             @RequestParam(value = "sid") Integer sid) {
-        return commodityService.getCommodityBtSid(new Page<>(pages, pageSize), sid);
+        return commodityService.getShopDetailsBySid(new Page<>(pages, pageSize), sid);
     }
 
 }

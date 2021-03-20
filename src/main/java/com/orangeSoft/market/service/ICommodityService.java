@@ -50,7 +50,7 @@ public interface ICommodityService extends IService<Commodity> {
      * @param page 分页器
      * @return 结果
      */
-    Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid);
+    Result.JSONResultMap getShopDetailsBySid(IPage<CommoditySearchResult> page, Integer sid);
 
     /**
      * 首页推荐商品

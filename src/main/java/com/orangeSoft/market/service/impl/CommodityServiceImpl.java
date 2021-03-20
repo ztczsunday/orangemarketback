@@ -50,6 +50,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private ShopServiceImpl shopService;
     @Autowired
     private CommodityLabelServiceImpl commodityLabelService;
+    @Autowired
+    private FavoritesShopServiceImpl favoritesShopService;
 
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
@@ -104,12 +106,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     }
 
     @Override
-    public Result.JSONResultMap getCommodityBtSid(IPage<CommoditySearchResult> page, Integer sid) {
-        Map<String, IPage<CommoditySearchResult>> rs = new HashMap<>();
+    public Result.JSONResultMap getShopDetailsBySid(IPage<CommoditySearchResult> page, Integer sid) {
+        Map<String, Object> rs = new HashMap<>();
         IPage<CommoditySearchResult> commodityOpen = this.baseMapper.findCommodityBySidOpen(page, sid);
         IPage<CommoditySearchResult> commodityClose = this.baseMapper.findCommodityBySidClose(page, sid);
         rs.put("commodityOpen", commodityOpen);
         rs.put("commodityClose", commodityClose);
+        rs.put("shopDetails", shopService.getById(sid));
+        rs.put("isCollected", favoritesShopService.isShopCollected(sid));
         return Result.success(rs);
     }
 

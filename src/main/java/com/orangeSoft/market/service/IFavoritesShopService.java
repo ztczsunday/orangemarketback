@@ -37,4 +37,12 @@ public interface IFavoritesShopService extends IService<FavoritesShop> {
      * @return 添加指定商店收藏
      */
     Result.JSONResultMap addFavoritesShop(int sid);
+
+    /**
+     * 查询当前用户是否收藏了该商店
+     *
+     * @param sid 商店ID
+     * @return true收藏, false未收藏
+     */
+    boolean isShopCollected(Integer sid);
 }

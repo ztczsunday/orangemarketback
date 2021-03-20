@@ -49,4 +49,9 @@ public class FavoritesShopServiceImpl extends ServiceImpl<FavoritesShopMapper, F
         }
         return Result.fail();
     }
+
+    @Override
+    public boolean isShopCollected(Integer sid) {
+        return this.query().eq("sid", sid).eq("uid", MySessionUtil.getCurrUser().getUid()).one() != null;
+    }
 }
