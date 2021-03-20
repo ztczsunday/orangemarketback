@@ -202,18 +202,6 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
                 .setMainIcons(commodityPicturesList)
                 .setSubCommodity(subCommodityList)
                 .setCommodityDetails(commodityDetailsList);
-//        CommodityLabel[] commodityLabels = new CommodityLabel[commodityDetailsList.size()];
-//        SubCommodity[] subCommodities = new SubCommodity[subCommodityList.size()];
-//        CommodityPictures[] commodityPictures = new CommodityPictures[commodityPicturesList.size()];
-//        CommodityDetails[] commodityDetails = new CommodityDetails[commodityDetailsList.size()];
-//        commodityLabelList.toArray(commodityLabels);
-//        commodityPicturesList.toArray(commodityPictures);
-//        subCommodityList.toArray(subCommodities);
-//        commodityDetailsList.toArray(commodityDetails);
-//        commodityUpdateData.setCommodityLabels(commodityLabels);
-//        commodityUpdateData.setMainIcons(commodityPictures);
-//        commodityUpdateData.setSubCommodity(subCommodities);
-//        commodityUpdateData.setCommodityDetails(commodityDetails);
         return Result.success(commodityUpdateData);
     }
 
