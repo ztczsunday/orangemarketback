@@ -3,12 +3,15 @@
 <mapper namespace="com.orangeSoft.market.mapper.UserCommentMapper">
 
     <select id="findAllCommentsByCid" resultType="com.orangeSoft.market.pojo.UserCommentResult">
-        select *
-        from (select uc.*, ui.user_name, ui.user_selfie,count(sc.sub_comment_id) "subCommentCount"
-              from (user_comment uc, sub_comments sc)
-                       inner join user_info ui on uc.uid = ui.uid
-              where uc.cid = #{cid} and sc.comment_id = uc.comment_id
-              order by uc.comment_id desc)
-                 as tmp
+        select uc.*,
+               ui.user_name,
+               ui.user_selfie,
+               count(distinct sc.sub_comment_id) "subCommentCount"
+        from user_comment uc
+                 left join sub_comments sc on sc.comment_id = uc.comment_id
+                 inner join user_info ui on uc.uid = ui.uid
+        where uc.cid = #{cid}
+        group by uc.comment_id
+        order by comment_id
     </select>
 </mapper>
