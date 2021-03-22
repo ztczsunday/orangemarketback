@@ -58,9 +58,7 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
                 .eq("receiver_id", me.getUid())
                 .orderByDesc("chat_id").list();
         chatsAboutMe.forEach(item -> {
-            Integer receiverId = item.getReceiverId();
             Integer senderId = item.getSenderId();
-
             /* 填入我的身份、对面的身份 */
             String myType;
             String myName;
@@ -98,7 +96,6 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
                 oppSelfie = oppInfo.getUserSelfie();
                 oppName = oppInfo.getUsername();
             }
-
 
             Contact contact = new Contact(oppId, oppType, myType);
             if (!contacts.contains(contact)) {
