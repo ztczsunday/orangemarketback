@@ -43,34 +43,45 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
     private static class Contact {
         public Integer oppId;
         public String oppType;
+        public String myType;
     }
 
     @Override
     public Result.JSONResultMap getAboutChats() {
-        Integer myId = MySessionUtil.getCurrUser().getUid();
+        UserInfo me = MySessionUtil.getCurrUser();
         Set<Contact> contacts = new HashSet<>();
         List<NewChatResult> chatResults = new ArrayList<>();
 
-        List<Chat> chatsAboutMe = this.query().eq("sender_id", myId).or().eq("receiver_id", myId).orderByDesc("chat_id").list();
+        List<Chat> chatsAboutMe = this.query().eq("sender_id", me.getUid()).or().eq("receiver_id", me.getUid()).orderByDesc("chat_id").list();
         chatsAboutMe.forEach(item -> {
             Integer oppId = item.getReceiverId();
             //默认对方为接收方
             String oppType = item.getReceiverType();
+            String myType = item.getSenderType();
             //如果我是接收方
-            if (oppId.equals(myId)) {
+            if (oppId.equals(me.getUid())) {
                 oppId = item.getSenderId();
                 oppType = item.getSenderType();
+                myType = item.getReceiverType();
             }
-            Contact contact = new Contact(oppId, oppType);
+            Contact contact = new Contact(oppId, oppType, myType);
             if (!contacts.contains(contact)) {
                 contacts.add(contact);
 
-                if (oppType.equals("商家")) {
+                if (oppType.equals("商家") && myType.equals("用户")) {
                     Shop oppShop = shopService.query().eq("uid", oppId).one();
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName()));
+                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName(), me.getUserSelfie(), me.getUsername()));
+                } else if (oppType.equals("用户") && myType.equals("用户")) {
+                    UserInfo oppUser = userInfoService.getById(oppId);
+                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getUsername(), me.getUserSelfie(), me.getUsername()));
+                } else if (oppType.equals("商家") && myType.equals("商家")) {
+                    Shop oppShop = shopService.query().eq("uid", oppId).one();
+                    Shop myShop = shopService.query().eq("uid", me.getUid()).one();
+                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName(), myShop.getShopIcon(), myShop.getShopName()));
                 } else {
                     UserInfo oppUser = userInfoService.getById(oppId);
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getUsername()));
+                    Shop myShop = shopService.query().eq("uid", me.getUid()).one();
+                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getUsername(), myShop.getShopIcon(), myShop.getShopName()));
                 }
             }
         });

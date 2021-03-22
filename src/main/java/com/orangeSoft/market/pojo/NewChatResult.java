@@ -24,8 +24,10 @@ public class NewChatResult {
     private String newChatContent;
     private String oppSelfie;
     private String oppName;
+    private String mySelfie;
+    private String myName;
 
-    public NewChatResult(Chat chat, String chatContent, String oppSelfie, String oppName) {
+    public NewChatResult(Chat chat, String chatContent, String oppSelfie, String oppName, String mySelfie, String myName) {
         this.chatDate = chat.getChatDate();
         this.senderId = chat.getSenderId();
         this.senderType = chat.getSenderType();
@@ -35,5 +37,7 @@ public class NewChatResult {
         this.newChatContent = chatContent;
         this.oppSelfie = oppSelfie;
         this.oppName = oppName;
+        this.mySelfie = mySelfie;
+        this.myName = myName;
     }
 }
