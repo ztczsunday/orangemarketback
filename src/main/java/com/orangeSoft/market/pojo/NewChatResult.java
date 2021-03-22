@@ -11,33 +11,17 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
 @Accessors(chain = true)
 public class NewChatResult {
     private LocalDateTime chatDate;
+    private Integer oppId;
     private Integer senderId;
-    private String senderType;
-    private Integer receiverId;
-    private String receiverType;
+    private String myType;
+    private String oppType;
     private Boolean isRead;
     private String newChatContent;
     private String oppSelfie;
     private String oppName;
     private String mySelfie;
     private String myName;
-
-    public NewChatResult(Chat chat, String chatContent, String oppSelfie, String oppName, String mySelfie, String myName) {
-        this.chatDate = chat.getChatDate();
-        this.senderId = chat.getSenderId();
-        this.senderType = chat.getSenderType();
-        this.receiverId = chat.getReceiverId();
-        this.receiverType = chat.getReceiverType();
-        this.isRead = chat.getIsRead();
-        this.newChatContent = chatContent;
-        this.oppSelfie = oppSelfie;
-        this.oppName = oppName;
-        this.mySelfie = mySelfie;
-        this.myName = myName;
-    }
 }

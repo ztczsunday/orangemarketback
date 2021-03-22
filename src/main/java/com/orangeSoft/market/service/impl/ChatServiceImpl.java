@@ -52,50 +52,93 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
         Set<Contact> contacts = new HashSet<>();
         List<NewChatResult> chatResults = new ArrayList<>();
 
-        List<Chat> chatsAboutMe = this.query().eq("sender_id", me.getUid()).or().eq("receiver_id", me.getUid()).orderByDesc("chat_id").list();
+        List<Chat> chatsAboutMe = this.query()
+                .eq("sender_id", me.getUid())
+                .or()
+                .eq("receiver_id", me.getUid())
+                .orderByDesc("chat_id").list();
         chatsAboutMe.forEach(item -> {
-            Integer oppId = item.getReceiverId();
-            //默认对方为接收方
-            String oppType = item.getReceiverType();
-            String myType = item.getSenderType();
-            //如果我是接收方
-            if (oppId.equals(me.getUid())) {
+            Integer receiverId = item.getReceiverId();
+            Integer senderId = item.getSenderId();
+
+            /* 填入我的身份、对面的身份 */
+            String myType;
+            String myName;
+            String mySelfie;
+            Integer myId = MySessionUtil.getCurrUser().getUid();
+            String oppType;
+            String oppName;
+            String oppSelfie;
+            Integer oppId;
+            if (myId.equals(item.getReceiverId())) {
                 oppId = item.getSenderId();
                 oppType = item.getSenderType();
                 myType = item.getReceiverType();
+            } else {
+                oppId = item.getReceiverId();
+                oppType = item.getReceiverType();
+                myType = item.getSenderType();
             }
+            /* 根据我的身份、对面的身份来做初始化 */
+            if (myType.equals("商家")) {
+                Shop shopInfo = shopService.query().eq("uid", myId).one();
+                mySelfie = shopInfo.getShopName();
+                myName = shopInfo.getShopName();
+            } else {
+                UserInfo myInfo = MySessionUtil.getCurrUser();
+                mySelfie = myInfo.getUserSelfie();
+                myName = myInfo.getUsername();
+            }
+            if (oppType.equals("商家")) {
+                Shop shopInfo = shopService.query().eq("uid", oppId).one();
+                oppSelfie = shopInfo.getShopIcon();
+                oppName = shopInfo.getShopName();
+            } else {
+                UserInfo oppInfo = userInfoService.getById(oppId);
+                oppSelfie = oppInfo.getUserSelfie();
+                oppName = oppInfo.getUsername();
+            }
+
+
             Contact contact = new Contact(oppId, oppType, myType);
             if (!contacts.contains(contact)) {
                 contacts.add(contact);
 
-                if (oppType.equals("商家") && myType.equals("用户")) {
-                    Shop oppShop = shopService.query().eq("uid", oppId).one();
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName(), me.getUserSelfie(), me.getUsername()));
-                } else if (oppType.equals("用户") && myType.equals("用户")) {
-                    UserInfo oppUser = userInfoService.getById(oppId);
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getUsername(), me.getUserSelfie(), me.getUsername()));
-                } else if (oppType.equals("商家") && myType.equals("商家")) {
-                    Shop oppShop = shopService.query().eq("uid", oppId).one();
-                    Shop myShop = shopService.query().eq("uid", me.getUid()).one();
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName(), myShop.getShopIcon(), myShop.getShopName()));
-                } else {
-                    UserInfo oppUser = userInfoService.getById(oppId);
-                    Shop myShop = shopService.query().eq("uid", me.getUid()).one();
-                    chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppUser.getUserSelfie(), oppUser.getUsername(), myShop.getShopIcon(), myShop.getShopName()));
-                }
+                chatResults.add(new NewChatResult()
+                        .setChatDate(item.getChatDate())
+                        .setOppId(oppId)
+                        .setSenderId(senderId)
+                        .setMyType(myType)
+                        .setOppType(oppType)
+                        .setIsRead(item.getIsRead())
+                        .setNewChatContent(chatDetailsService.getById(item.getChatContentId()).getChatContent())
+                        .setOppSelfie(oppSelfie)
+                        .setOppName(oppName)
+                        .setMySelfie(mySelfie)
+                        .setMyName(myName));
             }
         });
         return Result.success(chatResults);
     }
 
     @Override
-    public Result.JSONResultMap getAllChatsWithOpp(Integer oppUid, String oppType) {
+    public Result.JSONResultMap getAllChatsWithOpp(Integer oppUid, String oppType, String selfType) {
+        Integer selfUid = MySessionUtil.getCurrUser().getUid();
         List<Chat> chatList = this.query()
                 .eq("sender_id", oppUid)
                 .eq("sender_type", oppType)
-                .or()
+                .eq("receiver_id", selfUid)
+                .eq("receiver_type", selfType)
+                .orderByAsc("chat_id")
+                .list();
+        chatList.addAll(this.query()
                 .eq("receiver_id", oppUid)
-                .eq("receiver_type", oppType).orderByAsc("chat_id").list();
+                .eq("receiver_type", oppType)
+                .eq("sender_id", selfUid)
+                .eq("sender_type", selfType)
+                .orderByAsc("chat_id")
+                .list());
+        chatList.forEach(System.out::println);
         List<ChatResults> chatResults = chatList.stream().map(chat ->
                 new ChatResults(chat.getChatDate(),
                         chatDetailsService.getById(chat.getChatContentId()).getChatContent(),

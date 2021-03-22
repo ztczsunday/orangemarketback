@@ -74,9 +74,9 @@ public class UserController {
     @ApiOperation(value = "查看来信", notes = "点击最新消息进入，从中获取对方uid以及身份")
     @GetMapping(value = "/user/receiveChats", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getAllChatsWithOpp(@RequestParam(value = "oppUid") Integer oppUid,
-                                                   @RequestParam(value = "isOppUser") Boolean isOppUser) {
-        String oppType = isOppUser ? "用户" : "商家";
-        return chatService.getAllChatsWithOpp(oppUid, oppType);
+                                                   @RequestParam(value = "oppType") String oppType,
+                                                   @RequestParam(value = "selfType") String selfType) {
+        return chatService.getAllChatsWithOpp(oppUid, oppType, selfType);
     }
 
     @ApiOperation(value = "发送私信", notes = "对方uid和sid二选一，对应向用户和向店铺发送私信")
