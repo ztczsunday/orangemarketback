@@ -26,7 +26,7 @@ public interface IChatService extends IService<Chat> {
      * @param oppType 对方聊天身份
      * @return 结果
      */
-    Result.JSONResultMap getAllChatsWithOpp(Integer oppUid, String oppType);
+    Result.JSONResultMap getAllChatsWithOpp(Integer oppUid, String oppType, String selfType);
 
     /**
      * 发送私信

@@ -52,6 +52,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private CommodityLabelServiceImpl commodityLabelService;
     @Autowired
     private FavoritesShopServiceImpl favoritesShopService;
+    @Autowired
+    private CommodityServiceImpl commodityService;
 
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
@@ -80,6 +82,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     @Override
     public Result.JSONResultMap getCommodityById(Long commodityId) {
         Map<String, Object> result = new HashMap<>();
+        Commodity commodity = commodityService.getById(commodityId);
 
         result.put("commodityDetails", commodityDetailsMapper
                 .selectList(new QueryWrapper<CommodityDetails>().eq("cid", commodityId)));
@@ -90,17 +93,16 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         result.put("subCommodity", subCommodityMapper
                 .selectList(new QueryWrapper<SubCommodity>().eq("cid", commodityId)));
 
-        result.put("hotComments", userCommentMapper
-                .selectList(new QueryWrapper<UserComment>()
-                        .eq("cid", commodityId)
-                        .orderByDesc("comment_time")
-                        .last("limit 3")));
+        result.put("hotComments", userCommentMapper.findHotCommentsByCid(commodityId));
 
         result.put("isCollected", favoritesCommodityService.isCollected(commodityId));
 
         Shop shop = shopService.getShopById(this.query().eq("cid", commodityId).one().getSid());
         result.put("shopName", shop.getShopName());
         result.put("shopDescription", shop.getShopDescription());
+        result.put("commodityName", commodity.getCommodityName());
+        result.put("commentCount", commodity.getCommentCount());
+        result.put("praiseCommentCount", commodity.getPraiseCommentCount());
 
         return Result.success(result);
     }

@@ -14,4 +14,14 @@
         group by uc.comment_id
         order by comment_id
     </select>
+    <select id="findHotCommentsByCid" resultType="com.orangeSoft.market.pojo.UserCommentResult">
+        select uc.*,
+               ui.user_name,
+               ui.user_selfie
+        from user_comment uc
+                 inner join user_info ui on uc.uid = ui.uid
+        where uc.cid = #{cid}
+        order by uc.comment_id desc
+        limit 3
+    </select>
 </mapper>
