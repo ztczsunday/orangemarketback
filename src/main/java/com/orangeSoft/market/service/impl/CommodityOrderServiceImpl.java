@@ -66,6 +66,9 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
         commodityOrder.setSubId(subId);
         SubCommodity subCommodity = subCommodityMapper.selectById(subId);
         subCommodity.setStock(subCommodity.getStock() - countCommodity);
+        if (subCommodity.getStock() < 0) {
+            return Result.fail("", "货已卖空");
+        }
         subCommodityMapper.updateById(subCommodity);
         commodityOrder.setSid(commodityOrderMapper.findSidBySubId(subId));
         commodityOrder.setUid(MySessionUtil.getCurrUser().getUid());
