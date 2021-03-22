@@ -135,7 +135,6 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
                 .eq("sender_type", selfType)
                 .orderByAsc("chat_id")
                 .list());
-        chatList.forEach(System.out::println);
         List<ChatResults> chatResults = chatList.stream().map(chat ->
                 new ChatResults(chat.getChatDate(),
                         chatDetailsService.getById(chat.getChatContentId()).getChatContent(),
