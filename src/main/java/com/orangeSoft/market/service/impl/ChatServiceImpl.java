@@ -11,6 +11,8 @@ import com.orangeSoft.market.mapper.ChatMapper;
 import com.orangeSoft.market.pojo.ChatResults;
 import com.orangeSoft.market.pojo.NewChatResult;
 import com.orangeSoft.market.service.IChatService;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,25 +38,34 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
     @Autowired
     ShopServiceImpl shopService;
 
+    @EqualsAndHashCode
+    @AllArgsConstructor
+    private static class Contact {
+        public Integer oppId;
+        public String oppType;
+    }
+
     @Override
     public Result.JSONResultMap getAboutChats() {
         Integer myId = MySessionUtil.getCurrUser().getUid();
-        Set<Integer> contactsId = new HashSet<>();
+        Set<Contact> contacts = new HashSet<>();
         List<NewChatResult> chatResults = new ArrayList<>();
 
         List<Chat> chatsAboutMe = this.query().eq("sender_id", myId).or().eq("receiver_id", myId).orderByDesc("chat_id").list();
         chatsAboutMe.forEach(item -> {
             Integer oppId = item.getReceiverId();
-            //false为用户身份，true为商家身份
-            boolean oppType = (item.getReceiverType().equals("商家"));
+            //默认对方为接收方
+            String oppType = item.getReceiverType();
+            //如果我是接收方
             if (oppId.equals(myId)) {
                 oppId = item.getSenderId();
-                oppType = item.getSenderType().equals("商家");
+                oppType = item.getSenderType();
             }
-            if (!contactsId.contains(oppId)) {
-                contactsId.add(oppId);
+            Contact contact = new Contact(oppId, oppType);
+            if (!contacts.contains(contact)) {
+                contacts.add(contact);
 
-                if (oppType) {
+                if (oppType.equals("商家")) {
                     Shop oppShop = shopService.query().eq("uid", oppId).one();
                     chatResults.add(new NewChatResult(item, chatDetailsService.getById(item.getChatContentId()).getChatContent(), oppShop.getShopIcon(), oppShop.getShopName()));
                 } else {
