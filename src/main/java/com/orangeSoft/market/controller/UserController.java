@@ -52,7 +52,7 @@ public class UserController {
         return Result.success(userCommentService.evaluateCommodity(cid, commentDetails, praise));
     }
 
-    @ApiOperation(value = "追加子评论", notes = "自动覆盖设置时间和状态")
+    @ApiOperation(value = "追加子评论", notes = "自动覆盖设置时间和状态,只需subCommentDetails,commentId,uid")
     @ApiImplicitParam(name = "subComments", dataType = "SubComments", value = "子评论")
     @PostMapping(value = "/user/comment/comments", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap subEvaluation(@RequestBody SubComments subComments) {

@@ -8,6 +8,7 @@ import com.orangeSoft.market.entity.ChatDetails;
 import com.orangeSoft.market.entity.Shop;
 import com.orangeSoft.market.entity.UserInfo;
 import com.orangeSoft.market.mapper.ChatMapper;
+import com.orangeSoft.market.pojo.ChatResults;
 import com.orangeSoft.market.pojo.NewChatResult;
 import com.orangeSoft.market.service.IChatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -66,13 +68,18 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
 
     @Override
     public Result.JSONResultMap getAllChatsWithOpp(Integer oppUid, String oppType) {
-        return Result.success(
-                this.query()
-                        .eq("sender_id", oppUid)
-                        .eq("sender_type", oppType)
-                        .or()
-                        .eq("receiver_id", oppUid)
-                        .eq("receiver_type", oppType).list());
+        List<Chat> chatList = this.query()
+                .eq("sender_id", oppUid)
+                .eq("sender_type", oppType)
+                .or()
+                .eq("receiver_id", oppUid)
+                .eq("receiver_type", oppType).orderByAsc("chatId").list();
+        List<ChatResults> chatResults = chatList.stream().map(chat ->
+                new ChatResults(chat.getChatDate(),
+                        chatDetailsService.getById(chat.getChatContentId()).getChatContent(),
+                        oppUid.equals(chat.getReceiverId()) ? MySessionUtil.getCurrUser().getUid() : oppUid)
+        ).collect(Collectors.toList());
+        return Result.success(chatResults);
     }
 
     @Override
