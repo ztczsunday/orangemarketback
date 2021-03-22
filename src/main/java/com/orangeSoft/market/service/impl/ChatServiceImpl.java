@@ -145,14 +145,9 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
     }
 
     @Override
-    public Result.JSONResultMap sendChat(String myType, Integer oppUid, Integer oppSid, String chatContent) {
+    public Result.JSONResultMap sendChat(String myType, Integer oppUid, String oppType, String chatContent) {
         ChatDetails chatDetails = new ChatDetails(null, chatContent);
         chatDetailsService.save(chatDetails);
-        String oppType = "用户";
-        if (oppUid == null) {
-            oppUid = shopService.getById(oppSid).getUid();
-            oppType = "商家";
-        }
         this.save(new Chat(null, chatDetails.getChatContentId(), null, MySessionUtil.getCurrUser().getUid(), myType, oppUid, oppType, false));
         return Result.success();
     }
