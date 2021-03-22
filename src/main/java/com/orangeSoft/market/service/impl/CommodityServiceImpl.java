@@ -93,11 +93,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         result.put("subCommodity", subCommodityMapper
                 .selectList(new QueryWrapper<SubCommodity>().eq("cid", commodityId)));
 
-        result.put("hotComments", userCommentMapper
-                .selectList(new QueryWrapper<UserComment>()
-                        .eq("cid", commodityId)
-                        .orderByDesc("comment_time")
-                        .last("limit 3")));
+        result.put("hotComments", userCommentMapper.findHotCommentsByCid(commodityId));
 
         result.put("isCollected", favoritesCommodityService.isCollected(commodityId));
 
@@ -169,18 +165,34 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
                     return Result.fail();
                 }
             }
-            for (String mainIcon : newCommodityData.getMainIcons()) {
+            if (newCommodityData.getMainIcons().length == 0) {
                 commodityPictures.setCid(commodity.getCid());
-                commodityPictures.setPictureUrl(mainIcon);
+                commodityPictures.setPictureUrl(newCommodityData.getMainIcon());
                 if (commodityPicturesMapper.insert(commodityPictures) != 1) {
                     return Result.fail();
                 }
+            } else {
+                for (String mainIcon : newCommodityData.getMainIcons()) {
+                    commodityPictures.setCid(commodity.getCid());
+                    commodityPictures.setPictureUrl(mainIcon);
+                    if (commodityPicturesMapper.insert(commodityPictures) != 1) {
+                        return Result.fail();
+                    }
+                }
             }
-            for (String commodityDetail : newCommodityData.getCommodityDetails()) {
+            if (newCommodityData.getCommodityDetails().length == 0) {
                 commodityDetails.setCid(commodity.getCid());
-                commodityDetails.setDetailsUrl(commodityDetail);
+                commodityDetails.setDetailsUrl("http://localhost:8081/download?fileName=1616384034433.%E8%AF%A6%E6%83%85%E9%BB%98%E8%AE%A4.png");
                 if (commodityDetailsMapper.insert(commodityDetails) != 1) {
                     return Result.fail();
+                }
+            } else {
+                for (String commodityDetail : newCommodityData.getCommodityDetails()) {
+                    commodityDetails.setCid(commodity.getCid());
+                    commodityDetails.setDetailsUrl(commodityDetail);
+                    if (commodityDetailsMapper.insert(commodityDetails) != 1) {
+                        return Result.fail();
+                    }
                 }
             }
             for (long labelId : newCommodityData.getLabelId()) {

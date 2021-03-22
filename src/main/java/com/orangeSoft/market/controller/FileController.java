@@ -13,12 +13,15 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Objects;
 
 @RestController
 public class FileController {
     @ApiOperation(value = "下载文件", notes = "fileName对应数据库存储的")
     @GetMapping(value = "/download")
-    public void downloadFile(@RequestParam("fileName") String fileName, HttpServletResponse response) {
+    public void downloadFile(@RequestParam("fileName") String fileName, HttpServletResponse response) throws UnsupportedEncodingException {
+        fileName = java.net.URLEncoder.encode(Objects.requireNonNull(fileName), "utf-8");
         if (!new File(FileManager.MAIN_FILE_PATH + fileName).exists()) {
             fileName = "default_selfie.jpg";
         }
