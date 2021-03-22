@@ -93,11 +93,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         result.put("subCommodity", subCommodityMapper
                 .selectList(new QueryWrapper<SubCommodity>().eq("cid", commodityId)));
 
-        result.put("hotComments", userCommentMapper
-                .selectList(new QueryWrapper<UserComment>()
-                        .eq("cid", commodityId)
-                        .orderByDesc("comment_time")
-                        .last("limit 3")));
+        result.put("hotComments", userCommentMapper.findHotCommentsByCid(commodityId));
 
         result.put("isCollected", favoritesCommodityService.isCollected(commodityId));
 
