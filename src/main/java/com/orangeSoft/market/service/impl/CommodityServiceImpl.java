@@ -98,6 +98,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         result.put("isCollected", favoritesCommodityService.isCollected(commodityId));
 
         Shop shop = shopService.getShopById(this.query().eq("cid", commodityId).one().getSid());
+        result.put("shopId", shop.getSid());
         result.put("shopName", shop.getShopName());
         result.put("shopDescription", shop.getShopDescription());
         result.put("commodityName", commodity.getCommodityName());
