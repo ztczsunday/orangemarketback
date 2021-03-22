@@ -23,15 +23,15 @@
                price,
                count_commodity,
                address_details,
-               sub_icon
+               sub_icon,
+               logistics_name
         from commodity_order
                  inner join order_logistics ol on commodity_order.order_id = ol.order_id
+                 inner join logistics l on ol.logistics_id = l.logistics_id
                  inner join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
-                 inner join order_stateflow os on commodity_order.order_id = os.order_id
-                 inner join data_dictionary dd on os.record_id = dd.record_id
                  inner join shop s on commodity_order.sid = s.sid
                  inner join sub_commodity sc on commodity_order.sub_id = sc.sub_id
-                 inner join commodity c on s.sid = c.sid
+                 inner join commodity c on sc.cid = c.cid
         where commodity_order.order_id = #{orderId}
     </select>
     <select id="findUserOrderByUserId" resultType="com.orangeSoft.market.pojo.UserOrderResult">
