@@ -126,15 +126,13 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
                 .eq("sender_type", oppType)
                 .eq("receiver_id", selfUid)
                 .eq("receiver_type", selfType)
-                .orderByAsc("chat_id")
-                .list();
-        chatList.addAll(this.query()
+                .or()
                 .eq("receiver_id", oppUid)
                 .eq("receiver_type", oppType)
                 .eq("sender_id", selfUid)
                 .eq("sender_type", selfType)
                 .orderByAsc("chat_id")
-                .list());
+                .list();
         List<ChatResults> chatResults = chatList.stream().map(chat ->
                 new ChatResults(chat.getChatDate(),
                         chatDetailsService.getById(chat.getChatContentId()).getChatContent(),
