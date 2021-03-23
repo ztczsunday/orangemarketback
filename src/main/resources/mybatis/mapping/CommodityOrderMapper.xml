@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeSoft.market.mapper.CommodityOrderMapper">
-    <!--    <resultMap id="userOrderResultMap" type="com.orangeSoft.market.pojo.UserOrderResult">-->
-    <!--        &lt;!&ndash; 定义主键 ,非常重要。如果是多个字段,则定义多个id &ndash;&gt;-->
-    <!--        &lt;!&ndash; property：主键在pojo中的属性名 &ndash;&gt;-->
-    <!--        &lt;!&ndash; column：主键在数据库中的列名 &ndash;&gt;-->
-    <!--        <id property="orderId" column="order_id"/>-->
-    <!--        &lt;!&ndash; 定义普通属性 &ndash;&gt;-->
-    <!--        <result property="shopName" column="shop_name"/>-->
-    <!--        <result property="commodityName" column="commodity_name"/>-->
-    <!--        <result property="subName" column="sub_name"/>-->
-    <!--        <result property="price" column="price"/>-->
-    <!--        <result property="countCommodity" column="count_commodity"/>-->
-    <!--        <result property="itemName" column="item_name"/>-->
-    <!--        <result property="subIcon" column="sub_icon"/>-->
-    <!--    </resultMap>-->
     <select id="findOrderDetailByOrderId" resultType="com.orangeSoft.market.pojo.UserOrderDetailResult">
         select commodity_order.order_id,
                c.cid,
