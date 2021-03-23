@@ -76,7 +76,7 @@ public class CommodityController {
     }
 
     @ApiOperation(value = "首页推荐商品", notes = "根据用户历史记录产生，具有随机性。无历史记录则固定，无随机性")
-    @GetMapping(value = "recommends", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/recommends", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap getRecommends() {
         return commodityService.recommendCommodities();
     }
