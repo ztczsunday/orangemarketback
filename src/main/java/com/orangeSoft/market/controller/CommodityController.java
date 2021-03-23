@@ -27,24 +27,24 @@ public class CommodityController {
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findCommodityByKey
-            (String keyword,
+            (@RequestParam(value = "keyword") String keyword,
              @RequestParam(value = "page", defaultValue = "1") int pages,
              @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-             @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
-             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue,
-             @RequestParam(value = "orderColumn", defaultValue = "null") String orderColumn) {
+             @RequestParam(value = "minValue", required = false) Double minValue,
+             @RequestParam(value = "maxValue", required = false) Double maxValue,
+             @RequestParam(value = "orderColumn", required = false) String orderColumn) {
         return Result.success(commodityService.findCommodityByKey(new Page<>(pages, pageSize), keyword, minValue, maxValue, orderColumn));
     }
 
     @ApiOperation(value = "根据标签查询商品")
     @PostMapping(value = "/findCommodityByLabel", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findCommodityByLabel
-            (String label,
+            (@RequestParam(value = "label") String label,
              @RequestParam(value = "page", defaultValue = "1") int pages,
              @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-             @RequestParam(value = "minValue", defaultValue = "null") Double minValue,
-             @RequestParam(value = "maxValue", defaultValue = "null") Double maxValue,
-             @RequestParam(value = "orderColumn", defaultValue = "null") String orderColumn) {
+             @RequestParam(value = "minValue", required = false) Double minValue,
+             @RequestParam(value = "maxValue", required = false) Double maxValue,
+             @RequestParam(value = "orderColumn", required = false) String orderColumn) {
         return Result.success(commodityService.findCommodityByLabel(new Page<>(pages, pageSize), label, minValue, maxValue, orderColumn));
     }
 
