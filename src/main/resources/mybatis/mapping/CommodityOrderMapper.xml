@@ -51,6 +51,7 @@
                  inner join data_dictionary dd on os.record_id = dd.record_id
                  inner join commodity c on s.sid = c.sid
         where commodity_order.uid = #{uid}
+        group by order_id
         order by order_id DESC
     </select>
     <select id="findSidBySubId" resultType="int">
