@@ -39,13 +39,25 @@ public class ShopController {
         return shopService.shopCommodity(new Page<>(pages, pageSize));
     }
 
-    @ApiOperation(value = "查看某商店详情", notes = "买家进入店铺查看商品，包括其详细信息，以及是否被收藏")
+    @ApiOperation(value = "查看某商店详情", notes = "买家进入店铺查看其详细信息，以及是否被收藏")
     @GetMapping(value = "/shop/visit", produces = "application/json;charset=UTF-8")
-    public Result.JSONResultMap getShopCommodities(
-            @RequestParam(value = "page", defaultValue = "1") int pages,
-            @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
-            @RequestParam(value = "sid") Integer sid) {
-        return commodityService.getShopDetailsBySid(new Page<>(pages, pageSize), sid);
+    public Result.JSONResultMap getShopCommodities(@RequestParam(value = "sid") Integer sid) {
+        return commodityService.getShopDetailsBySid(sid);
     }
 
+    @ApiOperation(value = "查看某商店所有上架商品")
+    @GetMapping(value = "/shop/visit/open", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getShopCommoditiesOpen(@RequestParam(value = "sid") Integer sid,
+                                                       @RequestParam(value = "page") int page,
+                                                       @RequestParam(value = "pageSize") int pageSize) {
+        return commodityService.getShopCommoditiesOpen(new Page<>(page, pageSize), sid);
+    }
+
+    @ApiOperation(value = "查看某商店所有下架商品")
+    @GetMapping(value = "/shop/visit/close", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap getShopCommoditiesClose(@RequestParam(value = "sid") Integer sid,
+                                                        @RequestParam(value = "page") int page,
+                                                        @RequestParam(value = "pageSize") int pageSize) {
+        return commodityService.getShopCommoditiesClose(new Page<>(page, pageSize), sid);
+    }
 }

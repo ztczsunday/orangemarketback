@@ -108,15 +108,21 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     }
 
     @Override
-    public Result.JSONResultMap getShopDetailsBySid(IPage<CommoditySearchResult> page, Integer sid) {
+    public Result.JSONResultMap getShopDetailsBySid(Integer sid) {
         Map<String, Object> rs = new HashMap<>();
-        IPage<CommoditySearchResult> commodityOpen = this.baseMapper.findCommodityBySidOpen(page, sid);
-        IPage<CommoditySearchResult> commodityClose = this.baseMapper.findCommodityBySidClose(page, sid);
-        rs.put("commodityOpen", commodityOpen);
-        rs.put("commodityClose", commodityClose);
         rs.put("shopDetails", shopService.getById(sid));
         rs.put("isCollected", favoritesShopService.isShopCollected(sid));
         return Result.success(rs);
+    }
+
+    @Override
+    public Result.JSONResultMap getShopCommoditiesOpen(Page<CommoditySearchResult> page, Integer sid) {
+        return Result.success(this.baseMapper.findCommodityBySidOpen(page, sid));
+    }
+
+    @Override
+    public Result.JSONResultMap getShopCommoditiesClose(Page<CommoditySearchResult> page, Integer sid) {
+        return Result.success(this.baseMapper.findCommodityBySidClose(page, sid));
     }
 
     @Override

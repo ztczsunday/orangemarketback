@@ -35,7 +35,9 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailService);
     }
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .anyRequest()
