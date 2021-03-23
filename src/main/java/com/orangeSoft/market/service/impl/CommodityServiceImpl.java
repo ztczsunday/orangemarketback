@@ -15,10 +15,7 @@ import com.orangeSoft.market.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -54,6 +51,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     private FavoritesShopServiceImpl favoritesShopService;
     @Autowired
     private CommodityServiceImpl commodityService;
+    @Autowired
+    private FootprintServiceImpl footprintService;
 
     @Override
     public IPage<CommoditySearchResult> findCommodityByKey(Page<CommoditySearchResult> page, String keyword, Double minValue, Double maxValue, String orderColumn) {
@@ -122,7 +121,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
     @Override
     public Result.JSONResultMap recommendCommodities() {
-        List<Commodity> footprints = this.query()
+        List<Footprint> footprints = footprintService.query()
                 .eq("uid", MySessionUtil.getCurrUser().getUid())
                 .orderByDesc("last_browser_date")
                 .last("limit 3")
@@ -131,7 +130,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         if (footprints.size() == 0) {
             return Result.success(this.baseMapper.findNewRecommends());
         }
-        List<Commodity> recommends = new ArrayList<>();
+        Set<Commodity> recommends = new HashSet<>();
         List<List<CommodityLabel>> commodityLabels = footprints.stream()
                 .map(item -> commodityLabelService.getLabelsByCid(item.getCid()))
                 .collect(Collectors.toList());
