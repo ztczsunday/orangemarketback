@@ -136,10 +136,11 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
                 .collect(Collectors.toList());
         //循环遍历找到的所有历史商品，从其所有标签中随机选取1个搜索好评率最高的10个商品，再从其中随机选取一个
         for (int i = 0; i < 10; i++) {
-            int index = (int) (Math.random() * commodityLabels.size());
-            recommends.add(this.baseMapper
-                    .findRecommends(commodityLabels.get(i % footprints.size()).get(index).getCid())
-                    .get((int) (Math.random() * 10)));
+            int index = (int) (Math.random() * commodityLabels.get(i % footprints.size()).size());
+            List<Commodity> spareRecommends = this.baseMapper
+                    .findRecommends(commodityLabels.get(i % footprints.size()).get(index).getRecordId());
+            recommends.add(spareRecommends
+                    .get((int) (Math.random() * spareRecommends.size())));
         }
         return Result.success(recommends);
     }
