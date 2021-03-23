@@ -45,7 +45,7 @@ public class ShopController {
             @RequestParam(value = "page", defaultValue = "1") int pages,
             @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
             @RequestParam(value = "sid") Integer sid) {
-        return commodityService.getShopDetailsBySid(new Page<>(pages, pageSize), sid);
+        return commodityService.getShopDetailsBySid(pages, pageSize, sid);
     }
 
 }
