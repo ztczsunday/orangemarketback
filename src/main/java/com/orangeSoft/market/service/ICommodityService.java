@@ -44,14 +44,30 @@ public interface ICommodityService extends IService<Commodity> {
     Result.JSONResultMap getCommodityById(Long commodityId);
 
     /**
-     * 查询店铺所有商品，按出售中以及已下架分开，同时包含最低价格
+     * 查询商店详情，包含是否被收藏
      *
-     * @param page     页码
-     * @param pageSize 页面大小
-     * @param sid      店铺ID
+     * @param sid 店铺ID
      * @return 结果
      */
-    Result.JSONResultMap getShopDetailsBySid(int page, int pageSize, Integer sid);
+    Result.JSONResultMap getShopDetailsBySid(Integer sid);
+
+    /**
+     * 根据商店ID查看商店的所有上架商品
+     *
+     * @param page 分页器
+     * @param sid  商店ID
+     * @return 结果
+     */
+    Result.JSONResultMap getShopCommoditiesOpen(Page<CommoditySearchResult> page, Integer sid);
+
+    /**
+     * 根据商店ID查看商店所有下架商品
+     *
+     * @param page 分页器
+     * @param sid  商店ID
+     * @return 结果
+     */
+    Result.JSONResultMap getShopCommoditiesClose(Page<CommoditySearchResult> page, Integer sid);
 
     /**
      * 首页推荐商品
