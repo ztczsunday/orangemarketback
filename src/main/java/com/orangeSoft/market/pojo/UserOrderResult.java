@@ -13,8 +13,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class UserOrderResult {
     private long orderId;
-    private int cid;
-    private int sid;
     private String shopName;
     private String commodityName;
     private String subName;
