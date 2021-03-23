@@ -20,4 +20,5 @@ public class UserOrderDetailResult {
     private int countCommodity;
     private String addressDetails;
     private String subIcon;
+    private String logisticsName;
 }
