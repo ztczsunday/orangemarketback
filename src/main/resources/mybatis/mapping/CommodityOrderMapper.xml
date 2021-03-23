@@ -36,6 +36,8 @@
     </select>
     <select id="findUserOrderByUserId" resultType="com.orangeSoft.market.pojo.UserOrderResult">
         select commodity_order.order_id,
+               sc.cid,
+               c.sid,
                shop_name,
                commodity_name,
                sub_name,
