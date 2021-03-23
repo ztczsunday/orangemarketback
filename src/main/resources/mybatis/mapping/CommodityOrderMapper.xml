@@ -47,7 +47,11 @@
                  inner join receive_address ra on commodity_order.receive_address_id = ra.receive_address_id
                  inner join shop s on commodity_order.sid = s.sid
                  inner join sub_commodity sc on commodity_order.sub_id = sc.sub_id
-                 inner join order_stateflow os on commodity_order.order_id = os.order_id
+                 inner join (select *
+                             from (select *
+                                   from order_stateflow
+                                   order by record_id desc) as tmp
+                             group by order_id) as os on commodity_order.order_id = os.order_id
                  inner join data_dictionary dd on os.record_id = dd.record_id
                  inner join commodity c on s.sid = c.sid
         where commodity_order.uid = #{uid}
