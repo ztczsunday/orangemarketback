@@ -37,9 +37,9 @@ public class Shop implements Serializable {
 
     private String shopAddress;
 
-    private Long comment_count;
+    private Long commentCount;
 
-    private Long praise_count;
+    private Long praiseCount;
 
     private String shopIcon;
 
