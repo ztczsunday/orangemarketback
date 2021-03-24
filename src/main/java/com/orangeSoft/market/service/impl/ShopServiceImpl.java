@@ -74,9 +74,9 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
 
     @Override
     public Result.JSONResultMap updateShopDescription(Integer sid, String shopDescription) {
-        Shop shop=this.getById(sid);
+        Shop shop = this.getById(sid);
         shop.setShopDescription(shopDescription);
-        if (this.updateById(shop)){
+        if (this.updateById(shop)) {
             return Result.success();
         }
         return Result.fail();

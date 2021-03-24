@@ -120,4 +120,11 @@ public class CommodityController {
                                             @RequestParam(value = "subId") int subId) {
         return subCommodityService.updateStock(subId, stock);
     }
+
+    @ApiOperation(value = "修改库存")
+    @PutMapping(value = "/commodity/updateStatus", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap updatedCommodityStatus(@RequestParam(value = "cid") long cid,
+                                                       @RequestParam(value = "commodityStatus") boolean commodityStatus) {
+        return commodityService.updatedCommodityStatus(cid, commodityStatus);
+    }
 }

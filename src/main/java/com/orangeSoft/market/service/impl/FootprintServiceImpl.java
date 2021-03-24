@@ -1,5 +1,6 @@
 package com.orangeSoft.market.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -48,9 +49,14 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
                 .setCid(cid)
                 .setUid(MySessionUtil.getCurrUser().getUid())
                 .setLastBrowserDate(LocalDateTime.now());
-        if (this.saveOrUpdate(footprint)) {
-            return Result.success();
+        // 判定两行相等的Wrapper
+        Wrapper<Footprint> selectWrapper = new QueryWrapper<Footprint>().eq("cid", cid).eq("uid", footprint.getUid());
+        // 如果有，则修改；如果没有，则插入
+        if (this.getOne(selectWrapper) != null) {
+            this.update(footprint, selectWrapper);
+        } else {
+            this.save(footprint);
         }
-        return Result.fail();
+        return Result.success();
     }
 }
