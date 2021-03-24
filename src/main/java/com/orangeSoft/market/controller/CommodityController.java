@@ -115,7 +115,7 @@ public class CommodityController {
     }
 
     @ApiOperation(value = "修改库存")
-    @PostMapping(value = "/commodity/newLabel", produces = "application/json;charset=UTF-8")
+    @PutMapping(value = "/commodity/updateStock", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap updateStock(@RequestParam(value = "stock") int stock,
                                             @RequestParam(value = "subId") int subId) {
         return subCommodityService.updateStock(subId, stock);
