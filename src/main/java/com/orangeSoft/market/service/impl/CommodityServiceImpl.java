@@ -248,17 +248,17 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         commodity.setSid(shop.getSid());
         if (commodityMapper.updateById(commodity) == 1) {
             for (SubCommodity subCommodity : commodityUpdateData.getSubCommodity()) {
-                if (subCommodityMapper.updateById(subCommodity) != 1) {
+                if (new SubCommodityServiceImpl().saveOrUpdate(subCommodity)) {
                     return Result.fail();
                 }
             }
             for (CommodityPictures commodityPictures : commodityUpdateData.getMainIcons()) {
-                if (commodityPicturesMapper.updateById(commodityPictures) != 1) {
+                if (new CommodityPicturesServiceImpl().saveOrUpdate(commodityPictures)) {
                     return Result.fail();
                 }
             }
             for (CommodityDetails commodityDetails : commodityUpdateData.getCommodityDetails()) {
-                if (commodityDetailsMapper.updateById(commodityDetails) != 1) {
+                if (new CommodityDetailsServiceImpl().saveOrUpdate(commodityDetails)) {
                     return Result.fail();
                 }
             }
