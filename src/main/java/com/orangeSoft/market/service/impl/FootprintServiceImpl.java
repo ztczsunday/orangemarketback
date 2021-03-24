@@ -49,12 +49,15 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
                 .setCid(cid)
                 .setUid(MySessionUtil.getCurrUser().getUid())
                 .setLastBrowserDate(LocalDateTime.now());
-        if (this.saveOrUpdate(footprint,
-                new QueryWrapper<Footprint>()
-                        .eq("cid", cid)
-                        .eq("uid", footprint.getUid()))) {
-            return Result.success();
+        // 判定两行相等的Wrapper
+        Wrapper<Footprint> selectWrapper = new QueryWrapper<Footprint>().eq("cid", cid).eq("uid", footprint.getUid());
+        if (this.getOne(selectWrapper) != null) {
+            // 如果有，则修改
+            this.update(footprint, selectWrapper);
+        } else {
+            // 如果没有，则插入
+            this.save(footprint);
         }
-        return Result.fail();
+        return Result.success();
     }
 }
