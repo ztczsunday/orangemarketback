@@ -5,6 +5,6 @@
     <update id="updateShopCommentsCount">
         update shop
         set comment_count = comment_count + 1
-        <if test="praise == true">set shop.praise_count = shop.praise_count+1</if>
+        <if test="praise == true">, praise_count = praise_count+1</if>
     </update>
 </mapper>

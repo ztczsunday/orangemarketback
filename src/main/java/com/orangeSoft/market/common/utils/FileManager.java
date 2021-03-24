@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class FileManager {
     public final static String MAIN_FILE_PATH = "F:/OrangeSoft/NetSuperMarket/projectRepository/";
-    public final static String DOWNLOAD_PATH = "http://localhost:8081/download?fileName=";
+    public final static String DOWNLOAD_PATH = "http://d3840422t4.wicp.vip/download?fileName=";
 
     public static String saveFile(MultipartFile file) throws IOException {
         FileInputStream fileInputStream = (FileInputStream) file.getInputStream();

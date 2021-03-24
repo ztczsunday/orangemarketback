@@ -29,5 +29,5 @@ public interface CommodityMapper extends BaseMapper<Commodity> {
 
     List<Commodity> findNewRecommends();
 
-    Integer updateCommentsCount(boolean praise);
+    Integer updateCommentsCount(Long cid, boolean praise);
 }

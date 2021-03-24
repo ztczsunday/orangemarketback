@@ -72,7 +72,7 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
             /* 根据我的身份、对面的身份来做初始化 */
             if (myType.equals("商家")) {
                 Shop shopInfo = shopService.query().eq("uid", myId).one();
-                mySelfie = shopInfo.getShopName();
+                mySelfie = shopInfo.getShopIcon();
                 myName = shopInfo.getShopName();
             } else {
                 UserInfo myInfo = MySessionUtil.getCurrUser();

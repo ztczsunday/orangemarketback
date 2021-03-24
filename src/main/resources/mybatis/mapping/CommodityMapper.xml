@@ -4,7 +4,8 @@
     <update id="updateCommentsCount">
         update commodity
         set comment_count = comment_count + 1
-        <if test="praise == true">set commodity.praise_comment_count = commodity.praise_comment_count+1</if>
+        <if test="praise == true">, praise_comment_count = praise_comment_count + 1</if>
+        where cid = #{cid}
     </update>
     <select id="findByLabel" resultType="com.orangeSoft.market.pojo.CommoditySearchResult">
         select *

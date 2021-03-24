@@ -29,7 +29,7 @@ public class UserCommentServiceImpl extends ServiceImpl<UserCommentMapper, UserC
 
     @Override
     public Boolean evaluateCommodity(Long cid, String commentDetails, Boolean praise) {
-        commodityMapper.updateCommentsCount(praise);
+        commodityMapper.updateCommentsCount(cid, praise);
         shopMapper.updateShopCommentsCount(praise);
         return this.save(
                 new UserComment()
