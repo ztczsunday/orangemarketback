@@ -99,4 +99,13 @@ public interface ICommodityService extends IService<Commodity> {
      * @return 【是否完成
      */
     Result.JSONResultMap updatedCommodity(CommodityUpdateData commodityUpdateData);
+
+    /**
+     * 更改商品状态
+     *
+     * @param cid 商品号
+     * @param commodityStatus 商品状态
+     * @return 是否更改成功
+     */
+    Result.JSONResultMap updatedCommodityStatus(long cid, boolean commodityStatus);
 }

@@ -273,4 +273,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
         return Result.fail();
     }
+
+    @Override
+    public Result.JSONResultMap updatedCommodityStatus(long cid, boolean commodityStatus) {
+        Commodity commodity = this.getById(cid);
+        commodity.setCommodityStatus(commodityStatus);
+        if (this.updateById(commodity)) {
+            return Result.success();
+        }
+        return Result.fail();
+    }
 }
