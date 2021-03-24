@@ -6,6 +6,7 @@ import com.orangeSoft.market.entity.OrderLogistics;
 import com.orangeSoft.market.entity.OrderStateflow;
 import com.orangeSoft.market.mapper.OrderStateflowMapper;
 import com.orangeSoft.market.service.IOrderStateflowService;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,10 +27,12 @@ public class OrderStateflowServiceImpl extends ServiceImpl<OrderStateflowMapper,
         orderStateflow.setOrderId(orderId);
         orderStateflow.setRecordId(recordId);
         orderStateflow.setStatusDate(LocalDateTime.now());
-        if (this.save(orderStateflow)) {
+        try {
+            this.save(orderStateflow);
             return Result.success();
+        } catch (DuplicateKeyException duplicateKeyException) {
+            return Result.fail();
         }
-        return Result.fail();
     }
 
     @Override

@@ -18,10 +18,9 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -108,15 +107,14 @@ public class AlipayServiceImpl implements IAlipayService {
             Map<String, String> params = new HashMap<>();
             Map<String, String[]> requestParams = request.getParameterMap();
 
-            for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
-                String name = (String) iter.next();
-                String[] values = (String[]) requestParams.get(name);
+            for (String name : requestParams.keySet()) {
+                String[] values = requestParams.get(name);
                 String valueStr = "";
                 for (int i = 0; i < values.length; i++) {
                     valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
                 }
                 // 乱码解决，这段代码在出现乱码时使用
-                valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+                valueStr = new String(valueStr.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
                 params.put(name, valueStr);
             }
 
@@ -133,13 +131,13 @@ public class AlipayServiceImpl implements IAlipayService {
              */
             if (signVerified) {// 验证成功
                 // 商户订单号
-                String outTradeNo = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
+                String outTradeNo = new String(request.getParameter("out_trade_no").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
                 // 支付宝交易号
-                String tradeNo = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
+                String tradeNo = new String(request.getParameter("trade_no").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
                 // 交易状态
-                String tradeStatus = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"), "UTF-8");
+                String tradeStatus = new String(request.getParameter("trade_status").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
                 if (tradeStatus.equals("TRADE_FINISHED") || tradeStatus.equals("TRADE_SUCCESS")) {
                     // 判断该笔订单是否在商户网站中已经做过处理
@@ -170,9 +168,6 @@ public class AlipayServiceImpl implements IAlipayService {
                 // String sWord = AlipaySignature.getSignCheckContentV1(params);
                 // AlipayConfig.logResult(sWord);
             }
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (AlipayApiException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
