@@ -51,11 +51,10 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
                 .setLastBrowserDate(LocalDateTime.now());
         // 判定两行相等的Wrapper
         Wrapper<Footprint> selectWrapper = new QueryWrapper<Footprint>().eq("cid", cid).eq("uid", footprint.getUid());
+        // 如果有，则修改；如果没有，则插入
         if (this.getOne(selectWrapper) != null) {
-            // 如果有，则修改
             this.update(footprint, selectWrapper);
         } else {
-            // 如果没有，则插入
             this.save(footprint);
         }
         return Result.success();
