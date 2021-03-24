@@ -49,5 +49,5 @@ public interface ICommodityOrderService extends IService<CommodityOrder> {
      * @param page 用户订单分页
      * @return 与卖家用户有关的订单
      */
-    Result.JSONResultMap findShopOrderByUid(Page<ShopOrderResult> page);
+    Result.JSONResultMap findShopOrder(Page<ShopOrderResult> page);
 }

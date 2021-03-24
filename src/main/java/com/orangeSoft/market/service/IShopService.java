@@ -46,4 +46,13 @@ public interface IShopService extends IService<Shop> {
      * @return 目标店铺
      */
     Shop getShopById(Integer sid);
+
+    /**
+     * 修改商店简介
+     *
+     * @param sid 店铺号
+     * @param shopDescription 店铺简介
+     * @return 是否修改完成
+     */
+    Result.JSONResultMap updateShopDescription(Integer sid, String shopDescription);
 }

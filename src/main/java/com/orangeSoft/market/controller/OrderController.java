@@ -43,7 +43,7 @@ public class OrderController {
     @GetMapping(value = "/shopOrder", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap findShopOrder(@RequestParam(value = "page", defaultValue = "1") int pages,
                                               @RequestParam(value = "pageSize", defaultValue = "40") int pageSize) {
-        return orderService.findShopOrderByUid(new Page<>(pages, pageSize));
+        return orderService.findShopOrder(new Page<>(pages, pageSize));
     }
 
 }
