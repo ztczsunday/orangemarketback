@@ -44,6 +44,10 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         wrapper.eq("uid", userInfo.getUid()).eq("is_default", true);
         if (receiveAddressMapper.selectCount(wrapper) == 0) {
             newReceiveAddress.setIsDefault(true);
+        }else{
+            ReceiveAddress defaultReceiveAddress=receiveAddressMapper.selectOne(wrapper);
+            defaultReceiveAddress.setIsDefault(false);
+            this.updateById(defaultReceiveAddress);
         }
         if (this.save(newReceiveAddress)) {
             return Result.success("", "已新建地址");
