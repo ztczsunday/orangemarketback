@@ -60,4 +60,11 @@ public class ShopController {
                                                         @RequestParam(value = "pageSize") int pageSize) {
         return commodityService.getShopCommoditiesClose(new Page<>(page, pageSize), sid);
     }
+
+    @ApiOperation(value = "修改简介")
+    @PutMapping(value = "/shop/update", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap updateShopDescription(@RequestParam(value = "sid") Integer sid,
+                                                      @RequestParam(value = "shopDescription") String shopDescription) {
+        return shopService.updateShopDescription(sid, shopDescription);
+    }
 }
