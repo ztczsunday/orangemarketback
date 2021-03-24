@@ -28,4 +28,6 @@ public interface CommodityMapper extends BaseMapper<Commodity> {
     List<Commodity> findRecommends(Long recordId);
 
     List<Commodity> findNewRecommends();
+
+    Integer updateCommentsCount(boolean praise);
 }

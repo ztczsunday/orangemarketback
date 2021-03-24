@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ShopMapper extends BaseMapper<Shop> {
-
+    Integer updateShopCommentsCount(boolean praise);
 }

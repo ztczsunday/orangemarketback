@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.orangeSoft.market.common.utils.MySessionUtil;
 import com.orangeSoft.market.common.utils.Result;
 import com.orangeSoft.market.entity.UserComment;
+import com.orangeSoft.market.mapper.CommodityMapper;
+import com.orangeSoft.market.mapper.ShopMapper;
 import com.orangeSoft.market.mapper.UserCommentMapper;
 import com.orangeSoft.market.pojo.UserCommentResult;
 import com.orangeSoft.market.service.IUserCommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,9 +22,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserCommentServiceImpl extends ServiceImpl<UserCommentMapper, UserComment> implements IUserCommentService {
+    @Autowired
+    CommodityMapper commodityMapper;
+    @Autowired
+    ShopMapper shopMapper;
 
     @Override
     public Boolean evaluateCommodity(Long cid, String commentDetails, Boolean praise) {
+        commodityMapper.updateCommentsCount(praise);
+        shopMapper.updateShopCommentsCount(praise);
         return this.save(
                 new UserComment()
                         .setUid(MySessionUtil.getCurrUser().getUid())
