@@ -23,6 +23,8 @@ public class CommodityController {
     SubCommentsServiceImpl subCommentsService;
     @Autowired
     DataDictionaryServiceImpl dictionaryService;
+    @Autowired
+    SubCommodityServiceImpl subCommodityService;
 
     @ApiOperation(value = "根据关键字查询商品查询商品")
     @PostMapping(value = "/findCommodityByKey", produces = "application/json;charset=UTF-8")
@@ -110,5 +112,12 @@ public class CommodityController {
     @PostMapping(value = "/commodity/newLabel", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap addNewLabel(@RequestParam(value = "labelName") String labelName) {
         return dictionaryService.addNewLabel(labelName);
+    }
+
+    @ApiOperation(value = "修改库存")
+    @PostMapping(value = "/commodity/newLabel", produces = "application/json;charset=UTF-8")
+    public Result.JSONResultMap updateStock(@RequestParam(value = "stock") int stock,
+                                            @RequestParam(value = "subId") int subId) {
+        return subCommodityService.updateStock(subId, stock);
     }
 }
