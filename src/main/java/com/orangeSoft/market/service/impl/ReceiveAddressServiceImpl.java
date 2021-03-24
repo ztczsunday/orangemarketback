@@ -29,7 +29,7 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
     @Override
     public Result.JSONResultMap findAddressByUid() {
         QueryWrapper<ReceiveAddress> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid());
+        queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid()).eq("is_deleted",false);
         if (receiveAddressMapper.selectCount(queryWrapper) == 0) {
             return Result.fail("", "没有设置收货地址");
         }
@@ -41,7 +41,7 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         UserInfo userInfo = MySessionUtil.getCurrUser();
         newReceiveAddress.setUid(userInfo.getUid());
         QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
-        wrapper.eq("uid", userInfo.getUid()).eq("is_default", true);
+        wrapper.eq("uid", userInfo.getUid()).eq("is_default", true).eq("is_deleted",false);
         if (receiveAddressMapper.selectCount(wrapper) == 0) {
             newReceiveAddress.setIsDefault(true);
         }else{
@@ -60,7 +60,7 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         updatedReceiveAddress.setUid(MySessionUtil.getCurrUser().getUid());
         QueryWrapper<ReceiveAddress> wrapper = new QueryWrapper<>();
         if (updatedReceiveAddress.getIsDefault()) {
-            wrapper.eq("is_default", true);
+            wrapper.eq("is_default", true).eq("is_deleted",false);
             ReceiveAddress oldDefaultAddress = this.getOne(wrapper);
             oldDefaultAddress.setIsDefault(false);
             this.updateById(oldDefaultAddress);
@@ -78,15 +78,17 @@ public class ReceiveAddressServiceImpl extends ServiceImpl<ReceiveAddressMapper,
         ReceiveAddress receiveAddress = this.getById(receiveAddressId);
         if (receiveAddress.getIsDefault()) {
             QueryWrapper<ReceiveAddress> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid()).ne("receive_address_id", receiveAddressId);
+            queryWrapper.eq("uid", MySessionUtil.getCurrUser().getUid()).ne("receive_address_id", receiveAddressId).eq("is_deleted",false);
             List<ReceiveAddress> receiveAddressList = receiveAddressMapper.selectList(queryWrapper);
             if (!receiveAddressList.isEmpty()) {
                 receiveAddressList.get(0).setIsDefault(true);
                 receiveAddressMapper.updateById(receiveAddressList.get(0));
             }
         }
-        if (this.removeById(receiveAddressId)) {
-            return Result.success("", "已删除");
+        receiveAddress.setIsDeleted(true);
+        receiveAddress.setIsDefault(false);
+        if (this.updateById(receiveAddress)){
+            return Result.success();
         }
         return Result.fail();
     }

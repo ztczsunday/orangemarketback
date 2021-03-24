@@ -35,5 +35,5 @@ public class ReceiveAddress implements Serializable {
 
     private Boolean isDefault;
 
-
+    private Boolean isDeleted;
 }
