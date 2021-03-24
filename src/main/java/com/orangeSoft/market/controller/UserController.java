@@ -80,7 +80,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "发送私信", notes = "对方uid和sid二选一，对应向用户和向店铺发送私信")
-        @PostMapping(value = "/user/sendChat", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/user/sendChat", produces = "application/json;charset=UTF-8")
     public Result.JSONResultMap sendChat(@RequestParam(value = "myType") String myType,
                                          @RequestParam(value = "oppId") Integer oppId,
                                          @RequestParam(value = "oppType") String oppType,

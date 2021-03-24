@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,12 +37,22 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        //配置静态文件不需要认证
+        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/index.html");
+        web.ignoring().antMatchers("/favicon.ico");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/AlipayReturn").permitAll()
                 .antMatchers("/register").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and().formLogin().loginPage("/login")
+                .and().formLogin().loginPage("/index.html").loginProcessingUrl("/login")
                 .successHandler((request, response, authentication) -> {
                     //获取Principal，以用于维护session
                     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

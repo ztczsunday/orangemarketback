@@ -38,14 +38,6 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
     @Autowired
     ShopServiceImpl shopService;
 
-    @EqualsAndHashCode
-    @AllArgsConstructor
-    private static class Contact {
-        public Integer oppId;
-        public String oppType;
-        public String myType;
-    }
-
     @Override
     public Result.JSONResultMap getAboutChats() {
         UserInfo me = MySessionUtil.getCurrUser();
@@ -147,5 +139,13 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements IC
         chatDetailsService.save(chatDetails);
         this.save(new Chat(null, chatDetails.getChatContentId(), null, MySessionUtil.getCurrUser().getUid(), myType, oppUid, oppType, false));
         return Result.success();
+    }
+
+    @EqualsAndHashCode
+    @AllArgsConstructor
+    private static class Contact {
+        public Integer oppId;
+        public String oppType;
+        public String myType;
     }
 }

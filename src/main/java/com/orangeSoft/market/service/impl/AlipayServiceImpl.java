@@ -108,7 +108,7 @@ public class AlipayServiceImpl implements IAlipayService {
             Map<String, String> params = new HashMap<>();
             Map<String, String[]> requestParams = request.getParameterMap();
 
-            for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
+            for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
                 String name = (String) iter.next();
                 String[] values = (String[]) requestParams.get(name);
                 String valueStr = "";
@@ -141,14 +141,14 @@ public class AlipayServiceImpl implements IAlipayService {
                 // 交易状态
                 String tradeStatus = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"), "UTF-8");
 
-                if (tradeStatus.equals("TRADE_FINISHED")||tradeStatus.equals("TRADE_SUCCESS")) {
+                if (tradeStatus.equals("TRADE_FINISHED") || tradeStatus.equals("TRADE_SUCCESS")) {
                     // 判断该笔订单是否在商户网站中已经做过处理
                     // 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                     // 如果有做过处理，不执行商户的业务程序
 
                     // 注意：
                     // 退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
-                    OrderStateflow orderStateflow=new OrderStateflow();
+                    OrderStateflow orderStateflow = new OrderStateflow();
                     orderStateflow.setRecordId((long) 2);
                     orderStateflow.setStatusDate(LocalDateTime.now());
                     orderStateflow.setOrderId(Long.valueOf(outTradeNo));

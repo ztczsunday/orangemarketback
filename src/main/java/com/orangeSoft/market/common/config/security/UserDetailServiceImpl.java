@@ -33,5 +33,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
         user.setUserPassword(encodePwd);
         return user;
     }
-
 }

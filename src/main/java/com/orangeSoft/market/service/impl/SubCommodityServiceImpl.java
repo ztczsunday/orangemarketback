@@ -19,9 +19,9 @@ public class SubCommodityServiceImpl extends ServiceImpl<SubCommodityMapper, Sub
 
     @Override
     public Result.JSONResultMap updateStock(int subId, int stock) {
-        SubCommodity subCommodity=this.getById(subId);
+        SubCommodity subCommodity = this.getById(subId);
         subCommodity.setStock(stock);
-        if (this.save(subCommodity)){
+        if (this.save(subCommodity)) {
             return Result.success();
         }
         return Result.fail();
