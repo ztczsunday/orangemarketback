@@ -50,7 +50,7 @@ public interface IShopService extends IService<Shop> {
     /**
      * 修改商店简介
      *
-     * @param sid 店铺号
+     * @param sid             店铺号
      * @param shopDescription 店铺简介
      * @return 是否修改完成
      */
