@@ -37,7 +37,6 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .anyRequest()
