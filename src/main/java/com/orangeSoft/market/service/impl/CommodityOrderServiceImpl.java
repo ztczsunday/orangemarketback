@@ -88,7 +88,7 @@ public class CommodityOrderServiceImpl extends ServiceImpl<CommodityOrderMapper,
     }
 
     @Override
-    public Result.JSONResultMap findShopOrderByUid(Page<ShopOrderResult> page) {
+    public Result.JSONResultMap findShopOrder(Page<ShopOrderResult> page) {
         UserInfo userInfo = MySessionUtil.getCurrUser();
         Shop shop = shopMapper.selectOne(new QueryWrapper<Shop>().eq("uid", userInfo.getUid()));
         return Result.success(commodityOrderMapper.findShopOrderBySid(shop.getSid(), page));
