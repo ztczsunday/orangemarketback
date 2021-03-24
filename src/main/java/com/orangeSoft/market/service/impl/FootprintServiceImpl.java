@@ -1,5 +1,6 @@
 package com.orangeSoft.market.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -48,7 +49,10 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
                 .setCid(cid)
                 .setUid(MySessionUtil.getCurrUser().getUid())
                 .setLastBrowserDate(LocalDateTime.now());
-        if (this.saveOrUpdate(footprint)) {
+        if (this.saveOrUpdate(footprint,
+                new QueryWrapper<Footprint>()
+                        .eq("cid", cid)
+                        .eq("uid", footprint.getUid()))) {
             return Result.success();
         }
         return Result.fail();
