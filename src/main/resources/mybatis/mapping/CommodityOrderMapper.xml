@@ -75,6 +75,7 @@
                  inner join commodity c on s.sid = c.sid
                  inner join user_info ui on commodity_order.uid = ui.uid
         where commodity_order.sid = #{sid}
+        group by order_id
         order by order_id DESC
     </select>
 </mapper>
